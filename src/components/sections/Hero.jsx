@@ -321,7 +321,7 @@ export default function Hero() {
           />
 
           {/* Monitor COM molduras - ajustado para imagem */}
-          <div className="relative w-full max-w-[85vw] lg:max-w-[1000px] z-10">
+          <div className="relative w-full max-w-[92vw] lg:max-w-[1150px] z-10">
             {/* Outer bezel */}
             <div className="relative rounded-[28px] md:rounded-[36px] bg-gradient-to-b from-slate-700 via-slate-800 to-slate-900 p-[12px] md:p-[16px] shadow-2xl">
               {/* Inner bezel */}
