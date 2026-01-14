@@ -105,6 +105,15 @@ export default function ManagementSection() {
             Da criação do paciente ao faturamento final, a Hausecare centraliza
             toda a operação do home care com controle, segurança e inteligência.
           </p>
+          <div className="mt-8">
+            <a
+              href="/funcionalidades"
+              className="inline-flex items-center font-semibold text-emerald-600 hover:text-emerald-700"
+            >
+              Ver módulos
+              <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </a>
+          </div>
         </header>
 
         <ul

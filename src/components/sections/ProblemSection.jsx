@@ -5,55 +5,24 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 const ICONS = {
   operational: (props) => (
     <svg viewBox="0 0 24 24" fill="none" {...props}>
-      <path
-        d="M4 6h16M7 10h10M7 14h6M4 18h16"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-      <path
-        d="M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-      />
-       </svg>
+      <rect x="3" y="3" width="18" height="18" rx="5" fill="#fff7e6" />
+      <path d="M4 6h16M7 10h10M7 14h6M4 18h16" stroke="#f59e42" strokeWidth="1.8" strokeLinecap="round" />
+      <path d="M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="#f59e42" strokeWidth="1.8" />
+    </svg>
   ),
   shield: (props) => (
     <svg viewBox="0 0 24 24" fill="none" {...props}>
-      <path
-        d="M12 3l8 4v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7l8-4Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M9.5 12l1.8 1.8L15.5 9.6"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      <rect x="3" y="3" width="18" height="18" rx="5" fill="#ffeaea" />
+      <path d="M12 3l8 4v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7l8-4Z" stroke="#e57373" strokeWidth="1.8" strokeLinejoin="round" />
+      <path d="M9.5 12l1.8 1.8L15.5 9.6" stroke="#e57373" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   ),
   finance: (props) => (
     <svg viewBox="0 0 24 24" fill="none" {...props}>
-      <path
-        d="M4 7h16M4 17h16"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-      <path
-        d="M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-      />
-      <path
-        d="M8 12h8M8 14.8h5"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
+      <rect x="3" y="3" width="18" height="18" rx="5" fill="#fff3e0" />
+      <path d="M4 7h16M4 17h16" stroke="#ff7043" strokeWidth="1.8" strokeLinecap="round" />
+      <path d="M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="#ff7043" strokeWidth="1.8" />
+      <path d="M8 12h8M8 14.8h5" stroke="#ff7043" strokeWidth="1.8" strokeLinecap="round" />
     </svg>
   ),
 };
@@ -64,21 +33,24 @@ const PROBLEMS = [
     eyebrow: "Operação",
     title: "Falta de controle operacional",
     description:
-      "Agendas desconectadas, atendimentos perdidos, produtividade difícil de medir e retrabalho constante.",
+      "Agendas desconectadas, atendimentos perdidos, produtividade difícil de medir e retrabalho constante. Exemplo: 74% das empresas relatam perda de produtividade por falta de integração dos processos.",
+    stat: "74% das empresas relatam perda de produtividade por falta de integração dos processos."
   },
   {
     key: "shield",
     eyebrow: "Segurança",
     title: "Risco clínico e jurídico",
     description:
-      "Evoluções alteráveis, registros sem autoria clara e ausência de rastreabilidade comprometem auditorias e confiança.",
+      "Evoluções alteráveis, registros sem autoria clara e ausência de rastreabilidade comprometem auditorias e confiança. Exemplo: 63% dos gestores já enfrentaram problemas jurídicos por falhas em registros clínicos.",
+    stat: "63% dos gestores já enfrentaram problemas jurídicos por falhas em registros clínicos."
   },
   {
     key: "finance",
     eyebrow: "Financeiro",
     title: "Financeiro fragmentado",
     description:
-      "Cobrança, despesas, folha e receitas separados dificultam visão real do lucro e tomada de decisão.",
+      "Cobrança, despesas, folha e receitas separados dificultam visão real do lucro e tomada de decisão. Exemplo: 87% das clínicas perdem receitas por falta de visibilidade do fluxo de caixa.",
+    stat: "87% das clínicas perdem receitas por falta de visibilidade do fluxo de caixa."
   },
 ];
 
@@ -123,12 +95,13 @@ export default function ProblemSection() {
 
       gsap.fromTo(
         cards,
-        { opacity: 0, y: 26 },
+        { opacity: 0, y: 38, scale: 0.98 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.65,
-          stagger: 0.12,
+          scale: 1,
+          duration: 0.7,
+          stagger: 0.18,
           ease: "power3.out",
           scrollTrigger: {
             trigger: el,
@@ -188,9 +161,10 @@ export default function ProblemSection() {
                            transition hover:shadow-lg hover:-translate-y-0.5 will-change-transform"
               >
                 <div className="flex items-start gap-4">
-                  <div className="shrink-0 rounded-2xl border border-slate-200 bg-slate-50 p-3 text-[#174c77]
-                                  transition group-hover:bg-white">
-                    <Icon className="h-6 w-6" aria-hidden="true" />
+                  <div
+                    className={`shrink-0 rounded-2xl border p-3 transition group-hover:bg-white problem-icon-bg problem-icon-bg--${p.key}`}
+                  >
+                    <Icon className="h-6 w-6 problem-icon" aria-hidden="true" />
                   </div>
 
                   <div>
@@ -204,6 +178,9 @@ export default function ProblemSection() {
 
                     <p className="mt-2 text-sm text-slate-600 leading-relaxed">
                       {p.description}
+                    </p>
+                    <p className="mt-2 text-xs font-medium text-slate-500 problem-stat">
+                      {p.stat}
                     </p>
                   </div>
                 </div>
