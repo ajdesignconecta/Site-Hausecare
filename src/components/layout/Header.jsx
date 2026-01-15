@@ -48,8 +48,11 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-100">
-      <div className="container mx-auto px-4 md:px-6">
+    <header
+      className="fixed top-0 left-0 w-full z-[100] bg-white border-b border-slate-100"
+      style={{ transform: 'translate3d(0, 0, 0)' }}
+    >
+      <div className="mx-auto px-4 md:px-6 max-w-[1400px]">
         <div className="flex h-16 md:h-20 items-center justify-between w-full">
           {/* Logo maior e totalmente à esquerda */}
           <NavLink to="/" className="flex items-center gap-2 md:min-w-[200px] select-none mr-auto">
@@ -115,7 +118,7 @@ export default function Header() {
 
           {/* Botão mobile */}
           <button
-            className="md:hidden flex-shrink-0 flex items-center justify-center p-2 rounded focus:outline-none ml-2"
+            className="md:hidden flex-shrink-0 flex items-center justify-center p-2 rounded focus:outline-none ml-2 mr-4"
             onClick={() => setOpen((v) => !v)}
             aria-label="Abrir menu"
           >
@@ -138,8 +141,8 @@ export default function Header() {
       {/* Menu Mobile Overlay (High-level Professional) */}
       {open && (
         <>
-          <div className="fixed inset-0 z-[55] bg-black/40 md:hidden" onClick={() => setOpen(false)} />
-          <div className="fixed top-16 left-0 w-full z-[60] bg-white shadow-xl rounded-b-3xl md:hidden animate-fade-in-down overflow-hidden max-h-[calc(100vh-5rem)] overflow-y-auto overscroll-contain">
+          <div className="fixed inset-0 z-[105] bg-black/40 md:hidden" onClick={() => setOpen(false)} />
+          <div className="fixed top-16 left-0 w-full z-[110] bg-white shadow-xl rounded-b-3xl md:hidden animate-fade-in-down overflow-hidden max-h-[calc(100vh-4rem)] overflow-y-auto overscroll-contain">
 
             {/* Lista de Links */}
             <div className="py-2 px-6 space-y-1">

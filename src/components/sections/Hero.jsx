@@ -194,8 +194,8 @@ export default function Hero() {
               start: "top top",
               end: scrollDistance,
               scrub: 1.5,
-              pin: true,
-              pinSpacing: true,
+              pin: !isMobile, // Desabilita pin no mobile para evitar conflitos com header fixo
+              pinSpacing: !isMobile,
               anticipatePin: 1,
               onUpdate: (self) => {
                 if (progressBarRef.current) {
@@ -350,7 +350,7 @@ export default function Hero() {
           wrapperRef.current = el;
           heroContainerRef.current = el;
         }}
-        className="relative w-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
+        className="relative w-full bg-gradient-to-r from-[#174c77] to-[#2b908a] overflow-hidden"
         style={{ minHeight: "100vh" }}
       >
         {/* ========== CENA 2 (ATRÁS): HERO BASE — SEMPRE VISÍVEL ========== */}
@@ -379,7 +379,7 @@ export default function Hero() {
               {/* TEXTO ESQUERDA */}
               <div className="hero-text space-y-5 lg:space-y-7 max-w-3xl">
                 <div
-                  className="inline-flex items-center gap-3 rounded-full bg-white/10 px-4 py-2 text-xs md:text-sm text-white/80 shadow-lg shadow-black/20 backdrop-blur"
+                  className="hidden md:inline-flex items-center gap-3 rounded-full bg-white/10 px-4 py-2 text-xs md:text-sm text-white/80 shadow-lg shadow-black/20 backdrop-blur"
                   style={{ opacity: 0, transform: "translateY(20px)" }}
                 >
                   <span className="font-semibold text-white">Hausecare 360º</span>
@@ -567,7 +567,7 @@ export default function Hero() {
 
             {/* Bloco de Texto */}
             <div className="max-w-5xl text-center mx-auto mb-2 md:mb-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/20 mb-6 backdrop-blur-sm">
+              <div className="hidden md:inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/20 mb-6 backdrop-blur-sm">
                 <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
                 <span className="text-xs md:text-sm font-medium tracking-wide text-gray-200">
                   Gestão Inteligente
@@ -631,7 +631,7 @@ export default function Hero() {
 
           {/* Scroll hint */}
           <div
-            className="absolute bottom-24 md:bottom-28 left-0 right-0 mx-auto flex flex-col items-center gap-2 text-black animate-bounce z-20"
+            className="absolute bottom-64 md:bottom-28 left-0 right-0 mx-auto flex flex-col items-center gap-2 text-black animate-bounce z-20"
             style={{ width: "fit-content" }}
           >
             <p className="text-xs md:text-sm font-medium tracking-wide">
