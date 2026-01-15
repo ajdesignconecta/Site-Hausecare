@@ -170,7 +170,7 @@ export default function AudienceSection() {
 
   useLayoutEffect(() => {
     let ctx;
-    let cleanup = () => {};
+    let cleanup = () => { };
 
     (async () => {
       // Carrega GSAP só uma vez
@@ -267,7 +267,7 @@ export default function AudienceSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-6 md:py-24 bg-white"
+      className="relative py-6 md:py-24"
       aria-labelledby="audience-title"
     >
       {/* glow premium */}

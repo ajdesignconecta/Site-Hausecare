@@ -123,19 +123,19 @@ export default function Contato() {
     }
 
     return (
-        <main className="min-h-screen bg-white">
-            {/* Background premium leve (sem imagem pesada) */}
-            <div
+        <main className="min-h-screen bg-slate-50">
+            {/* Background removido para igualar à página de Planos */}
+            {/* <div
                 aria-hidden="true"
                 className="pointer-events-none fixed inset-0 -z-10"
                 style={{
                     background:
                         "radial-gradient(900px 420px at 12% 18%, rgba(43,144,138,0.12), transparent 58%), radial-gradient(900px 480px at 88% 40%, rgba(99,102,241,0.10), transparent 62%), linear-gradient(180deg, rgba(15,23,42,0.03) 0%, transparent 40%)",
                 }}
-            />
+            /> */}
 
             {/* HERO */}
-            <section className="relative pt-14 md:pt-20 pb-10 md:pb-14">
+            <section className="relative pt-24 md:pt-32 pb-10 md:pb-14">
                 <div className="mx-auto max-w-6xl px-6">
                     <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 backdrop-blur px-4 py-2 text-xs font-semibold text-slate-700 shadow-sm">
                         <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />

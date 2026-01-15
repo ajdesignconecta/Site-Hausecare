@@ -5,7 +5,7 @@ import FinalCTA from "../components/sections/FinalCTA";
 
 export default function ParaQuem() {
     return (
-        <main className="pt-24">
+        <main className="pt-24 bg-slate-50 min-h-screen">
             <StickyCta />
 
             <section aria-label="Para quem é a Hausecare">

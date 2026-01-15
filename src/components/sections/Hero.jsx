@@ -226,6 +226,7 @@ export default function Hero() {
               filter: "blur(8px)",
               duration: 1,
               ease: "power2.inOut",
+              pointerEvents: "none", // Desativa cliques após sumir
             },
             0.25
           );
@@ -418,16 +419,23 @@ export default function Hero() {
                   style={{ opacity: 0, transform: "translateY(20px)" }}
                 >
                   <a
-                    href="#contato"
-                    className="btn-hc btn-hc-primary hero-primary-cta w-full sm:w-auto animated-cta"
+                    href="https://app.hausecare.com.br/auth/register"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-hc btn-hc-primary hero-primary-cta w-full sm:w-auto animated-cta transform hover:scale-105 transition-transform duration-300 relative z-10 hover:z-20"
                     aria-label="Criar conta grátis na Hausecare"
+                    style={{
+                      outline: "none",
+                      boxShadow: "0 10px 25px rgba(15, 23, 42, 0.18)" // Mantém sombra original, remove ring do hover
+                    }}
                   >
                     <span className="cta-glow" aria-hidden="true"></span>
                     <span className="cta-text">Criar conta grátis</span>
                   </a>
                   <a
                     href="/funcionalidades"
-                    className="inline-flex items-center justify-center rounded-full px-5 md:px-6 py-2.5 md:py-3 text-sm md:text-base font-semibold text-white border border-white/20 hover:bg-white/10 transition-colors"
+                    className="inline-flex items-center justify-center rounded-full px-5 md:px-6 py-2.5 md:py-3 text-sm md:text-base font-semibold text-white border border-white/20 hover:bg-white/10 transition-colors transform hover:scale-105 transition-transform duration-300 relative z-10 hover:z-20"
+                    style={{ outline: "none" }}
                   >
                     Ver funcionalidades
                   </a>
