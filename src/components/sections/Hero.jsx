@@ -201,10 +201,10 @@ export default function Hero() {
           // loops
           if (heroTablet) {
             gsap.to(heroTablet, {
-              y: -10,
-              rotateX: -2,
-              rotateY: 3,
-              scale: 1.01,
+              y: isMobile ? -5 : -10,
+              rotateX: isMobile ? -1 : -2,
+              rotateY: isMobile ? 1 : 3,
+              scale: isMobile ? 1.005 : 1.01,
               duration: 3.2,
               ease: "sine.inOut",
               yoyo: true,
@@ -314,7 +314,7 @@ export default function Hero() {
 
           {/* Conteúdo animável (isso entra no scroll) */}
           <div ref={heroAnimRef} className="w-full">
-            <div className="relative container-hc grid lg:grid-cols-2 gap-8 lg:gap-12 items-center z-10 w-full px-6">
+            <div className="relative container-hc grid lg:grid-cols-2 gap-4 md:gap-8 lg:gap-12 items-center z-10 w-full px-6">
               {/* TEXTO ESQUERDA */}
               <div className="hero-text space-y-5 lg:space-y-7 max-w-3xl">
                 <div
@@ -393,7 +393,7 @@ export default function Hero() {
               </div>
 
               {/* VISUAL DIREITA (TABLET) */}
-              <div className="relative flex justify-center lg:justify-end px-2 sm:px-6">
+              <div className="hidden md:flex relative justify-center lg:justify-end px-2 sm:px-6">
                 <div
                   aria-hidden="true"
                   className="absolute -inset-4 sm:-inset-10 rounded-[52px] blur-3xl opacity-40"
@@ -404,7 +404,7 @@ export default function Hero() {
                 />
 
                 <div
-                  className="hero-tablet relative w-full max-w-[240px] sm:max-w-[320px] md:max-w-[420px] lg:max-w-[500px]"
+                  className="hero-tablet relative w-full max-w-[90%] sm:max-w-[480px] md:max-w-[420px] lg:max-w-[500px]"
                   style={{
                     opacity: 0,
                     transform: "translateY(40px) scale(0.95)",
@@ -415,9 +415,18 @@ export default function Hero() {
                       <div className="relative rounded-[20px] md:rounded-[26px] overflow-hidden bg-black">
                         <div className="hero-tablet-screen relative w-full h-full select-none">
                           <img
+                            src={monitorImage}
+                            alt="Prévia do sistema Hausecare - Mobile"
+                            className="block w-full h-auto md:hidden"
+                            loading="eager"
+                            decoding="async"
+                            fetchpriority="high"
+                            draggable={false}
+                          />
+                          <img
                             src={heroTabletImage}
                             alt="Prévia do sistema Hausecare"
-                            className="block w-full h-auto"
+                            className="hidden md:block w-full h-auto"
                             loading="eager"
                             decoding="async"
                             fetchpriority="high"
@@ -493,7 +502,7 @@ export default function Hero() {
           />
 
           {/* Monitor */}
-          <div className="relative w-full max-w-[92vw] lg:max-w-[1150px] z-10">
+          <div className="relative w-full px-4 lg:max-w-[1150px] z-10">
             <div className="relative rounded-[28px] md:rounded-[36px] bg-gradient-to-b from-slate-700 via-slate-800 to-slate-900 p-[12px] md:p-[16px] shadow-2xl">
               <div className="relative rounded-[20px] md:rounded-[26px] bg-gradient-to-b from-slate-800 to-black p-[14px] md:p-[18px] ring-1 ring-white/10">
                 <div
@@ -501,9 +510,16 @@ export default function Hero() {
                   style={{ aspectRatio: "auto" }}
                 >
                   <img
+                    src={heroTabletImage}
+                    alt="Sistema Hausecare - Dashboard Mobile"
+                    className="w-full h-full object-contain md:hidden"
+                    loading="eager"
+                    fetchpriority="high"
+                  />
+                  <img
                     src={monitorImage}
                     alt="Sistema Hausecare - Dashboard"
-                    className="w-full h-full object-contain"
+                    className="hidden md:block w-full h-full object-contain"
                     loading="eager"
                     fetchpriority="high"
                   />

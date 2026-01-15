@@ -1,19 +1,23 @@
 .flow-step-anim {
-  box-shadow: 0 2px 12px 0 rgba(23,76,119,0.08);
-  transition: box-shadow 0.22s cubic-bezier(.4,0,.2,1), transform 0.22s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 2px 12px 0 rgba(23, 76, 119, 0.08);
+  transition: box-shadow 0.22s cubic-bezier(.4, 0, .2, 1), transform 0.22s cubic-bezier(.4, 0, .2, 1);
 }
+
 .flow-step-anim:focus-visible {
   outline: 2px solid #2b908a;
-  box-shadow: 0 0 0 4px #2b908a33, 0 2px 12px 0 rgba(23,76,119,0.12);
+  box-shadow: 0 0 0 4px #2b908a33, 0 2px 12px 0 rgba(23, 76, 119, 0.12);
 }
+
 .flow-step-icon {
-  transition: transform 0.18s cubic-bezier(.4,0,.2,1), box-shadow 0.18s cubic-bezier(.4,0,.2,1);
+  transition: transform 0.18s cubic-bezier(.4, 0, .2, 1), box-shadow 0.18s cubic-bezier(.4, 0, .2, 1);
 }
+
 .flow-step-anim:hover .flow-step-icon,
 .flow-step-anim:focus-visible .flow-step-icon {
   transform: scale(1.08) rotate(-6deg);
-  box-shadow: 0 4px 18px 0 rgba(43,144,138,0.18);
+  box-shadow: 0 4px 18px 0 rgba(43, 144, 138, 0.18);
 }
+
 .flow-step-progress {
   width: 100%;
   height: 4px;
@@ -22,35 +26,42 @@
   overflow: hidden;
   margin-top: 8px;
 }
+
 .flow-step-bar {
   height: 100%;
   background: linear-gradient(90deg, #174c77 0%, #2b908a 100%);
   border-radius: 4px;
-  transition: width 0.5s cubic-bezier(.4,0,.2,1);
+  transition: width 0.5s cubic-bezier(.4, 0, .2, 1);
 }
+
 .problem-icon-bg {
   background: linear-gradient(135deg, #f8fafc 0%, #e0e7ef 100%);
-  box-shadow: 0 2px 12px 0 rgba(23,76,119,0.08);
+  box-shadow: 0 2px 12px 0 rgba(23, 76, 119, 0.08);
   border-width: 2px;
   border-style: solid;
   border-color: #e0e7ef;
-  transition: box-shadow 0.22s cubic-bezier(.4,0,.2,1), background 0.22s cubic-bezier(.4,0,.2,1);
+  transition: box-shadow 0.22s cubic-bezier(.4, 0, .2, 1), background 0.22s cubic-bezier(.4, 0, .2, 1);
 }
+
 .problem-icon-bg--operational {
   background: linear-gradient(135deg, #fff7e6 0%, #ffe0b2 100%);
   border-color: #ffb74d;
 }
+
 .problem-icon-bg--shield {
   background: linear-gradient(135deg, #ffeaea 0%, #ffcdd2 100%);
   border-color: #e57373;
 }
+
 .problem-icon-bg--finance {
   background: linear-gradient(135deg, #fff3e0 0%, #ffe0e0 100%);
   border-color: #ff7043;
 }
+
 .problem-icon {
-  filter: drop-shadow(0 2px 6px rgba(23,76,119,0.12));
+  filter: drop-shadow(0 2px 6px rgba(23, 76, 119, 0.12));
 }
+
 .problem-stat {
   font-size: 0.95em;
   color: #e57373;
@@ -59,21 +70,22 @@
   padding: 2px 8px;
   display: inline-block;
   margin-top: 4px;
-  box-shadow: 0 1px 6px 0 rgba(255,112,67,0.08);
+  box-shadow: 0 1px 6px 0 rgba(255, 112, 67, 0.08);
 }
+
 .animated-cta {
   position: relative;
   overflow: hidden;
   z-index: 1;
-  box-shadow: 0 0 0 0 rgba(23,76,119,0.18), 0 10px 25px rgba(15,23,42,0.18);
-  transition: box-shadow 0.22s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 0 0 0 rgba(23, 76, 119, 0.18), 0 10px 25px rgba(15, 23, 42, 0.18);
+  transition: box-shadow 0.22s cubic-bezier(.4, 0, .2, 1);
 }
 
 .animated-cta .cta-glow {
   position: absolute;
   inset: -18px;
   border-radius: 999px;
-  background: radial-gradient(circle, rgba(45,212,191,0.18) 0%, rgba(23,76,119,0.12) 60%, transparent 100%);
+  background: radial-gradient(circle, rgba(45, 212, 191, 0.18) 0%, rgba(23, 76, 119, 0.12) 60%, transparent 100%);
   opacity: 0.7;
   filter: blur(12px);
   pointer-events: none;
@@ -86,12 +98,12 @@
   z-index: 1;
   font-weight: 700;
   letter-spacing: -0.01em;
-  transition: color 0.18s cubic-bezier(.4,0,.2,1);
+  transition: color 0.18s cubic-bezier(.4, 0, .2, 1);
 }
 
 .animated-cta:hover,
 .animated-cta:focus-visible {
-  box-shadow: 0 0 0 6px rgba(45,212,191,0.18), 0 18px 38px rgba(23,76,119,0.22);
+  box-shadow: 0 0 0 6px rgba(45, 212, 191, 0.18), 0 18px 38px rgba(23, 76, 119, 0.22);
 }
 
 .animated-cta:hover .cta-glow,
@@ -107,17 +119,20 @@
     filter: blur(12px);
     transform: scale(1);
   }
+
   50% {
     opacity: 1;
     filter: blur(18px);
     transform: scale(1.04);
   }
+
   100% {
     opacity: 0.8;
     filter: blur(14px);
     transform: scale(1.01);
   }
 }
+
 /* Ajuste para o carrossel de background do Hero */
 .hero-section .hero-marquee-track {
   opacity: 0.55;
@@ -125,12 +140,12 @@
 }
 
 .hero-section .hero-slide {
-  transition: transform 0.4s cubic-bezier(.4,0,.2,1);
+  transition: transform 0.4s cubic-bezier(.4, 0, .2, 1);
   will-change: transform;
 }
 
 .hero-section .hero-mockup {
-  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.18);
   opacity: 0.92;
 }
 
@@ -138,6 +153,7 @@
   position: relative;
   z-index: 2;
 }
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -154,9 +170,12 @@
 
   /* Cores-base */
   --bg: #ffffff;
-  --fg: #0f172a; /* slate-900 */
-  --muted: #475569; /* slate-600 */
-  --muted-2: #64748b; /* slate-500 */
+  --fg: #0f172a;
+  /* slate-900 */
+  --muted: #475569;
+  /* slate-600 */
+  --muted-2: #64748b;
+  /* slate-500 */
   --border: rgba(15, 23, 42, 0.12);
 
   /* Brand (Hausecare) */
@@ -210,9 +229,13 @@ body {
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 
-  /* evita scroll lateral */
-  overflow-x: clip;
+  /* evita scroll lateral de forma robusta */
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
 }
+
+
 
 /* Links */
 a {
@@ -262,6 +285,7 @@ section[id] {
 
 /* Reduced motion: corta animações/transições */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -278,14 +302,17 @@ section[id] {
     width: 10px;
     height: 10px;
   }
+
   ::-webkit-scrollbar-thumb {
     background: rgba(15, 23, 42, 0.18);
     border-radius: 999px;
     border: 2px solid rgba(255, 255, 255, 0.7);
   }
+
   ::-webkit-scrollbar-thumb:hover {
     background: rgba(15, 23, 42, 0.28);
   }
+
   ::-webkit-scrollbar-track {
     background: transparent;
   }
@@ -298,9 +325,11 @@ section[id] {
 /* Container padrão (equivalente ao max-w-7xl + px) */
 .container-hc {
   width: 100%;
-  max-width: 80rem; /* ~1280px */
+  max-width: 80rem;
+  /* ~1280px */
   margin-inline: auto;
-  padding-inline: 1.5rem; /* ~px-6 */
+  padding-inline: 1.5rem;
+  /* ~px-6 */
 }
 
 /* Títulos de seção */
@@ -730,9 +759,11 @@ section[id] {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 50% 100%;
   }
+
   100% {
     background-position: 100% 0%;
   }
@@ -742,9 +773,11 @@ section[id] {
   0% {
     transform: translate3d(0, 0, 0);
   }
+
   50% {
     transform: translate3d(-28px, 16px, 0);
   }
+
   100% {
     transform: translate3d(18px, -12px, 0);
   }
@@ -755,10 +788,12 @@ section[id] {
     transform: translate3d(0, 0, 0);
     opacity: 0.25;
   }
+
   50% {
     transform: translate3d(-30px, -6px, 0);
     opacity: 0.45;
   }
+
   100% {
     transform: translate3d(-60px, 4px, 0);
     opacity: 0.3;
@@ -770,10 +805,12 @@ section[id] {
     transform: translate3d(0, 0, 0) scale(0.95);
     opacity: 0.28;
   }
+
   50% {
     transform: translate3d(15px, -20px, 0) scale(1.05);
     opacity: 0.42;
   }
+
   100% {
     transform: translate3d(-20px, 10px, 0) scale(1);
     opacity: 0.32;
@@ -785,10 +822,12 @@ section[id] {
     transform: translate3d(0, 0, 0);
     opacity: 0.35;
   }
+
   50% {
     transform: translate3d(6px, -14px, 0);
     opacity: 0.75;
   }
+
   100% {
     transform: translate3d(-4px, -6px, 0);
     opacity: 0.4;
@@ -800,10 +839,12 @@ section[id] {
     transform: scale(0.85);
     opacity: 0.6;
   }
+
   50% {
     transform: scale(1.05);
     opacity: 1;
   }
+
   100% {
     transform: scale(0.9);
     opacity: 0.7;
@@ -815,10 +856,12 @@ section[id] {
     transform: scale(0.7);
     opacity: 0.2;
   }
+
   60% {
     transform: scale(1.3);
     opacity: 0;
   }
+
   100% {
     opacity: 0;
   }
@@ -828,9 +871,11 @@ section[id] {
   0% {
     opacity: 0.2;
   }
+
   50% {
     opacity: 0.6;
   }
+
   100% {
     opacity: 0.3;
   }
@@ -841,12 +886,15 @@ section[id] {
     left: 10%;
     opacity: 0;
   }
+
   20% {
     opacity: 0.8;
   }
+
   80% {
     opacity: 0.8;
   }
+
   100% {
     left: 90%;
     opacity: 0;
@@ -897,6 +945,7 @@ section[id] {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }

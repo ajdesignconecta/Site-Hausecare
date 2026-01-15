@@ -160,12 +160,24 @@ export default function FAQSection() {
 
   const filtered = useMemo(() => {
     const qn = normalize(query);
-    return FAQ_ITEMS.filter((item) => {
+    const results = FAQ_ITEMS.filter((item) => {
       const qOk =
         !qn ||
         normalize(item.q).includes(qn) ||
         normalize(item.a).includes(qn);
       return qOk;
+    });
+
+    // Priorizar match no Título (q) sobre match no Corpo (a)
+    if (!qn) return results;
+
+    return results.sort((a, b) => {
+      const aTitle = normalize(a.q).includes(qn);
+      const bTitle = normalize(b.q).includes(qn);
+
+      if (aTitle && !bTitle) return -1;
+      if (!aTitle && bTitle) return 1;
+      return 0; // mantem ordem original se ambos ou nenhum der match no titulo
     });
   }, [query]);
 

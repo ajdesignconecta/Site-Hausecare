@@ -246,7 +246,7 @@ export default function AudienceSection() {
       />
 
       <div className="container mx-auto px-6 max-w-6xl relative">
-        <header className="text-center mb-14">
+        <header id="para-quem-e" className="text-center mb-14 scroll-mt-28">
           <div className="psw-enter inline-flex items-center gap-2 rounded-full bg-emerald-100 px-4 py-2 text-xs font-semibold text-emerald-700 border border-emerald-200">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
             Segmentação inteligente

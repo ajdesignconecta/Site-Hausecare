@@ -19,6 +19,7 @@ import relatoriosPacientesImg from "../assets/imagens/screens/relatorios-pacient
 
 import registroSeguroImg from "../assets/imagens/screens/registro-seguro.webp";
 import execucaoSemRetrabalhoImg from "../assets/imagens/screens/execucao-sem-retrabalho.webp";
+import FinalCTA from "../components/sections/FinalCTA";
 
 // ==============================================
 
@@ -258,7 +259,7 @@ export default function Funcionalidades() {
               "radial-gradient(900px 500px at 15% 15%, rgba(43,144,138,0.15), transparent 60%), radial-gradient(700px 420px at 85% 20%, rgba(99,102,241,0.12), transparent 60%), linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 60%)",
           }}
         />
-        <div className="relative container-hc mx-auto px-6 pt-14 pb-10">
+        <div className="relative container-hc mx-auto px-6 pt-28 md:pt-24 pb-10">
           <div className="max-w-3xl">
             <p className="inline-flex items-center gap-2 text-xs font-semibold tracking-wide uppercase text-slate-500">
               <span className="h-1.5 w-1.5 rounded-full bg-[#2b908a]" />
@@ -570,6 +571,10 @@ export default function Funcionalidades() {
           </div>
         </div>
       )}
+
+      <section aria-label="Chamada final">
+        <FinalCTA />
+      </section>
     </main>
   );
 }

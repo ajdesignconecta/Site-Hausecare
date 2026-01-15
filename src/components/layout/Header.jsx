@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import LogoHausecare from "../../assets/imagens/hausecare-logosite-atualizada.svg";
 
 const navLinks = [
   { label: "Inicio", to: "/", type: "route" },
   { label: "Plataforma", to: "/funcionalidades", type: "route" },
-  { label: "Para quem é", to: "#para-quem-e", type: "anchor" },
+  { label: "Para quem é", to: "/para-quem", type: "route" },
   { label: "Planos", to: "/planos", type: "route" },
   { label: "Segurança", to: "/seguranca", type: "route" },
 ];
@@ -15,24 +15,30 @@ export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // Bloquear rolagem da página (html e body) quando o menu estiver aberto
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    };
+  }, [open]);
+
   const handleAnchorClick = (e, href) => {
     e.preventDefault();
     const id = href.replace("#", "");
 
-    // Se não estamos na home, navegar para lá primeiro
     if (location.pathname !== "/") {
-      // Sinalizar que estamos fazendo navegação de âncora
-      sessionStorage.setItem('anchorNavigation', 'true');
-      navigate("/");
-      // Aguardar navegação completa
-      setTimeout(() => {
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }, 350);
+      // Navegar para home COM o hash para o ScrollToTop capturar
+      navigate({ pathname: "/", hash: href });
     } else {
-      // Já estamos na home, só fazer scroll
+      // Já estamos na home, só fazer scroll direto
       const element = document.getElementById(id);
       if (element) {
         element.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -41,12 +47,12 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/90 border-b border-slate-100">
-      <div className="max-w-full w-full px-6">
-        <div className="flex h-20 items-center justify-between w-full">
+    <header className="fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-100">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="flex h-16 md:h-20 items-center justify-between w-full">
           {/* Logo maior e totalmente à esquerda */}
-          <NavLink to="/" className="flex items-center gap-2 min-w-[200px] select-none mr-4">
-            <img src={LogoHausecare} alt="Hausecare" className="h-20 w-auto" />
+          <NavLink to="/" className="flex items-center gap-2 md:min-w-[200px] select-none mr-auto">
+            <img src={LogoHausecare} alt="Hausecare" className="h-16 md:h-20 w-auto" />
           </NavLink>
 
           {/* Menu Desktop centralizado e flex-grow */}
@@ -108,7 +114,7 @@ export default function Header() {
 
           {/* Botão mobile */}
           <button
-            className="md:hidden flex items-center justify-center p-2 rounded focus:outline-none"
+            className="md:hidden flex-shrink-0 flex items-center justify-center p-2 rounded focus:outline-none ml-2"
             onClick={() => setOpen((v) => !v)}
             aria-label="Abrir menu"
           >
@@ -127,52 +133,79 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Menu Mobile */}
+      {/* Menu Mobile Overlay (High-level Professional) */}
+      {/* Menu Mobile Overlay (High-level Professional) */}
       {open && (
-        <div className="md:hidden fixed inset-0 z-50 bg-black/40" onClick={() => setOpen(false)}>
-          <div className="absolute top-0 left-0 w-full bg-white shadow-lg p-6 flex flex-col gap-4 animate-fade-in-down">
-            {navLinks.map((item) => {
-              if (item.type === "anchor") {
+        <>
+          <div className="fixed inset-0 z-[55] bg-black/40 md:hidden" onClick={() => setOpen(false)} />
+          <div className="fixed top-16 left-0 w-full z-[60] bg-white shadow-xl rounded-b-3xl md:hidden animate-fade-in-down overflow-hidden max-h-[calc(100vh-5rem)] overflow-y-auto overscroll-contain">
+
+            {/* Lista de Links */}
+            <div className="py-2 px-6 space-y-1">
+              {navLinks.map((item) => {
+                const isAnchor = item.type === "anchor";
+
+                if (isAnchor) {
+                  return (
+                    <a
+                      key={item.label}
+                      href={item.to}
+                      onClick={(e) => {
+                        setOpen(false);
+                        handleAnchorClick(e, item.to);
+                      }}
+                      className="flex items-center justify-between text-lg font-medium text-slate-800 py-3 border-b border-slate-50 hover:text-[#174c77] transition-colors"
+                    >
+                      {item.label}
+                      <svg className="w-4 h-4 text-slate-300" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                  );
+                }
+
                 return (
-                  <a
+                  <NavLink
                     key={item.label}
-                    href={item.to}
+                    to={item.to}
+                    className={({ isActive }) =>
+                      `flex items-center justify-between text-lg font-medium py-3 border-b border-slate-50 transition-colors ${isActive ? "text-[#174c77]" : "text-slate-800 hover:text-[#174c77]"
+                      }`
+                    }
                     onClick={(e) => {
                       setOpen(false);
-                      handleAnchorClick(e, item.to);
+                      if (location.pathname === item.to) {
+                        e.preventDefault();
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }
                     }}
-                    className="block font-semibold text-lg px-2 py-2 rounded transition-colors duration-150 text-slate-800 hover:text-[#174c77] hover:bg-[#eaf6fa]"
                   >
                     {item.label}
-                  </a>
+                    <svg className="w-4 h-4 text-slate-300" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </NavLink>
                 );
-              }
+              })}
+            </div>
 
-              return (
-                <NavLink
-                  key={item.label}
-                  to={item.to}
-                  className={({ isActive }) =>
-                    `block font-semibold text-lg px-2 py-2 rounded transition-colors duration-150 ${isActive
-                      ? "text-[#174c77] bg-[#eaf6fa]"
-                      : "text-slate-800 hover:text-[#174c77] hover:bg-[#eaf6fa]"
-                    }`
-                  }
-                  onClick={(e) => {
-                    setOpen(false);
-                    // Se clicar no link ativo, rolar para o topo
-                    if (location.pathname === item.to) {
-                      e.preventDefault();
-                      window.scrollTo({ top: 0, behavior: "smooth" });
-                    }
-                  }}
-                >
-                  {item.label}
-                </NavLink>
-              );
-            })}
+            {/* Rodapé do Menu (Botões de Ação) */}
+            <div className="p-6 bg-slate-50 border-t border-slate-100 flex flex-col gap-3">
+              <a
+                href="https://app.hausecare.com.br/"
+                className="w-full flex items-center justify-center bg-gradient-to-r from-[#2b908a] to-[#174c77] text-white font-bold rounded-full py-3 text-base shadow-md transition-all duration-200 ease-out hover:from-[#174c77] hover:to-[#2b908a] hover:-translate-y-0.5 hover:shadow-lg"
+              >
+                Acessar sistema gratuito
+              </a>
+              <a
+                href="https://app.hausecare.com.br/"
+                className="w-full flex items-center justify-center px-5 py-3 rounded-full text-slate-600 font-semibold text-base border border-slate-200 bg-white hover:bg-slate-100 hover:text-[#174c77] transition-colors duration-150 shadow-sm"
+              >
+                Entrar
+              </a>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </header>
   );

@@ -35,6 +35,7 @@ const DIFFERENTIALS = [
   },
 ];
 
+export default function DifferentialSection() {
   const sectionRef = useRef(null);
   const differentials = useMemo(() => DIFFERENTIALS, []);
   useLayoutEffect(() => {

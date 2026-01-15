@@ -2,20 +2,27 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 export default function ScrollToTop() {
-    const { pathname } = useLocation();
+    const { pathname, hash } = useLocation();
 
     useEffect(() => {
-        // Verificar se estamos fazendo navegação de âncora
-        const isAnchorNavigation = sessionStorage.getItem('anchorNavigation');
+        // Função para fazer o scroll
+        const handleScroll = () => {
+            if (hash) {
+                const id = hash.replace("#", "");
+                const element = document.getElementById(id);
+                if (element) {
+                    element.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+            } else {
+                window.scrollTo(0, 0);
+            }
+        };
 
-        if (isAnchorNavigation) {
-            // Limpar flag e não fazer scroll
-            sessionStorage.removeItem('anchorNavigation');
-        } else {
-            // Navegação normal, fazer scroll para o topo
-            window.scrollTo(0, 0);
-        }
-    }, [pathname]);
+        // Pequeno delay para garantir que a página renderizou
+        const timer = setTimeout(handleScroll, 100);
+
+        return () => clearTimeout(timer);
+    }, [pathname, hash]);
 
     return null;
 }

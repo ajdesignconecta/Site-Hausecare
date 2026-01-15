@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
+import FinalCTA from "../components/sections/FinalCTA";
 
 const TABS = [
     { id: "permissoes", label: "Permissões" },
@@ -295,233 +296,239 @@ export default function SecurityEnterpriseSection() {
     }, [activeTab, prefersReducedMotion]);
 
     return (
-        <section
-            ref={rootRef}
-            id="seguranca"
-            aria-labelledby="security-title"
-            className="relative overflow-hidden py-20 md:py-24 bg-white"
-        >
-            {/* Background premium (saúde: claro, mas vivo) */}
-            <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0"
-                style={{
-                    background:
-                        "radial-gradient(900px 520px at 15% 20%, rgba(43,144,138,0.12), transparent 60%), radial-gradient(820px 520px at 85% 35%, rgba(99,102,241,0.10), transparent 60%), linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 60%)",
-                }}
-            />
-            <div aria-hidden="true" className="sec-orb pointer-events-none absolute -top-24 left-10 h-64 w-64 rounded-full blur-3xl"
-                style={{ background: "radial-gradient(circle at 30% 30%, rgba(54,194,147,0.35), transparent 65%)" }}
-            />
-            <div aria-hidden="true" className="sec-orb pointer-events-none absolute top-28 right-[-80px] h-72 w-72 rounded-full blur-3xl"
-                style={{ background: "radial-gradient(circle at 30% 30%, rgba(99,102,241,0.25), transparent 65%)" }}
-            />
+        <main className="pt-0">
+            <section
+                ref={rootRef}
+                id="seguranca"
+                aria-labelledby="security-title"
+                className="relative overflow-hidden py-20 md:py-24 bg-white"
+            >
+                {/* Background premium (saúde: claro, mas vivo) */}
+                <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0"
+                    style={{
+                        background:
+                            "radial-gradient(900px 520px at 15% 20%, rgba(43,144,138,0.12), transparent 60%), radial-gradient(820px 520px at 85% 35%, rgba(99,102,241,0.10), transparent 60%), linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 60%)",
+                    }}
+                />
+                <div aria-hidden="true" className="sec-orb pointer-events-none absolute -top-24 left-10 h-64 w-64 rounded-full blur-3xl"
+                    style={{ background: "radial-gradient(circle at 30% 30%, rgba(54,194,147,0.35), transparent 65%)" }}
+                />
+                <div aria-hidden="true" className="sec-orb pointer-events-none absolute top-28 right-[-80px] h-72 w-72 rounded-full blur-3xl"
+                    style={{ background: "radial-gradient(circle at 30% 30%, rgba(99,102,241,0.25), transparent 65%)" }}
+                />
 
-            <div className="relative container-hc mx-auto px-6">
-                {/* Header */}
-                <div className="text-center max-w-4xl mx-auto">
-                    <div className="sec-enter flex items-center justify-center gap-2">
-                        <MiniBadge>Saúde exige governança</MiniBadge>
-                        <MiniBadge>Auditoria</MiniBadge>
-                        <MiniBadge>LGPD</MiniBadge>
+                <div className="relative container-hc mx-auto px-6">
+                    {/* Header */}
+                    <div className="text-center max-w-4xl mx-auto">
+                        <div className="sec-enter flex items-center justify-center gap-2">
+                            <MiniBadge>Saúde exige governança</MiniBadge>
+                            <MiniBadge>Auditoria</MiniBadge>
+                            <MiniBadge>LGPD</MiniBadge>
+                        </div>
+
+                        <h2
+                            id="security-title"
+                            className="sec-enter mt-5 text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900"
+                            style={{ letterSpacing: "-0.02em" }}
+                        >
+                            Segurança e conformidade sem travar a operação
+                        </h2>
+
+                        <p className="sec-enter mt-4 text-base md:text-lg text-slate-600 leading-relaxed">
+                            “Seguro” não é frase bonita — é processo. O Hausecare foi desenhado para dar controle,
+                            rastreabilidade e previsibilidade (sem burocratizar o dia a dia da clínica).
+                        </p>
                     </div>
 
-                    <h2
-                        id="security-title"
-                        className="sec-enter mt-5 text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900"
-                        style={{ letterSpacing: "-0.02em" }}
-                    >
-                        Segurança e conformidade sem travar a operação
-                    </h2>
+                    {/* Console */}
+                    <div className="mt-12 grid lg:grid-cols-[360px_1fr] gap-8 items-start">
+                        {/* Left: console tabs */}
+                        <aside className="sec-enter lg:sticky lg:top-24">
+                            <div className="rounded-3xl border border-slate-200 bg-white/80 backdrop-blur shadow-sm overflow-hidden">
+                                <div className="p-5 border-b border-slate-200">
+                                    <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                                        Governance Console
+                                    </p>
+                                    <p className="mt-1 text-sm text-slate-600">
+                                        Troque de área e veja como a governança funciona na prática.
+                                    </p>
+                                </div>
 
-                    <p className="sec-enter mt-4 text-base md:text-lg text-slate-600 leading-relaxed">
-                        “Seguro” não é frase bonita — é processo. O Hausecare foi desenhado para dar controle,
-                        rastreabilidade e previsibilidade (sem burocratizar o dia a dia da clínica).
-                    </p>
-                </div>
-
-                {/* Console */}
-                <div className="mt-12 grid lg:grid-cols-[360px_1fr] gap-8 items-start">
-                    {/* Left: console tabs */}
-                    <aside className="sec-enter lg:sticky lg:top-24">
-                        <div className="rounded-3xl border border-slate-200 bg-white/80 backdrop-blur shadow-sm overflow-hidden">
-                            <div className="p-5 border-b border-slate-200">
-                                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                                    Governance Console
-                                </p>
-                                <p className="mt-1 text-sm text-slate-600">
-                                    Troque de área e veja como a governança funciona na prática.
-                                </p>
-                            </div>
-
-                            <div className="p-4 space-y-2">
-                                {TABS.map((t) => {
-                                    const active = t.id === activeTab;
-                                    return (
-                                        <button
-                                            key={t.id}
-                                            type="button"
-                                            onClick={() => setActiveTab(t.id)}
-                                            className={cx(
-                                                "w-full text-left rounded-2xl px-4 py-3 border transition flex items-center justify-between gap-3",
-                                                active
-                                                    ? "bg-slate-900 text-white border-slate-900 shadow"
-                                                    : "bg-white border-slate-200 hover:bg-slate-50 text-slate-800"
-                                            )}
-                                            aria-pressed={active}
-                                        >
-                                            <span className="font-semibold">{t.label}</span>
-                                            <span
+                                <div className="p-4 space-y-2">
+                                    {TABS.map((t) => {
+                                        const active = t.id === activeTab;
+                                        return (
+                                            <button
+                                                key={t.id}
+                                                type="button"
+                                                onClick={() => setActiveTab(t.id)}
                                                 className={cx(
-                                                    "text-xs font-semibold rounded-full px-2 py-1 border",
+                                                    "w-full text-left rounded-2xl px-4 py-3 border transition flex items-center justify-between gap-3",
                                                     active
-                                                        ? "border-white/20 text-white/80 bg-white/10"
-                                                        : "border-slate-200 text-slate-500 bg-slate-50"
+                                                        ? "bg-slate-900 text-white border-slate-900 shadow"
+                                                        : "bg-white border-slate-200 hover:bg-slate-50 text-slate-800"
                                                 )}
+                                                aria-pressed={active}
                                             >
-                                                ver detalhes
-                                            </span>
-                                        </button>
-                                    );
-                                })}
-                            </div>
+                                                <span className="font-semibold">{t.label}</span>
+                                                <span
+                                                    className={cx(
+                                                        "text-xs font-semibold rounded-full px-2 py-1 border",
+                                                        active
+                                                            ? "border-white/20 text-white/80 bg-white/10"
+                                                            : "border-slate-200 text-slate-500 bg-slate-50"
+                                                    )}
+                                                >
+                                                    ver detalhes
+                                                </span>
+                                            </button>
+                                        );
+                                    })}
+                                </div>
 
-                            <div className="p-5 border-t border-slate-200 bg-slate-50">
-                                <p className="text-xs font-semibold text-slate-700">Mensagem para gestor</p>
-                                <p className="mt-1 text-xs text-slate-600 leading-relaxed">
-                                    Cresceu equipe? Cresceu risco. A governança certa te dá escala com controle — sem virar refém de planilhas.
-                                </p>
-                            </div>
-                        </div>
-                    </aside>
-
-                    {/* Right: active panel */}
-                    <div className="sec-enter">
-                        <div className="rounded-3xl border border-slate-200 bg-white/80 backdrop-blur shadow-sm overflow-hidden">
-                            <div className="p-6 md:p-7 border-b border-slate-200">
-                                <div className="flex items-start gap-4">
-                                    <div className="h-12 w-12 rounded-2xl border border-slate-200 bg-white flex items-center justify-center">
-                                        <CurrentIcon className="h-6 w-6 text-slate-900" />
-                                    </div>
-                                    <div className="min-w-0">
-                                        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                                            {current.kicker}
-                                        </p>
-                                        <h3 className="mt-1 text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900">
-                                            {current.title}
-                                        </h3>
-                                        <p className="mt-2 text-slate-600 leading-relaxed">
-                                            {current.subtitle}
-                                        </p>
-                                    </div>
+                                <div className="p-5 border-t border-slate-200 bg-slate-50">
+                                    <p className="text-xs font-semibold text-slate-700">Mensagem para gestor</p>
+                                    <p className="mt-1 text-xs text-slate-600 leading-relaxed">
+                                        Cresceu equipe? Cresceu risco. A governança certa te dá escala com controle — sem virar refém de planilhas.
+                                    </p>
                                 </div>
                             </div>
+                        </aside>
 
-                            <div ref={panelRef} className="p-6 md:p-7">
-                                <div className="grid xl:grid-cols-[1.1fr_0.9fr] gap-8 items-start">
-                                    {/* bullets */}
-                                    <div>
-                                        <p className="text-sm font-extrabold text-slate-900">
-                                            O que entra no “modo enterprise”
-                                        </p>
-                                        <ul className="mt-4 space-y-3">
-                                            {current.bullets.map((b) => (
-                                                <FeatureBullet key={b}>{b}</FeatureBullet>
-                                            ))}
-                                        </ul>
+                        {/* Right: active panel */}
+                        <div className="sec-enter">
+                            <div className="rounded-3xl border border-slate-200 bg-white/80 backdrop-blur shadow-sm overflow-hidden">
+                                <div className="p-6 md:p-7 border-b border-slate-200">
+                                    <div className="flex items-start gap-4">
+                                        <div className="h-12 w-12 rounded-2xl border border-slate-200 bg-white flex items-center justify-center">
+                                            <CurrentIcon className="h-6 w-6 text-slate-900" />
+                                        </div>
+                                        <div className="min-w-0">
+                                            <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                                                {current.kicker}
+                                            </p>
+                                            <h3 className="mt-1 text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900">
+                                                {current.title}
+                                            </h3>
+                                            <p className="mt-2 text-slate-600 leading-relaxed">
+                                                {current.subtitle}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
 
-                                        <div className="mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-5">
-                                            <p className="text-sm font-extrabold text-slate-900">{current.proofTitle}</p>
-                                            <ul className="mt-3 space-y-2">
-                                                {current.proofBullets.map((b) => (
-                                                    <li key={b} className="text-sm text-slate-700 leading-relaxed">
-                                                        <span className="font-semibold text-slate-900">•</span> {b}
-                                                    </li>
+                                <div ref={panelRef} className="p-6 md:p-7">
+                                    <div className="grid xl:grid-cols-[1.1fr_0.9fr] gap-8 items-start">
+                                        {/* bullets */}
+                                        <div>
+                                            <p className="text-sm font-extrabold text-slate-900">
+                                                O que entra no “modo enterprise”
+                                            </p>
+                                            <ul className="mt-4 space-y-3">
+                                                {current.bullets.map((b) => (
+                                                    <FeatureBullet key={b}>{b}</FeatureBullet>
                                                 ))}
                                             </ul>
+
+                                            <div className="mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                                                <p className="text-sm font-extrabold text-slate-900">{current.proofTitle}</p>
+                                                <ul className="mt-3 space-y-2">
+                                                    {current.proofBullets.map((b) => (
+                                                        <li key={b} className="text-sm text-slate-700 leading-relaxed">
+                                                            <span className="font-semibold text-slate-900">•</span> {b}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+
+                                            <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                                                <a
+                                                    href="#contato"
+                                                    className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-500/20"
+                                                    style={{ background: "linear-gradient(90deg, #2b908a, #36C293)" }}
+                                                >
+                                                    Agendar demonstração
+                                                </a>
+                                                <a
+                                                    href="/planos"
+                                                    className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold bg-white border border-slate-200 hover:bg-slate-50 text-slate-800"
+                                                >
+                                                    Ver planos
+                                                </a>
+                                            </div>
                                         </div>
 
-                                        <div className="mt-6 flex flex-col sm:flex-row gap-3">
-                                            <a
-                                                href="#contato"
-                                                className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-500/20"
-                                                style={{ background: "linear-gradient(90deg, #2b908a, #36C293)" }}
-                                            >
-                                                Agendar demonstração
-                                            </a>
-                                            <a
-                                                href="/planos"
-                                                className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold bg-white border border-slate-200 hover:bg-slate-50 text-slate-800"
-                                            >
-                                                Ver planos
-                                            </a>
+                                        {/* audit timeline */}
+                                        <div className="rounded-3xl border border-slate-200 bg-white p-5">
+                                            <div className="flex items-center justify-between gap-3">
+                                                <p className="text-sm font-extrabold text-slate-900">Trilha de auditoria</p>
+                                                <span className="text-xs font-semibold text-slate-500">
+                                                    exemplos ilustrativos
+                                                </span>
+                                            </div>
+
+                                            <div className="mt-4 space-y-3">
+                                                {current.audit.map((x) => (
+                                                    <AuditLine
+                                                        key={x.label}
+                                                        label={x.label}
+                                                        meta={x.meta}
+                                                        tone={x.tone}
+                                                    />
+                                                ))}
+                                            </div>
+
+                                            <div className="mt-5 pt-5 border-t border-slate-200">
+                                                <p className="text-xs font-semibold text-slate-700">
+                                                    Observação importante
+                                                </p>
+                                                <p className="mt-1 text-xs text-slate-600 leading-relaxed">
+                                                    A implementação e detalhamento de políticas (ex.: retenção/logs) pode variar por plano e
+                                                    configuração da clínica. O foco é manter governança forte sem travar a operação.
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    {/* audit timeline */}
-                                    <div className="rounded-3xl border border-slate-200 bg-white p-5">
-                                        <div className="flex items-center justify-between gap-3">
-                                            <p className="text-sm font-extrabold text-slate-900">Trilha de auditoria</p>
-                                            <span className="text-xs font-semibold text-slate-500">
-                                                exemplos ilustrativos
-                                            </span>
-                                        </div>
-
-                                        <div className="mt-4 space-y-3">
-                                            {current.audit.map((x) => (
-                                                <AuditLine
-                                                    key={x.label}
-                                                    label={x.label}
-                                                    meta={x.meta}
-                                                    tone={x.tone}
-                                                />
-                                            ))}
-                                        </div>
-
-                                        <div className="mt-5 pt-5 border-t border-slate-200">
-                                            <p className="text-xs font-semibold text-slate-700">
-                                                Observação importante
+                                    {/* micro FAQ (anti-objeção) */}
+                                    <div className="mt-8 grid md:grid-cols-3 gap-4">
+                                        <div className="rounded-2xl border border-slate-200 bg-white p-5">
+                                            <p className="text-sm font-extrabold text-slate-900">Serve para quantos usuários?</p>
+                                            <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+                                                Escala por plano. O importante: permissões e rastreabilidade continuam consistentes conforme a equipe cresce.
                                             </p>
-                                            <p className="mt-1 text-xs text-slate-600 leading-relaxed">
-                                                A implementação e detalhamento de políticas (ex.: retenção/logs) pode variar por plano e
-                                                configuração da clínica. O foco é manter governança forte sem travar a operação.
+                                        </div>
+                                        <div className="rounded-2xl border border-slate-200 bg-white p-5">
+                                            <p className="text-sm font-extrabold text-slate-900">Consigo exportar dados?</p>
+                                            <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+                                                Sim. Relatórios e exportações ajudam auditoria, conciliação financeira e revisões internas.
+                                            </p>
+                                        </div>
+                                        <div className="rounded-2xl border border-slate-200 bg-white p-5">
+                                            <p className="text-sm font-extrabold text-slate-900">Implantação é rápida?</p>
+                                            <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+                                                O onboarding foca no essencial: equipe, agenda, pacientes e financeiro. Você começa com controle e evolui por camadas.
                                             </p>
                                         </div>
                                     </div>
-                                </div>
 
-                                {/* micro FAQ (anti-objeção) */}
-                                <div className="mt-8 grid md:grid-cols-3 gap-4">
-                                    <div className="rounded-2xl border border-slate-200 bg-white p-5">
-                                        <p className="text-sm font-extrabold text-slate-900">Serve para quantos usuários?</p>
-                                        <p className="mt-2 text-sm text-slate-600 leading-relaxed">
-                                            Escala por plano. O importante: permissões e rastreabilidade continuam consistentes conforme a equipe cresce.
-                                        </p>
-                                    </div>
-                                    <div className="rounded-2xl border border-slate-200 bg-white p-5">
-                                        <p className="text-sm font-extrabold text-slate-900">Consigo exportar dados?</p>
-                                        <p className="mt-2 text-sm text-slate-600 leading-relaxed">
-                                            Sim. Relatórios e exportações ajudam auditoria, conciliação financeira e revisões internas.
-                                        </p>
-                                    </div>
-                                    <div className="rounded-2xl border border-slate-200 bg-white p-5">
-                                        <p className="text-sm font-extrabold text-slate-900">Implantação é rápida?</p>
-                                        <p className="mt-2 text-sm text-slate-600 leading-relaxed">
-                                            O onboarding foca no essencial: equipe, agenda, pacientes e financeiro. Você começa com controle e evolui por camadas.
-                                        </p>
-                                    </div>
                                 </div>
-
                             </div>
-                        </div>
 
-                        {/* trust line pequena */}
-                        <div className="mt-4 text-center text-xs text-slate-500">
-                            Controle por perfis • Auditoria de ações • Validações operacionais • Base para LGPD
+                            {/* trust line pequena */}
+                            <div className="mt-4 text-center text-xs text-slate-500">
+                                Controle por perfis • Auditoria de ações • Validações operacionais • Base para LGPD
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <section aria-label="Chamada final">
+                <FinalCTA />
+            </section>
+        </main >
     );
 }

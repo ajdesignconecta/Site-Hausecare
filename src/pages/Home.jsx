@@ -1,6 +1,8 @@
 import React, { lazy, Suspense } from "react";
 import Hero from "../components/sections/Hero";
 import StickyCta from "../components/sections/StickyCta";
+import ProblemSection from "../components/sections/ProblemSection";
+import AudienceSection from "../components/sections/AudienceSection";
 
 // Helper: garante que React.lazy sempre receba { default: Component }
 function lazySection(importer, preferredNamedExport) {
@@ -25,17 +27,6 @@ function lazySection(importer, preferredNamedExport) {
     })
   );
 }
-
-// Lazy-load (abaixo da dobra)
-const ProblemSection = lazySection(
-  () => import("../components/sections/ProblemSection"),
-  "ProblemSection"
-);
-
-const AudienceSection = lazySection(
-  () => import("../components/sections/AudienceSection"),
-  "AudienceSection"
-);
 
 const IntegrationsSection = lazySection(
   () => import("../components/sections/IntegrationsSection"),
@@ -86,7 +77,7 @@ export default function Home() {
           <ProblemSection />
         </section>
 
-        <section id="para-quem-e" aria-label="Para quem é a Hausecare">
+        <section aria-label="Para quem é a Hausecare">
           <AudienceSection />
         </section>
 
