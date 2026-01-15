@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 import Home from "./pages/Home";
 import Planos from "./pages/Planos";
@@ -37,6 +38,7 @@ export default function App() {
         </Routes>
       </main>
 
+      <WhatsAppButton />
       <Footer />
     </BrowserRouter>
   );

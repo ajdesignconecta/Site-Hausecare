@@ -1,4 +1,5 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useMemo } from "react";
+import { LegalLayout, Section, Callout, BulletGrid, List, SecurityGrid, ContactCard } from "./LegalComponents";
 
 export function PrivacidadePage() {
     const meta = useMemo(

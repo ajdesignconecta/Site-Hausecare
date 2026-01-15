@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
     return (
@@ -8,9 +9,9 @@ export default function Footer() {
                     Copyright © 2025 – Site desenvolvido pela <strong className="text-slate-700">Webize Tecnologia</strong> - programador Arnaldo Junior
                 </p>
                 <div className="mt-2 flex justify-center gap-4 text-xs text-slate-400">
-                    <a href="/legal/privacidade" className="hover:text-slate-600 transition">Privacidade</a>
+                    <Link to="/legal/privacidade" className="hover:text-slate-600 transition">Privacidade</Link>
                     <span>•</span>
-                    <a href="/legal/termos" className="hover:text-slate-600 transition">Termos de Uso</a>
+                    <Link to="/legal/termos" className="hover:text-slate-600 transition">Termos de Uso</Link>
                 </div>
             </div>
         </footer>
