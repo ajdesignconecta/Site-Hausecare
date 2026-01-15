@@ -119,7 +119,7 @@ export default function ProblemSection() {
     <section
       ref={sectionRef}
       aria-labelledby="problem-title"
-      className="relative py-24 bg-slate-50 overflow-hidden"
+      className="relative py-12 md:py-24 bg-slate-50 overflow-hidden"
     >
       {/* Brilho suave (enterprise, não carnaval) */}
       <div

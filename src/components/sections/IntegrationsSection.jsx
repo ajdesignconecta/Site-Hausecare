@@ -504,7 +504,7 @@ export default function IntegrationsSection() {
                   Demonstração guiada em minutos, com foco no seu perfil.
                 </p>
                 <a
-                  href="#contato"
+                  href="#demonstracao"
                   className="inline-flex items-center justify-center rounded-full bg-indigo-500/15 px-4 py-2 text-sm font-semibold text-indigo-100 border border-indigo-400/20 hover:bg-indigo-500/20 transition"
                 >
                   Ver na prática
@@ -512,11 +512,7 @@ export default function IntegrationsSection() {
               </div>
             </div>
 
-            {/* microcopy */}
-            <div className="sw-in mt-4 text-xs text-white/55 flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-              Dica: use isso na reunião — cada perfil “se enxerga” e avança.
-            </div>
+
           </div>
         </div>
       </div>

@@ -130,7 +130,7 @@ export default function AudienceSection() {
     tl.to(panel, { autoAlpha: 0, y: 10, duration: 0.18, ease: "power2.in" })
       .add(() => setActive(nextIndex))
       // aguarda o React “pintar” o novo conteúdo
-      .add(() => {}, "+=0.01")
+      .add(() => { }, "+=0.01")
       .to(panel, { autoAlpha: 1, y: 0, duration: 0.26 })
       .fromTo(
         panel.querySelectorAll(".psw-anim"),
@@ -144,7 +144,7 @@ export default function AudienceSection() {
 
   useLayoutEffect(() => {
     let ctx;
-    let cleanup = () => {};
+    let cleanup = () => { };
 
     (async () => {
       const gsapModule = await import("gsap");
@@ -232,7 +232,7 @@ export default function AudienceSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-24 bg-white"
+      className="relative py-6 md:py-24 bg-white"
       aria-labelledby="audience-title"
     >
       {/* glow premium */}
@@ -247,20 +247,19 @@ export default function AudienceSection() {
 
       <div className="container mx-auto px-6 max-w-6xl relative">
         <header className="text-center mb-14">
-          <p className="psw-enter inline-flex items-center gap-2 text-sm font-semibold text-slate-500">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400" />
+          <div className="psw-enter inline-flex items-center gap-2 rounded-full bg-emerald-100 px-4 py-2 text-xs font-semibold text-emerald-700 border border-emerald-200">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
             Segmentação inteligente
-          </p>
+          </div>
           <h2
             id="audience-title"
             className="psw-enter text-3xl md:text-4xl font-extrabold text-slate-900 mt-3 tracking-tight"
             style={{ letterSpacing: "-0.02em" }}
           >
-            Feito para cada área da sua operação
+            Central de controle da operação — em tempo real
           </h2>
           <p className="psw-enter text-slate-600 max-w-3xl mx-auto text-lg leading-relaxed mt-4">
-            Selecione seu perfil e veja exatamente onde o Hausecare elimina
-            gargalos — com controle, rastreabilidade e previsibilidade.
+            Visualize atendimentos, agenda, equipe e financeiro em um único painel. Menos improviso, mais rastreabilidade e decisões rápidas.
           </p>
         </header>
 

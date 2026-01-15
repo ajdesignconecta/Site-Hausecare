@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./components/layout/Header";
+import ScrollToTop from "./components/ScrollToTop";
 
 import Home from "./pages/Home";
-import Contato from "./pages/Contato";
 import Planos from "./pages/Planos";
-import Sobre from "./pages/Sobre";
-import Funcionalidades from "./pages/Funcionalidades";
+import Plataforma from "./pages/Plataforma";
+import Seguranca from "./pages/seguranca";
 
 export default function App() {
   return (
@@ -14,13 +14,15 @@ export default function App() {
       {/* Header global (menu do site inteiro) */}
       <Header />
 
+      {/* Scroll to top on route change */}
+      <ScrollToTop />
+
       {/* Conteúdo que muda conforme a rota */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/funcionalidades" element={<Funcionalidades />} />
+        <Route path="/funcionalidades" element={<Plataforma />} />
         <Route path="/planos" element={<Planos />} />
-        <Route path="/sobre" element={<Sobre />} />
-        <Route path="/contato" element={<Contato />} />
+        <Route path="/seguranca" element={<Seguranca />} />
       </Routes>
     </BrowserRouter>
   );

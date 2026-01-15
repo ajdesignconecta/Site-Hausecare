@@ -1,20 +1,44 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import LogoHausecare from "../../assets/imagens/hausecare-logosite-atualizada.svg";
 
 const navLinks = [
-  { label: "Início", to: "/" },
-  // Solução
-  { label: "Solução", to: "/funcionalidades" },
-  // Clientes / prova social
-  { label: "Clientes", to: "/sobre" },
-  // Recursos adicionais (ex.: planos, materiais)
-  { label: "Recursos", to: "/funcionalidades" },
-  { label: "Contato", to: "/contato" },
+  { label: "Inicio", to: "/", type: "route" },
+  { label: "Plataforma", to: "/funcionalidades", type: "route" },
+  { label: "Para quem é", to: "#para-quem-e", type: "anchor" },
+  { label: "Planos", to: "/planos", type: "route" },
+  { label: "Segurança", to: "/seguranca", type: "route" },
 ];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleAnchorClick = (e, href) => {
+    e.preventDefault();
+    const id = href.replace("#", "");
+
+    // Se não estamos na home, navegar para lá primeiro
+    if (location.pathname !== "/") {
+      // Sinalizar que estamos fazendo navegação de âncora
+      sessionStorage.setItem('anchorNavigation', 'true');
+      navigate("/");
+      // Aguardar navegação completa
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 350);
+    } else {
+      // Já estamos na home, só fazer scroll
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-white/90 border-b border-slate-100">
@@ -27,20 +51,42 @@ export default function Header() {
 
           {/* Menu Desktop centralizado e flex-grow */}
           <nav className="hidden md:flex flex-grow justify-center gap-8">
-            {navLinks.map((item) => (
-              <NavLink
-                key={item.label}
-                to={item.to}
-                className={({ isActive }) =>
-                  `relative font-semibold text-base px-2 py-1 rounded transition-colors duration-150 after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-[#174c77] after:transition-[width] after:duration-200 ${isActive
-                    ? "text-[#174c77] after:w-full"
-                    : "text-slate-800 hover:text-[#174c77] hover:after:w-full"
-                  }`
-                }
-              >
-                {item.label}
-              </NavLink>
-            ))}
+            {navLinks.map((item) => {
+              if (item.type === "anchor") {
+                return (
+                  <a
+                    key={item.label}
+                    href={item.to}
+                    onClick={(e) => handleAnchorClick(e, item.to)}
+                    className="relative font-semibold text-base px-2 py-1 rounded transition-colors duration-150 after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-[#174c77] after:transition-[width] after:duration-200 hover:after:w-full text-slate-800 hover:text-[#174c77]"
+                  >
+                    {item.label}
+                  </a>
+                );
+              }
+
+              return (
+                <NavLink
+                  key={item.label}
+                  to={item.to}
+                  onClick={(e) => {
+                    // Se clicar no link ativo (já está na página), rolar para o topo
+                    if (location.pathname === item.to) {
+                      e.preventDefault();
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }
+                  }}
+                  className={({ isActive }) =>
+                    `relative font-semibold text-base px-2 py-1 rounded transition-colors duration-150 after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-[#174c77] after:transition-[width] after:duration-200 hover:after:w-full ${isActive
+                      ? "text-[#174c77]"
+                      : "text-slate-800 hover:text-[#174c77]"
+                    }`
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              );
+            })}
           </nav>
 
           {/* Botões destaque à direita */}
@@ -85,21 +131,46 @@ export default function Header() {
       {open && (
         <div className="md:hidden fixed inset-0 z-50 bg-black/40" onClick={() => setOpen(false)}>
           <div className="absolute top-0 left-0 w-full bg-white shadow-lg p-6 flex flex-col gap-4 animate-fade-in-down">
-            {navLinks.map((item) => (
-              <NavLink
-                key={item.label}
-                to={item.to}
-                className={({ isActive }) =>
-                  `block font-semibold text-lg px-2 py-2 rounded transition-colors duration-150 ${isActive
-                    ? "text-[#174c77] bg-[#eaf6fa]"
-                    : "text-slate-800 hover:text-[#174c77] hover:bg-[#eaf6fa]"
-                  }`
-                }
-                onClick={() => setOpen(false)}
-              >
-                {item.label}
-              </NavLink>
-            ))}
+            {navLinks.map((item) => {
+              if (item.type === "anchor") {
+                return (
+                  <a
+                    key={item.label}
+                    href={item.to}
+                    onClick={(e) => {
+                      setOpen(false);
+                      handleAnchorClick(e, item.to);
+                    }}
+                    className="block font-semibold text-lg px-2 py-2 rounded transition-colors duration-150 text-slate-800 hover:text-[#174c77] hover:bg-[#eaf6fa]"
+                  >
+                    {item.label}
+                  </a>
+                );
+              }
+
+              return (
+                <NavLink
+                  key={item.label}
+                  to={item.to}
+                  className={({ isActive }) =>
+                    `block font-semibold text-lg px-2 py-2 rounded transition-colors duration-150 ${isActive
+                      ? "text-[#174c77] bg-[#eaf6fa]"
+                      : "text-slate-800 hover:text-[#174c77] hover:bg-[#eaf6fa]"
+                    }`
+                  }
+                  onClick={(e) => {
+                    setOpen(false);
+                    // Se clicar no link ativo, rolar para o topo
+                    if (location.pathname === item.to) {
+                      e.preventDefault();
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }
+                  }}
+                >
+                  {item.label}
+                </NavLink>
+              );
+            })}
             <a
               href="https://app.hausecare.com.br/"
               className="bg-[#2b908a] hover:bg-[#174c77] text-white font-bold rounded-full px-6 py-3 transition-all duration-150 shadow-md text-center"

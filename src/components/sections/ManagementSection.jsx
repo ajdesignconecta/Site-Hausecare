@@ -89,7 +89,7 @@ export default function ManagementSection() {
   return (
     <section
       ref={sectionRef}
-      className="py-28 bg-slate-50"
+      className="py-12 md:py-28 bg-slate-50"
       aria-labelledby="management-title"
     >
       <div className="container mx-auto px-6 max-w-7xl">

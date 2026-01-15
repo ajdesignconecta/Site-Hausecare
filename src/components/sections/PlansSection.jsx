@@ -15,34 +15,47 @@ const PLANS = [
 		price: "Grátis",
 		period: "para sempre",
 		highlight: false,
-		cta: { label: "Começar Agora", href: "https://app.hausecare.com.br/" },
+		cta: { label: "Criar conta grátis", href: "https://app.hausecare.com.br/auth/register" },
+		features: [],
 	},
 	{
 		id: "essencial",
-		name: "Essencial",
+		name: "Clinic Essential",
 		tagline: "Operação organizada e rastreável",
+		price: "Sob consulta",
+		period: "",
+		highlight: false,
+		cta: { label: "Agendar Demonstração", href: "#contato" },
+		features: [
+			"Até 10 profissionais ativos",
+			"Pacientes, Financeiro, DRE, Folha de pagamento, Agenda, rotas e Estoque tudo ilimitado",
+		],
+	},
+	{
+		id: "pro",
+		name: "Clinic Professional",
+		tagline: "Performance + relatórios avançados",
 		price: "Sob consulta",
 		period: "",
 		highlight: true,
 		cta: { label: "Agendar Demonstração", href: "#contato" },
-	},
-	{
-		id: "pro",
-		name: "Pro",
-		tagline: "Performance + relatórios avançados",
-		price: "Sob consulta",
-		period: "",
-		highlight: false,
-		cta: { label: "Agendar Demonstração", href: "#contato" },
+		features: [
+			"Até 35 profissionais ativos",
+			"Pacientes, Financeiro, DRE, Folha de pagamento, Agenda, rotas e Estoque tudo ilimitado",
+		],
 	},
 	{
 		id: "enterprise",
-		name: "Enterprise",
+		name: "Clinic Enterprise",
 		tagline: "Governança, permissões e escala",
 		price: "Sob consulta",
 		period: "",
 		highlight: false,
-		cta: { label: "Falar com Especialista", href: "#contato" },
+		cta: { label: "Agendar Demonstração", href: "#contato" },
+		features: [
+			"Até 50 profissionais ativos",
+			"Pacientes, Financeiro, DRE, Folha de pagamento, Agenda, rotas e Estoque tudo ilimitado",
+		],
 	},
 ];
 
@@ -132,7 +145,7 @@ export default function PlansSection() {
 			ref={rootRef}
 			id="planos"
 			aria-labelledby="plans-title"
-			className="py-20 md:py-28 bg-slate-50"
+			className="py-6 md:py-16 bg-slate-50"
 		>
 			<div className="container mx-auto px-4 sm:px-6 max-w-7xl">
 				{/* Header */}
@@ -191,6 +204,18 @@ export default function PlansSection() {
 								)}
 							</div>
 
+							{/* Features list */}
+							{plan.features && plan.features.length > 0 && (
+								<ul className="mb-8 space-y-2">
+									{plan.features.map((feature, idx) => (
+										<li key={idx} className={`flex items-start gap-2 text-sm ${plan.highlight ? "text-slate-300" : "text-slate-600"}`}>
+											<span className="text-emerald-500 mt-0.5">✓</span>
+											<span>{feature}</span>
+										</li>
+									))}
+								</ul>
+							)}
+
 							<a
 								href={plan.cta.href}
 								className={`block w-full py-4 rounded-xl text-center font-bold transition-all ${plan.highlight
@@ -204,8 +229,8 @@ export default function PlansSection() {
 					))}
 				</div>
 
-				{/* Comparação Detalhada */}
-				<div className="pl-in bg-white rounded-3xl border-2 border-slate-200 shadow-xl overflow-hidden">
+				{/* Comparação Detalhada - Hidden on mobile, visible on tablet+ */}
+				<div className="pl-in max-md:hidden bg-white rounded-3xl border-2 border-slate-200 shadow-xl overflow-hidden">
 					<div className="px-6 md:px-10 py-8 border-b-2 border-slate-200 bg-slate-50">
 						<h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">
 							Comparação detalhada de recursos
@@ -280,9 +305,11 @@ export default function PlansSection() {
 							))}
 						</div>
 					</div>
+				</div>
 
-					{/* Footer CTA */}
-					<div className="px-6 md:px-10 py-8 bg-slate-50 border-t-2 border-slate-200">
+				{/* Footer CTA - Always visible */}
+				<div className="pl-in bg-white rounded-3xl border-2 border-slate-200 shadow-xl overflow-hidden mt-8">
+					<div className="px-6 md:px-10 py-8 bg-slate-50">
 						<div className="flex flex-col md:flex-row items-center justify-between gap-6">
 							<div className="text-center md:text-left">
 								<p className="text-slate-600 text-sm md:text-base">

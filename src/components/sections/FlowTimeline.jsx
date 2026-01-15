@@ -149,11 +149,11 @@ const STEPS = [
 ];
 
 export default function FlowTimeline() {
-  const timelineRef = useRef(/** @type {HTMLDivElement | null} */ (null));
+  const timelineRef = useRef(/** @type {HTMLDivElement | null} */(null));
 
   // refs do modal (pra animação premium)
-  const overlayRef = useRef(/** @type {HTMLDivElement | null} */ (null));
-  const modalRef = useRef(/** @type {HTMLDivElement | null} */ (null));
+  const overlayRef = useRef(/** @type {HTMLDivElement | null} */(null));
+  const modalRef = useRef(/** @type {HTMLDivElement | null} */(null));
 
   const [active, setActive] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
@@ -254,9 +254,8 @@ export default function FlowTimeline() {
           {STEPS.map((step, idx) => (
             <div
               key={step.title}
-              className={`timeline-step bg-white rounded-2xl border border-slate-200 flex flex-col items-center justify-center gap-2 transition will-change-transform ${
-                active === idx ? "shadow-xl scale-105" : "shadow-sm"
-              } hover:shadow-lg hover:scale-105`}
+              className={`timeline-step bg-white rounded-2xl border border-slate-200 flex flex-col items-center justify-center gap-2 transition will-change-transform ${active === idx ? "shadow-xl scale-105" : "shadow-sm"
+                } hover:shadow-lg hover:scale-105 w-full max-w-[320px] md:w-auto md:min-w-[180px] md:max-w-[220px] p-8 md:p-[32px_18px]`}
               tabIndex={0}
               role="button"
               aria-label={`Etapa ${idx + 1}: ${step.title}`}
@@ -266,10 +265,6 @@ export default function FlowTimeline() {
               }}
               style={{
                 cursor: "pointer",
-                minWidth: 180,
-                minHeight: 260,
-                maxWidth: 220,
-                padding: "32px 18px",
                 borderColor: step.color,
                 boxSizing: "border-box",
                 display: "flex",
@@ -279,7 +274,7 @@ export default function FlowTimeline() {
                 {step.icon}
               </div>
               <h3
-                className="font-semibold text-slate-900 mb-1 text-lg text-center"
+                className="font-semibold text-slate-900 mb-1 text-xl md:text-lg text-center"
                 style={{
                   minHeight: 48,
                   display: "flex",
@@ -291,30 +286,30 @@ export default function FlowTimeline() {
               </h3>
 
               <p
-                className="text-sm text-slate-600 leading-relaxed text-center"
+                className="text-base md:text-sm text-slate-600 leading-relaxed text-center"
                 style={
                   active === idx
                     ? {
-                        minHeight: 48,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        height: "auto",
-                        overflow: "visible",
-                        whiteSpace: "normal",
-                        textOverflow: "clip",
-                        maxHeight: "none",
-                      }
+                      minHeight: 48,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      height: "auto",
+                      overflow: "visible",
+                      whiteSpace: "normal",
+                      textOverflow: "clip",
+                      maxHeight: "none",
+                    }
                     : {
-                        minHeight: 48,
-                        maxHeight: 48,
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "normal",
-                        display: "-webkit-box",
-                        WebkitLineClamp: 2,
-                        WebkitBoxOrient: "vertical",
-                      }
+                      minHeight: 48,
+                      maxHeight: 48,
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "normal",
+                      display: "-webkit-box",
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: "vertical",
+                    }
                 }
               >
                 {step.description}
@@ -429,11 +424,10 @@ export default function FlowTimeline() {
           {STEPS.map((_, idx) => (
             <button
               key={idx}
-              className={`w-4 h-4 rounded-full border-2 ${
-                active === idx
-                  ? "bg-[#2b908a] border-[#2b908a]"
-                  : "bg-slate-200 border-slate-300"
-              }`}
+              className={`w-4 h-4 rounded-full border-2 ${active === idx
+                ? "bg-[#2b908a] border-[#2b908a]"
+                : "bg-slate-200 border-slate-300"
+                }`}
               aria-label={`Ir para etapa ${idx + 1}`}
               onClick={() => setActive(idx)}
             />
@@ -447,14 +441,14 @@ export default function FlowTimeline() {
           className="mt-20 scroll-mt-24"
         >
           <header className="text-center mb-10">
-            <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-gradient-to-r from-[#2b908a] to-[#6366f1] shadow-lg mb-4 animate-fade-in">
-              <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3" stroke="#fff" strokeWidth="2"/><path d="M7 9h10M7 13h6" stroke="#fff" strokeWidth="2" strokeLinecap="round"/></svg>
-              <span className="text-white font-semibold tracking-wide text-base">Demonstração do sistema Hausecare</span>
+            <div className="inline-flex items-center gap-2 px-3 md:px-6 py-2 rounded-full bg-gradient-to-r from-[#2b908a] to-[#6366f1] shadow-lg mb-4 animate-fade-in whitespace-nowrap">
+              <svg className="w-5 h-5 md:w-7 md:h-7" fill="none" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3" stroke="#fff" strokeWidth="2" /><path d="M7 9h10M7 13h6" stroke="#fff" strokeWidth="2" strokeLinecap="round" /></svg>
+              <span className="text-white font-semibold tracking-wide text-xs md:text-base">Demonstração do sistema Hausecare</span>
             </div>
             <h3
               id="demonstracao-title"
               className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-2"
-              style={{letterSpacing: '-0.02em'}}>
+              style={{ letterSpacing: '-0.02em' }}>
               Veja o sistema na prática
             </h3>
             <p className="text-slate-600 max-w-2xl mx-auto text-lg leading-relaxed">
@@ -487,9 +481,9 @@ function DemoCarousel() {
           className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white text-slate-700 rounded-full shadow p-2 transition"
           onClick={prev}
           aria-label="Imagem anterior"
-          style={{boxShadow: '0 2px 8px #0001'}}
+          style={{ boxShadow: '0 2px 8px #0001' }}
         >
-          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke="#2b908a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke="#2b908a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
         </button>
         <img
           src={active.src}
@@ -504,9 +498,9 @@ function DemoCarousel() {
           className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white text-slate-700 rounded-full shadow p-2 transition"
           onClick={next}
           aria-label="Próxima imagem"
-          style={{boxShadow: '0 2px 8px #0001'}}
+          style={{ boxShadow: '0 2px 8px #0001' }}
         >
-          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke="#2b908a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke="#2b908a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
         </button>
       </div>
       <div className="flex justify-center gap-2 mt-4">
@@ -514,7 +508,7 @@ function DemoCarousel() {
           <button
             key={img.id}
             className={`w-3 h-3 rounded-full border-2 transition-all duration-200 ${i === idx ? 'bg-[#2b908a] border-[#2b908a] scale-110' : 'bg-slate-200 border-slate-300'}`}
-            aria-label={`Ir para imagem ${i+1}`}
+            aria-label={`Ir para imagem ${i + 1}`}
             onClick={() => goTo(i)}
           />
         ))}
@@ -531,12 +525,12 @@ function DemoCarousel() {
             src={active.src}
             alt={active.title}
             className="max-w-[96vw] max-h-[92vh] w-auto h-auto rounded-3xl shadow-2xl border-4 border-white md:max-w-[1200px] md:max-h-[90vh]"
-            style={{background: '#fff'}}
+            style={{ background: '#fff' }}
             onClick={e => e.stopPropagation()}
           />
           <button
             className="absolute top-4 right-4 text-white text-4xl font-bold p-0 m-0 bg-transparent shadow-none hover:bg-transparent focus:bg-transparent border-none outline-none"
-            style={{lineHeight: 1, background: 'none'}}
+            style={{ lineHeight: 1, background: 'none' }}
             onClick={() => setLightbox(false)}
             aria-label="Fechar visualização"
           >×</button>

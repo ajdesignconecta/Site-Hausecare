@@ -52,10 +52,7 @@ const ManagementSection = lazySection(
   "ManagementSection"
 );
 
-const SecurityEnterpriseSection = lazySection(
-  () => import("../components/sections/SecurityEnterpriseSection"),
-  "SecurityEnterpriseSection"
-);
+
 
 const PlansSection = lazySection(
   () => import("../components/sections/PlansSection"),
@@ -111,9 +108,7 @@ export default function Home() {
           <PlansSection />
         </section>
 
-        <section id="seguranca" aria-label="Segurança, LGPD e governança">
-          <SecurityEnterpriseSection />
-        </section>
+
 
         <section id="faq" aria-label="Perguntas frequentes">
           <FaqSection />
