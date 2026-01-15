@@ -45,7 +45,68 @@ function useImagePreloader(imageSources) {
   return { progress, isLoaded };
 }
 
+// Hook para animação de digitação com efeito de backspace
+function useTypingEffect(text, speed = 50) {
+  const [displayedText, setDisplayedText] = useState("");
+  const [isComplete, setIsComplete] = useState(false);
+
+  useEffect(() => {
+    let index = 0;
+    let isDeleting = false;
+    let timeoutId;
+
+    // Garantir que começa do zero
+    setDisplayedText("");
+    setIsComplete(false);
+
+    const animate = () => {
+      if (!isDeleting) {
+        // Fase de digitação
+        if (index < text.length) {
+          index++;
+          setDisplayedText(text.substring(0, index));
+          timeoutId = setTimeout(animate, speed);
+        } else {
+          // Texto completo digitado
+          setIsComplete(true);
+          // Pause antes de começar a apagar
+          timeoutId = setTimeout(() => {
+            isDeleting = true;
+            animate();
+          }, 2000); // Pausa de 2 segundos
+        }
+      } else {
+        // Fase de apagar (backspace)
+        if (index > 0) {
+          index--;
+          setDisplayedText(text.substring(0, index));
+          setIsComplete(false);
+          timeoutId = setTimeout(animate, speed * 0.5); // Backspace mais rápido
+        } else {
+          // Texto completamente apagado
+          // Pausa breve antes de recomeçar
+          timeoutId = setTimeout(() => {
+            isDeleting = false;
+            animate();
+          }, 500);
+        }
+      }
+    };
+
+    animate();
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [text, speed]);
+
+  return { displayedText, isComplete };
+}
+
 export default function Hero() {
+  const heroText = "Bem-vindo(a) ao sistema de gestão para empresas ";
+  const { displayedText, isComplete } = useTypingEffect(heroText, 80);
+
   const { progress, isLoaded } = useImagePreloader([
     monitorImage,
     heroTabletImage,
@@ -501,46 +562,68 @@ export default function Hero() {
             }}
           />
 
-          {/* Monitor */}
-          <div className="relative w-full px-4 lg:max-w-[1150px] z-10">
-            <div className="relative rounded-[28px] md:rounded-[36px] bg-gradient-to-b from-slate-700 via-slate-800 to-slate-900 p-[12px] md:p-[16px] shadow-2xl">
-              <div className="relative rounded-[20px] md:rounded-[26px] bg-gradient-to-b from-slate-800 to-black p-[14px] md:p-[18px] ring-1 ring-white/10">
-                <div
-                  className="relative overflow-hidden rounded-[12px] md:rounded-[16px] bg-black"
-                  style={{ aspectRatio: "auto" }}
-                >
-                  <img
-                    src={heroTabletImage}
-                    alt="Sistema Hausecare - Dashboard Mobile"
-                    className="w-full h-full object-contain md:hidden"
-                    loading="eager"
-                    fetchpriority="high"
-                  />
-                  <img
-                    src={monitorImage}
-                    alt="Sistema Hausecare - Dashboard"
-                    className="hidden md:block w-full h-full object-contain"
-                    loading="eager"
-                    fetchpriority="high"
-                  />
+          {/* Container Principal */}
+          <div className="relative w-full z-10 flex flex-col items-center max-w-6xl mx-auto px-6 pt-32 pb-12 md:pt-48 md:pb-16">
 
-                  <div
-                    className="scanline absolute top-0 left-0 right-0 h-[40px] pointer-events-none"
-                    style={{
-                      background:
-                        "linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%)",
-                      transform: "translateY(-100%)",
-                    }}
-                  />
+            {/* Bloco de Texto */}
+            <div className="max-w-5xl text-center mx-auto mb-2 md:mb-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/20 mb-6 backdrop-blur-sm">
+                <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span className="text-xs md:text-sm font-medium tracking-wide text-gray-200">
+                  Gestão Inteligente
+                </span>
+              </div>
 
+              <h1 className="text-3xl md:text-5xl font-bold leading-tight text-white tracking-tight mb-5 mx-auto drop-shadow-xl">
+                {displayedText}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">
+                  {isComplete ? "HOME CARE" : ""}
+                </span>
+                {!isComplete && <span className="animate-pulse">|</span>}
+              </h1>
+            </div>
+
+            {/* Monitor Wrapper */}
+            <div className="relative w-full max-w-4xl group">
+              <div className="relative rounded-[28px] md:rounded-[36px] bg-gradient-to-b from-slate-700 via-slate-800 to-slate-900 p-[12px] md:p-[16px] shadow-2xl">
+                <div className="relative rounded-[20px] md:rounded-[26px] bg-gradient-to-b from-slate-800 to-black p-[14px] md:p-[18px] ring-1 ring-white/10">
                   <div
-                    className="pointer-events-none absolute inset-0"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 45%, transparent 55%, rgba(255,255,255,0.05) 100%)",
-                      mixBlendMode: "overlay",
-                    }}
-                  />
+                    className="relative overflow-hidden rounded-[12px] md:rounded-[16px] bg-black"
+                    style={{ aspectRatio: "auto" }}
+                  >
+                    <img
+                      src={heroTabletImage}
+                      alt="Sistema Hausecare - Dashboard Mobile"
+                      className="w-full h-full object-contain md:hidden"
+                      loading="eager"
+                      fetchpriority="high"
+                    />
+                    <img
+                      src={monitorImage}
+                      alt="Sistema Hausecare - Dashboard"
+                      className="hidden md:block w-full h-full object-contain"
+                      loading="eager"
+                      fetchpriority="high"
+                    />
+
+                    <div
+                      className="scanline absolute top-0 left-0 right-0 h-[40px] pointer-events-none"
+                      style={{
+                        background:
+                          "linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%)",
+                        transform: "translateY(-100%)",
+                      }}
+                    />
+
+                    <div
+                      className="pointer-events-none absolute inset-0"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 45%, transparent 55%, rgba(255,255,255,0.05) 100%)",
+                        mixBlendMode: "overlay",
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -548,7 +631,7 @@ export default function Hero() {
 
           {/* Scroll hint */}
           <div
-            className="absolute bottom-6 md:bottom-8 left-0 right-0 mx-auto flex flex-col items-center gap-2 text-white/60 animate-bounce z-20"
+            className="absolute bottom-24 md:bottom-28 left-0 right-0 mx-auto flex flex-col items-center gap-2 text-black animate-bounce z-20"
             style={{ width: "fit-content" }}
           >
             <p className="text-xs md:text-sm font-medium tracking-wide">
