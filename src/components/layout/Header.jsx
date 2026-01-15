@@ -43,10 +43,10 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-white/90 border-b border-slate-100">
       <div className="max-w-full w-full px-6">
-        <div className="flex h-24 items-center justify-between w-full">
+        <div className="flex h-20 items-center justify-between w-full">
           {/* Logo maior e totalmente à esquerda */}
           <NavLink to="/" className="flex items-center gap-2 min-w-[200px] select-none mr-4">
-            <img src={LogoHausecare} alt="Hausecare" className="h-24 w-auto" />
+            <img src={LogoHausecare} alt="Hausecare" className="h-20 w-auto" />
           </NavLink>
 
           {/* Menu Desktop centralizado e flex-grow */}
@@ -171,13 +171,6 @@ export default function Header() {
                 </NavLink>
               );
             })}
-            <a
-              href="https://app.hausecare.com.br/"
-              className="bg-[#2b908a] hover:bg-[#174c77] text-white font-bold rounded-full px-6 py-3 transition-all duration-150 shadow-md text-center"
-              onClick={() => setOpen(false)}
-            >
-              Acessar sistema gratuito
-            </a>
           </div>
         </div>
       )}

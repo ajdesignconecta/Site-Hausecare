@@ -78,7 +78,7 @@ const FEATURES = [
 		category: "Financeiro",
 		items: [
 			{ name: "Receitas, despesas, extrato e visão consolidada", free: false, essencial: true, pro: true, enterprise: true },
-			{ name: "DRE gerencial e centros de custos", free: false, essencial: false, pro: true, enterprise: true },
+			{ name: "DRE gerencial e centros de custos", free: false, essencial: true, pro: true, enterprise: true },
 			{ name: "Folha de pagamento por profissional / período", free: false, essencial: true, pro: true, enterprise: true },
 			{ name: "Exportação CSV para conciliação e análise", free: true, essencial: true, pro: true, enterprise: true },
 		]
@@ -93,9 +93,7 @@ const FEATURES = [
 	{
 		category: "Segurança & Governança",
 		items: [
-			{ name: "Controle de acesso por perfis/permissões", free: false, essencial: true, pro: true, enterprise: true },
-			{ name: "Logs / trilha de auditoria (nível enterprise)", free: false, essencial: false, pro: false, enterprise: true },
-			{ name: "Políticas e governança (retenção/backup operacional)", free: false, essencial: false, pro: true, enterprise: true },
+			{ name: "Acesso a evolução do paciente assinada pelo profissional", free: true, essencial: true, pro: true, enterprise: true },
 		]
 	},
 	{
@@ -145,7 +143,7 @@ export default function PlansSection() {
 			ref={rootRef}
 			id="planos"
 			aria-labelledby="plans-title"
-			className="py-6 md:py-16 bg-slate-50"
+			className="py-20 md:py-28 bg-slate-50"
 		>
 			<div className="container mx-auto px-4 sm:px-6 max-w-7xl">
 				{/* Header */}
@@ -173,8 +171,8 @@ export default function PlansSection() {
 					{PLANS.map((plan) => (
 						<div
 							key={plan.id}
-							className={`pl-card relative rounded-3xl p-8 transition-all duration-300 ${plan.highlight
-								? "bg-slate-900 border-2 border-slate-800 shadow-2xl scale-105 lg:scale-110 z-10"
+							className={`pl-card relative rounded-3xl p-6 md:p-8 transition-all duration-300 ${plan.highlight
+								? "bg-slate-900 border-2 border-slate-800 shadow-2xl scale-100 md:scale-105 lg:scale-110 z-10 mt-6 md:mt-0 max-w-[90%] mx-auto md:max-w-none"
 								: "bg-white border-2 border-slate-200 hover:border-emerald-300 hover:shadow-xl"
 								}`}
 						>
