@@ -8,6 +8,7 @@ const navLinks = [
   { label: "Para quem é", to: "/para-quem", type: "route" },
   { label: "Planos", to: "/planos", type: "route" },
   { label: "Segurança", to: "/seguranca", type: "route" },
+  { label: "Contato", to: "/contato", type: "route" },
 ];
 
 export default function Header() {

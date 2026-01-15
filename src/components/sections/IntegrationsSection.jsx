@@ -352,7 +352,9 @@ export default function IntegrationsSection() {
                 {/* CTA compact */}
                 <div className="mt-6 flex flex-col sm:flex-row gap-3">
                   <a
-                    href="#contato"
+                    href="https://wa.me/5561991519369"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-full inline-flex items-center justify-center rounded-full bg-emerald-500 px-4 py-3 text-sm font-semibold text-[#081018] hover:bg-emerald-400 transition"
                   >
                     Solicitar demonstração
@@ -436,7 +438,9 @@ export default function IntegrationsSection() {
                     </div>
 
                     <a
-                      href="#contato"
+                      href="https://wa.me/5561991519369"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="inline-flex items-center justify-center rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white border border-white/10 hover:bg-white/14 transition"
                     >
                       Agendar demonstração

@@ -1,5 +1,5 @@
 import React from "react";
-import AudienceSection from "../components/sections/AudienceSection";
+import AudienceSection from "../components/sections/LGPD/AudienceSection";
 import StickyCta from "../components/sections/StickyCta";
 import FinalCTA from "../components/sections/FinalCTA";
 

@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from "react";
 import Hero from "../components/sections/Hero";
 import StickyCta from "../components/sections/StickyCta";
 import ProblemSection from "../components/sections/ProblemSection";
-import AudienceSection from "../components/sections/AudienceSection";
+import AudienceSection from "../components/sections/LGPD/AudienceSection";
 
 // Helper: garante que React.lazy sempre receba { default: Component }
 function lazySection(importer, preferredNamedExport) {

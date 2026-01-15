@@ -275,7 +275,9 @@ export default function Funcionalidades() {
 
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <a
-                href="#contato"
+                href="https://wa.me/5561991519369"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-500/20"
                 style={{
                   background: "linear-gradient(90deg, #2b908a, #36C293)",
@@ -437,7 +439,9 @@ export default function Funcionalidades() {
                   </p>
                   <div className="mt-6 flex flex-wrap gap-3">
                     <a
-                      href="/#contato"
+                      href="https://wa.me/5561991519369"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-500/20"
                       style={{
                         background: "linear-gradient(90deg, #2b908a, #36C293)",

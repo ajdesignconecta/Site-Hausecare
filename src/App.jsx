@@ -10,6 +10,9 @@ import Plataforma from "./pages/Plataforma";
 import Seguranca from "./pages/seguranca";
 
 import ParaQuem from "./pages/ParaQuem";
+import Contato from "./pages/Contato";
+import { PrivacidadePage } from "./pages/legal/privacidade";
+import { TermosPage } from "./pages/legal/termos";
 
 export default function App() {
   return (
@@ -28,6 +31,9 @@ export default function App() {
           <Route path="/para-quem" element={<ParaQuem />} />
           <Route path="/planos" element={<Planos />} />
           <Route path="/seguranca" element={<Seguranca />} />
+          <Route path="/contato" element={<Contato />} />
+          <Route path="/legal/privacidade" element={<PrivacidadePage />} />
+          <Route path="/legal/termos" element={<TermosPage />} />
         </Routes>
       </main>
 

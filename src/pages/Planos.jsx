@@ -26,7 +26,7 @@ const PLANS = [
     price: "Sob consulta",
     period: "",
     highlight: false,
-    cta: { label: "Agendar Demonstração", href: "#contato" },
+    cta: { label: "Agendar Demonstração", href: "https://wa.me/5561991519369" },
     features: [
       "Até 10 profissionais ativos",
       "Pacientes, Financeiro, DRE, Folha de pagamento, Agenda, rotas e Estoque tudo ilimitado",
@@ -39,7 +39,7 @@ const PLANS = [
     price: "Sob consulta",
     period: "",
     highlight: true,
-    cta: { label: "Agendar Demonstração", href: "#contato" },
+    cta: { label: "Agendar Demonstração", href: "https://wa.me/5561991519369" },
     features: [
       "Até 35 profissionais ativos",
       "Pacientes, Financeiro, DRE, Folha de pagamento, Agenda, rotas e Estoque tudo ilimitado",
@@ -52,7 +52,7 @@ const PLANS = [
     price: "Sob consulta",
     period: "",
     highlight: false,
-    cta: { label: "Agendar Demonstração", href: "#contato" },
+    cta: { label: "Agendar Demonstração", href: "https://wa.me/5561991519369" },
     features: [
       "Até 50 profissionais ativos",
       "Pacientes, Financeiro, DRE, Folha de pagamento, Agenda, rotas e Estoque tudo ilimitado",
@@ -218,6 +218,8 @@ export default function PlansSection() {
 
                 <a
                   href={plan.cta.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`block w-full py-4 rounded-xl text-center font-bold transition-all ${plan.highlight
                     ? "bg-emerald-500 text-white hover:bg-emerald-400 shadow-lg"
                     : "bg-slate-100 text-slate-900 hover:bg-slate-200"
@@ -321,17 +323,20 @@ export default function PlansSection() {
                 </div>
                 <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
                   <a
-                    href="#contato"
+                    href="https://wa.me/5561991519369"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center justify-center rounded-xl bg-emerald-600 text-white px-8 py-4 text-base font-bold hover:bg-emerald-700 transition-all shadow-lg hover:shadow-xl"
                   >
                     Falar com Consultor
                   </a>
-                  <a
-                    href="#inicio"
+                  <button
+                    type="button"
+                    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                     className="inline-flex items-center justify-center rounded-xl bg-white text-slate-900 border-2 border-slate-200 px-8 py-4 text-base font-bold hover:bg-slate-50 transition-all"
                   >
                     Voltar ao Topo
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>

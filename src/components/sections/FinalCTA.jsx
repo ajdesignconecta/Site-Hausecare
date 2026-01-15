@@ -70,9 +70,11 @@ export default function FinalCTA() {
 
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <a
-            href="/contato"
+            href="https://wa.me/5561991519369"
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn-hc btn-hc-primary"
-            aria-label="Solicitar demonstração da Hausecare"
+            aria-label="Solicitar demonstração da Hausecare pelo WhatsApp"
           >
             Solicitar demonstração
           </a>

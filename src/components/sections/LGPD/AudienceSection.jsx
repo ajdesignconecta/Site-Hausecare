@@ -60,6 +60,11 @@ function clamp(n, min, max) {
   return Math.max(min, Math.min(max, n));
 }
 
+// Garante 1 frame para o DOM “pintar” antes de medir/selecionar elementos
+function nextFrame() {
+  return new Promise((resolve) => requestAnimationFrame(() => resolve()));
+}
+
 export default function AudienceSection() {
   const [active, setActive] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -69,6 +74,9 @@ export default function AudienceSection() {
   const indicatorRef = useRef(null);
   const panelRef = useRef(null);
   const itemRefs = useRef([]);
+
+  // Cache do GSAP (evita reimportar a cada clique)
+  const gsapRef = useRef(null);
 
   const prefersReducedMotion = useMemo(() => {
     if (typeof window === "undefined") return false;
@@ -80,7 +88,7 @@ export default function AudienceSection() {
 
   const activePersona = PERSONAS[active];
 
-  const moveIndicatorTo = async (index, gsap) => {
+  const moveIndicatorTo = (index, gsap) => {
     const wrap = listWrapRef.current;
     const indicator = indicatorRef.current;
     const el = itemRefs.current[index];
@@ -112,8 +120,13 @@ export default function AudienceSection() {
 
     setIsAnimating(true);
 
-    const gsapModule = await import("gsap");
-    const gsap = gsapModule.gsap || gsapModule.default;
+    // Usa GSAP cacheado
+    let gsap = gsapRef.current;
+    if (!gsap) {
+      const gsapModule = await import("gsap");
+      gsap = gsapModule.gsap || gsapModule.default;
+      gsapRef.current = gsap;
+    }
 
     const panel = panelRef.current;
     if (!panel) {
@@ -129,13 +142,26 @@ export default function AudienceSection() {
 
     tl.to(panel, { autoAlpha: 0, y: 10, duration: 0.18, ease: "power2.in" })
       .add(() => setActive(nextIndex))
-      // aguarda o React “pintar” o novo conteúdo
-      .add(() => { }, "+=0.01")
+      // Garante que o React renderizou o conteúdo novo antes do querySelectorAll
+      .add(async () => {
+        await nextFrame();
+      })
       .to(panel, { autoAlpha: 1, y: 0, duration: 0.26 })
-      .fromTo(
-        panel.querySelectorAll(".psw-anim"),
-        { autoAlpha: 0, y: 10 },
-        { autoAlpha: 1, y: 0, duration: 0.28, stagger: 0.06 },
+      .add(
+        () => {
+          const nodes = panel.querySelectorAll(".psw-anim");
+          gsap.fromTo(
+            nodes,
+            { autoAlpha: 0, y: 10 },
+            {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.28,
+              stagger: 0.06,
+              ease: "power2.out",
+            }
+          );
+        },
         "<"
       );
 
@@ -144,11 +170,16 @@ export default function AudienceSection() {
 
   useLayoutEffect(() => {
     let ctx;
-    let cleanup = () => { };
+    let cleanup = () => {};
 
     (async () => {
-      const gsapModule = await import("gsap");
-      const gsap = gsapModule.gsap || gsapModule.default;
+      // Carrega GSAP só uma vez
+      let gsap = gsapRef.current;
+      if (!gsap) {
+        const gsapModule = await import("gsap");
+        gsap = gsapModule.gsap || gsapModule.default;
+        gsapRef.current = gsap;
+      }
 
       const stModule = await import("gsap/ScrollTrigger");
       const ScrollTrigger = stModule.ScrollTrigger || stModule.default;
@@ -177,24 +208,28 @@ export default function AudienceSection() {
           }
         );
 
-        gsap.fromTo(
-          root.querySelector(".psw-glow"),
-          { autoAlpha: 0, scale: 0.98 },
-          {
-            autoAlpha: 1,
-            scale: 1,
-            duration: 0.9,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: root,
-              start: "top 80%",
-              once: true,
-            },
-          }
-        );
+        const glow = root.querySelector(".psw-glow");
+        if (glow) {
+          gsap.fromTo(
+            glow,
+            { autoAlpha: 0, scale: 0.98 },
+            {
+              autoAlpha: 1,
+              scale: 1,
+              duration: 0.9,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: root,
+                start: "top 80%",
+                once: true,
+              },
+            }
+          );
+        }
       }, sectionRef);
 
-      // posiciona indicador inicial
+      // posiciona indicador inicial de forma mais confiável (após 1 frame)
+      await nextFrame();
       moveIndicatorTo(active, gsap);
 
       const onResize = () => moveIndicatorTo(active, gsap);
@@ -259,7 +294,8 @@ export default function AudienceSection() {
             Central de controle da operação — em tempo real
           </h2>
           <p className="psw-enter text-slate-600 max-w-3xl mx-auto text-lg leading-relaxed mt-4">
-            Visualize atendimentos, agenda, equipe e financeiro em um único painel. Menos improviso, mais rastreabilidade e decisões rápidas.
+            Visualize atendimentos, agenda, equipe e financeiro em um único
+            painel. Menos improviso, mais rastreabilidade e decisões rápidas.
           </p>
         </header>
 
@@ -352,7 +388,7 @@ export default function AudienceSection() {
                           className="block h-full rounded-full transition-all duration-500"
                           style={{
                             width: isActive ? "100%" : "0%",
-                            background: isActive ? p.accent : p.accent,
+                            background: p.accent,
                           }}
                         />
                       </div>
