@@ -156,30 +156,18 @@ export default function FAQSection() {
   const listRef = useRef(null);
 
   const [query, setQuery] = useState("");
-  const [activeCat, setActiveCat] = useState("tudo");
   const [openId, setOpenId] = useState(FAQ_ITEMS[0]?.id || null);
 
   const filtered = useMemo(() => {
     const qn = normalize(query);
     return FAQ_ITEMS.filter((item) => {
-      const catOk = activeCat === "tudo" ? true : item.category === activeCat;
       const qOk =
         !qn ||
         normalize(item.q).includes(qn) ||
         normalize(item.a).includes(qn);
-      return catOk && qOk;
+      return qOk;
     });
-  }, [query, activeCat]);
-
-  const counts = useMemo(() => {
-    const map = new Map();
-    for (const c of CATEGORIES) map.set(c.key, 0);
-    map.set("tudo", FAQ_ITEMS.length);
-    for (const item of FAQ_ITEMS) {
-      map.set(item.category, (map.get(item.category) || 0) + 1);
-    }
-    return map;
-  }, []);
+  }, [query]);
 
   // GSAP: entrada + micro animações
   useEffect(() => {
@@ -326,47 +314,58 @@ export default function FAQSection() {
       aria-labelledby="faq-title"
       className="relative overflow-hidden"
     >
-      {/* Fundo “saúde” (diferente do resto) */}
+      {/* Fundo claro profissional */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 bg-white"
+        aria-hidden="true"
+      />
+
+      {/* Gradiente sutil de profundidade */}
+      <div
+        className="absolute inset-0 opacity-30"
         aria-hidden="true"
         style={{
           background:
-            "radial-gradient(900px 460px at 20% 25%, rgba(255,255,255,0.62), transparent 60%), radial-gradient(900px 520px at 85% 40%, rgba(255,255,255,0.36), transparent 62%), linear-gradient(120deg, #0f3550 0%, #0f6c73 45%, #1aa6a0 100%)",
+            "radial-gradient(circle at 20% 30%, rgba(43, 144, 138, 0.08) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(99, 102, 241, 0.05) 0%, transparent 50%)",
         }}
       />
 
-      {/* Glow/partículas leves */}
-      <div className="hcfaq-glow pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[820px] h-[820px] rounded-full blur-3xl opacity-40"
+      {/* Glow sutil */}
+      <div
+        className="hcfaq-glow pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] blur-3xl opacity-[0.08]"
         aria-hidden="true"
-        style={{ background: "radial-gradient(circle, rgba(255,255,255,0.35), transparent 60%)" }}
+        style={{
+          background: "radial-gradient(ellipse, rgba(43, 144, 138, 0.3), transparent 60%)"
+        }}
       />
 
-      {/* Pattern de cruz/plus bem sutil */}
-      <div className="hcfaq-pattern pointer-events-none absolute inset-0 opacity-[0.10]" aria-hidden="true" />
+      {/* Grid pattern minimalista */}
+      <div
+        className="hcfaq-pattern pointer-events-none absolute inset-0 opacity-[0.02]"
+        aria-hidden="true"
+      />
 
       <div className="relative container mx-auto px-6 py-24 max-w-6xl">
         {/* Cabeçalho */}
         <div className="text-center max-w-3xl mx-auto">
-          <div className="hcfaq-kicker inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-white/90 text-sm border border-white/20 backdrop-blur">
-            <span className="inline-block w-2 h-2 rounded-full bg-emerald-300" />
-            FAQ — Respostas que destravam decisão
+          <div className="hcfaq-kicker inline-flex items-center gap-2 rounded-full bg-emerald-100 px-4 py-2 text-xs font-semibold text-emerald-700 border border-emerald-200 mb-6">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            FAQ • Respostas que destravam decisão
           </div>
 
           <h2
             id="faq-title"
-            className="hcfaq-title mt-6 text-4xl md:text-5xl font-extrabold tracking-tight text-white"
+            className="hcfaq-title mt-6 text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900"
             style={{ letterSpacing: "-0.03em" }}
           >
-            Tudo o que um gestor precisa saber
-            <span className="block">antes da demonstração</span>
+            Tudo o que um gestor precisa<br />saber antes da demonstração
           </h2>
 
-          <p className="hcfaq-subtitle mt-5 text-white/85 text-lg leading-relaxed">
+          <p className="hcfaq-subtitle mt-5 text-slate-700 text-lg leading-relaxed">
             Sem marketing vazio. Só o que importa para operar com{" "}
-            <strong className="text-white">controle</strong>,{" "}
-            <strong className="text-white">prontuário seguro</strong> e{" "}
-            <strong className="text-white">financeiro previsível</strong>.
+            <strong className="text-slate-900">controle</strong>,{" "}
+            <strong className="text-slate-900">prontuário seguro</strong> e{" "}
+            <strong className="text-slate-900">financeiro previsível</strong>.
           </p>
         </div>
 
@@ -374,14 +373,14 @@ export default function FAQSection() {
         <div className="mt-14 grid lg:grid-cols-[380px_1fr] gap-8 items-start">
           {/* Sidebar */}
           <aside className="hcfaq-panel">
-            <div className="rounded-3xl bg-white/12 border border-white/20 backdrop-blur-xl shadow-[0_30px_90px_rgba(0,0,0,0.25)] overflow-hidden">
-              <div className="p-6 border-b border-white/15">
-                <p className="text-white/80 text-xs font-semibold tracking-wider">
+            <div className="rounded-3xl bg-white border border-slate-200 shadow-lg overflow-hidden">
+              <div className="p-6 border-b border-slate-200">
+                <p className="text-slate-700 text-xs font-semibold tracking-wider">
                   FILTRAR PERGUNTAS
                 </p>
 
                 <div className="mt-3 relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60">
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                       <path
                         d="M21 21l-4.3-4.3m1.8-5.2a7 7 0 11-14 0 7 7 0 0114 0z"
@@ -395,74 +394,43 @@ export default function FAQSection() {
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder="Buscar (ex: prontuário, folha, LGPD...)"
-                    className="w-full rounded-2xl bg-white/10 border border-white/20 text-white placeholder:text-white/55 pl-11 pr-4 py-3 outline-none focus:border-white/40 focus:bg-white/14 transition"
+                    className="w-full rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-500 pl-11 pr-4 py-3.5 outline-none focus:border-emerald-400 focus:bg-white focus:ring-2 focus:ring-emerald-400/20 transition"
                   />
-                </div>
-
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {CATEGORIES.map((c) => {
-                    const isActive = activeCat === c.key;
-                    const count =
-                      c.key === "tudo" ? FAQ_ITEMS.length : counts.get(c.key) || 0;
-
-                    return (
-                      <button
-                        key={c.key}
-                        onClick={() => setActiveCat(c.key)}
-                        className={[
-                          "group inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm border transition",
-                          isActive
-                            ? "bg-white text-slate-900 border-white shadow-[0_10px_25px_rgba(0,0,0,0.20)]"
-                            : "bg-white/10 text-white/90 border-white/20 hover:bg-white/14 hover:border-white/30",
-                        ].join(" ")}
-                      >
-                        <span className="font-semibold">{c.label}</span>
-                        <span
-                          className={[
-                            "min-w-[28px] h-[22px] px-2 rounded-full text-xs inline-flex items-center justify-center",
-                            isActive ? "bg-slate-900/10 text-slate-900" : "bg-white/12 text-white/80",
-                          ].join(" ")}
-                        >
-                          {count}
-                        </span>
-                      </button>
-                    );
-                  })}
                 </div>
               </div>
 
               <div className="p-6">
-                <p className="text-white/80 text-sm leading-relaxed">
-                  Resultado do filtro
-                  <span className="block text-white font-semibold text-lg mt-1">
+                <p className="text-slate-700 text-sm leading-relaxed">
+                  {query ? "Resultados da busca" : "Total de perguntas"}
+                  <span className="block text-slate-900 font-semibold text-lg mt-1">
                     {filtered.length} pergunta(s)
                   </span>
-                  <span className="block text-white/75 mt-1">
-                    Clareza rápida, decisão mais fácil.
+                  <span className="block text-slate-600 mt-1">
+                    {query ? "Use a busca para encontrar mais respostas." : "Explore todas as perguntas ou use a busca acima."}
                   </span>
                 </p>
 
                 <div className="mt-6 grid gap-3">
                   <a
                     href="#contato"
-                    className="w-full inline-flex items-center justify-center rounded-2xl bg-white text-slate-900 font-semibold py-3 shadow-[0_18px_40px_rgba(0,0,0,0.25)] hover:translate-y-[-1px] transition"
+                    className="w-full inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 text-white font-semibold py-3.5 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/30 hover:translate-y-[-2px] transition-all duration-200"
                   >
                     Agendar demonstração
                   </a>
 
                   <a
                     href="/funcionalidades"
-                    className="w-full inline-flex items-center justify-center rounded-2xl bg-transparent text-white font-semibold py-3 border border-white/25 hover:bg-white/10 transition"
+                    className="w-full inline-flex items-center justify-center rounded-xl bg-slate-100 text-slate-900 font-semibold py-3.5 border border-slate-200 hover:bg-slate-200 hover:border-slate-300 transition-all duration-200"
                   >
                     Ver funcionalidades
                   </a>
                 </div>
 
-                <div className="mt-6 rounded-2xl bg-white/10 border border-white/15 p-4">
-                  <p className="text-white/85 text-sm">
+                <div className="mt-6 rounded-xl bg-emerald-50 border border-emerald-200 p-4">
+                  <p className="text-slate-700 text-sm">
                     Dica rápida
-                    <span className="block text-white/70 mt-1">
-                      Use a busca para achar termos como “LGPD”, “folha”, “rotas”, “senha do atendimento”.
+                    <span className="block text-slate-600 mt-1">
+                      Use a busca para achar termos como "LGPD", "folha", "rotas", "senha do atendimento".
                     </span>
                   </p>
                 </div>
@@ -472,10 +440,10 @@ export default function FAQSection() {
 
           {/* Lista */}
           <div className="hcfaq-panel">
-            <div className="rounded-3xl bg-white/12 border border-white/20 backdrop-blur-xl shadow-[0_30px_90px_rgba(0,0,0,0.25)] overflow-hidden">
-              <div className="px-6 py-5 border-b border-white/15">
-                <h3 className="text-white font-bold text-lg">Perguntas frequentes</h3>
-                <p className="text-white/75 text-sm mt-1">
+            <div className="rounded-3xl bg-white border border-slate-200 shadow-lg overflow-hidden">
+              <div className="px-6 py-5 border-b border-slate-200">
+                <h3 className="text-slate-900 font-bold text-lg">Perguntas frequentes</h3>
+                <p className="text-slate-600 text-sm mt-1">
                   Clique para abrir. Respostas objetivas — do jeito que gestor gosta.
                 </p>
               </div>
@@ -487,24 +455,21 @@ export default function FAQSection() {
               >
                 {filtered.length === 0 ? (
                   <div className="p-10 text-center">
-                    <p className="text-white font-semibold text-lg">
+                    <p className="text-slate-700 font-semibold text-lg">
                       Nenhuma pergunta encontrada.
                     </p>
-                    <p className="text-white/75 mt-2">
-                      Tente remover filtros ou buscar por outro termo.
+                    <p className="text-slate-600 mt-2">
+                      Tente buscar por outro termo ou limpe a busca.
                     </p>
                     <button
-                      onClick={() => {
-                        setQuery("");
-                        setActiveCat("tudo");
-                      }}
-                      className="mt-6 inline-flex items-center justify-center rounded-2xl bg-white text-slate-900 font-semibold px-5 py-3 hover:translate-y-[-1px] transition"
+                      onClick={() => setQuery("")}
+                      className="mt-6 inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 text-white font-semibold px-6 py-3.5 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/30 hover:translate-y-[-2px] transition-all duration-200"
                     >
-                      Limpar filtros
+                      Limpar busca
                     </button>
                   </div>
                 ) : (
-                  <ul className="divide-y divide-white/12">
+                  <ul className="divide-y divide-slate-200">
                     {filtered.map((item) => {
                       const isOpen = openId === item.id;
                       const cat = CATEGORIES.find((c) => c.key === item.category)?.label || "Categoria";
@@ -518,21 +483,21 @@ export default function FAQSection() {
                         >
                           <button
                             onClick={() => toggle(item.id)}
-                            className="w-full text-left px-6 py-6 flex items-center gap-4 hover:bg-white/06 transition"
+                            className="w-full text-left px-6 py-5 flex items-center gap-4 hover:bg-slate-50 transition-all duration-200"
                             aria-expanded={isOpen}
                           >
                             <div className="flex-1">
-                              <p className="text-white font-semibold text-lg leading-snug">
+                              <p className="text-slate-900 font-semibold text-base leading-snug">
                                 {item.q}
                               </p>
-                              <p className="mt-2 text-white/70 text-xs tracking-wider font-semibold">
-                                CATEGORIA: {cat.toUpperCase()}
+                              <p className="mt-2 text-slate-500 text-xs tracking-wider font-semibold uppercase">
+                                {cat}
                               </p>
                             </div>
 
                             <span
                               data-acc-icon="true"
-                              className="shrink-0 w-11 h-11 rounded-full border border-white/25 bg-white/08 inline-flex items-center justify-center text-white/90"
+                              className="shrink-0 w-10 h-10 rounded-full border border-slate-300 bg-slate-100 inline-flex items-center justify-center text-slate-600"
                               aria-hidden="true"
                             >
                               <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -552,26 +517,26 @@ export default function FAQSection() {
                               className="overflow-hidden"
                             >
                               <div className="pt-2">
-                                <div className="rounded-2xl bg-white/10 border border-white/15 p-5">
-                                  <p className="text-white/85 leading-relaxed whitespace-pre-line">
+                                <div className="rounded-xl bg-slate-50 border border-slate-200 p-5">
+                                  <p className="text-slate-700 text-[15px] leading-relaxed whitespace-pre-line">
                                     {item.a}
                                   </p>
 
                                   <div className="mt-4 flex flex-wrap gap-2">
-                                    <span className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/15 px-3 py-2 text-xs text-white/85">
-                                      <span className="w-2 h-2 rounded-full bg-emerald-300" />
+                                    <span className="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200 px-3 py-2 text-xs text-emerald-700">
+                                      <span className="w-2 h-2 rounded-full bg-emerald-500" />
                                       Tempo real
                                     </span>
-                                    <span className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/15 px-3 py-2 text-xs text-white/85">
-                                      <span className="w-2 h-2 rounded-full bg-cyan-300" />
+                                    <span className="inline-flex items-center gap-2 rounded-full bg-cyan-50 border border-cyan-200 px-3 py-2 text-xs text-cyan-700">
+                                      <span className="w-2 h-2 rounded-full bg-cyan-500" />
                                       Prontuário digital
                                     </span>
-                                    <span className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/15 px-3 py-2 text-xs text-white/85">
-                                      <span className="w-2 h-2 rounded-full bg-indigo-300" />
+                                    <span className="inline-flex items-center gap-2 rounded-full bg-indigo-50 border border-indigo-200 px-3 py-2 text-xs text-indigo-700">
+                                      <span className="w-2 h-2 rounded-full bg-indigo-500" />
                                       Agenda & Rotas
                                     </span>
-                                    <span className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/15 px-3 py-2 text-xs text-white/85">
-                                      <span className="w-2 h-2 rounded-full bg-amber-300" />
+                                    <span className="inline-flex items-center gap-2 rounded-full bg-amber-50 border border-amber-200 px-3 py-2 text-xs text-amber-700">
+                                      <span className="w-2 h-2 rounded-full bg-amber-500" />
                                       Financeiro
                                     </span>
                                   </div>
@@ -586,20 +551,20 @@ export default function FAQSection() {
                 )}
               </div>
 
-              <div className="px-6 py-5 border-t border-white/15 flex items-center justify-between gap-4 flex-wrap">
-                <p className="text-white/75 text-sm">
+              <div className="px-6 py-5 border-t border-slate-200 flex items-center justify-between gap-4 flex-wrap">
+                <p className="text-slate-600 text-sm">
                   Quer ver isso aplicado no seu cenário? Demonstração guiada em minutos.
                 </p>
                 <div className="flex gap-3">
                   <a
                     href="#contato"
-                    className="inline-flex items-center justify-center rounded-2xl bg-white text-slate-900 font-semibold px-4 py-2.5 hover:translate-y-[-1px] transition"
+                    className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 text-white font-semibold px-5 py-3 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/30 hover:translate-y-[-2px] transition-all duration-200"
                   >
                     Solicitar demonstração
                   </a>
                   <button
                     onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                    className="inline-flex items-center justify-center rounded-2xl bg-transparent text-white font-semibold px-4 py-2.5 border border-white/25 hover:bg-white/10 transition"
+                    className="inline-flex items-center justify-center rounded-xl bg-slate-100 text-slate-900 font-semibold px-5 py-3 border border-slate-200 hover:bg-slate-200 hover:border-slate-300 transition-all duration-200"
                   >
                     Voltar ao topo
                   </button>
@@ -613,19 +578,17 @@ export default function FAQSection() {
         <style>{`
           .hcfaq-pattern{
             background-image:
-              radial-gradient(circle at 12px 12px, rgba(255,255,255,0.20) 1.5px, transparent 1.6px),
-              linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
-            background-size: 64px 64px, 64px 64px, 64px 64px;
-            background-position: 0 0, 0 0, 0 0;
-            mask-image: radial-gradient(closest-side at 50% 50%, rgba(0,0,0,1), rgba(0,0,0,0) 72%);
-            -webkit-mask-image: radial-gradient(closest-side at 50% 50%, rgba(0,0,0,1), rgba(0,0,0,0) 72%);
+              radial-gradient(circle at 16px 16px, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
+            background-size: 32px 32px;
+            background-position: 0 0;
+            mask-image: radial-gradient(ellipse at 50% 30%, rgba(0,0,0,0.8), transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at 50% 30%, rgba(0,0,0,0.8), transparent 70%);
           }
           /* Scrollbar (webkit) */
-          .hcfaq-panel ::-webkit-scrollbar { width: 10px; }
-          .hcfaq-panel ::-webkit-scrollbar-track { background: rgba(255,255,255,0.08); }
-          .hcfaq-panel ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.20); border-radius: 999px; }
-          .hcfaq-panel ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.28); }
+          .hcfaq-panel ::-webkit-scrollbar { width: 8px; }
+          .hcfaq-panel ::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.3); border-radius: 4px; }
+          .hcfaq-panel ::-webkit-scrollbar-thumb { background: rgba(100, 116, 139, 0.4); border-radius: 4px; }
+          .hcfaq-panel ::-webkit-scrollbar-thumb:hover { background: rgba(100, 116, 139, 0.6); }
         `}</style>
       </div>
     </section>
