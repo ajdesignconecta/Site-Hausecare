@@ -24,7 +24,4 @@ Siga os passos abaixo para executar o projeto em sua máquina local:
 ### Pré-requisitos
 - Node.js (versão 18 ou superior recomenda)
 - NPM ou Yarn
-### Instalação
-1. Clone o repositório:
-```bash
-git clone [https://github.com/ajdesignconecta/Site-Hausecare.git](https://github.com/ajdesignconecta/Site-Hausecare.git)
+
