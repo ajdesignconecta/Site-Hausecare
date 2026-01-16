@@ -2,6 +2,7 @@ import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "re
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Check, X } from "lucide-react";
+import SEO from "../components/SEO";
 import FinalCTA from "../components/sections/FinalCTA";
 
 try {
@@ -141,6 +142,11 @@ export default function PlansSection() {
 
   return (
     <main>
+      <SEO
+        title="Planos e Preços | Sistema para Home Care"
+        description="Compare os planos do Hausecare: Free, Essential, Professional e Enterprise. Escolha o software de gestão ideal para sua clínica de Home Care."
+        path="/planos"
+      />
       <section
         ref={rootRef}
         id="planos"

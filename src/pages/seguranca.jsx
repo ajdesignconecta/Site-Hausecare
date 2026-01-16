@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
+import SEO from "../components/SEO";
 import FinalCTA from "../components/sections/FinalCTA";
 
 const TABS = [
@@ -297,6 +298,11 @@ export default function SecurityEnterpriseSection() {
 
     return (
         <main className="pt-0">
+            <SEO
+                title="Segurança e LGPD | Sistema para Home Care"
+                description="Conheça a governança do Hausecare: permissões por perfil, auditoria operacional, conformidade LGPD e backups. Segurança para clínicas de Home Care."
+                path="/seguranca"
+            />
             <section
                 ref={rootRef}
                 id="seguranca"

@@ -3,6 +3,7 @@
 // e manter o export default do mesmo jeito.)
 
 import React, { useMemo, useState } from "react";
+import SEO from "../components/SEO";
 
 const CONTACT = {
     email: "contato@hausecare.com.br",
@@ -124,6 +125,11 @@ export default function Contato() {
 
     return (
         <main className="min-h-screen bg-slate-50">
+            <SEO
+                title="Contato | Fale com a Hausecare"
+                description="Entre em contato com a Hausecare. Solicite uma demonstração do sistema de gestão para Home Care ou tire suas dúvidas sobre o software."
+                path="/contato"
+            />
             {/* Background removido para igualar à página de Planos */}
             {/* <div
                 aria-hidden="true"

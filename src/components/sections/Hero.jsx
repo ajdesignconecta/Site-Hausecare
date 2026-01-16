@@ -394,7 +394,7 @@ export default function Hero() {
                   className="hero-title text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
                   style={{ opacity: 0, transform: "translateY(20px)" }}
                 >
-                  Controle, produtividade e padronização para o seu{" "}
+                  Sistema de Gestão para{" "}
                   <span className="text-emerald-400">Home Care</span>
                 </h1>
 
@@ -402,9 +402,9 @@ export default function Hero() {
                   className="hero-subtitle text-base md:text-lg text-white/90 max-w-xl leading-relaxed"
                   style={{ opacity: 0, transform: "translateY(20px)" }}
                 >
-                  Centralize toda a operação: atendimentos do dia em tempo real,
-                  prontuário digital, agenda inteligente e financeiro conectado.
-                  Mais visibilidade, menos caos.
+                  Software completo para clínicas de atendimento domiciliar:
+                  agenda inteligente, prontuário digital, rotas, controle de equipe
+                  e financeiro integrado. Mais controle, menos caos operacional.
                 </p>
 
                 <div

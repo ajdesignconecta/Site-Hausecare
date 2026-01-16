@@ -1,4 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import { X } from "lucide-react";
+import SEO from "../components/SEO";
 
 // ========= IMAGENS (conforme seu print) =========
 import agendaHausecare from "../assets/imagens/screens/agenda-hausecare.webp";
@@ -249,6 +252,11 @@ export default function Funcionalidades() {
 
   return (
     <main ref={rootRef} aria-label="Funcionalidades da Hausecare" className="bg-white">
+      <SEO
+        title="Funcionalidades | Sistema de Gestão para Home Care"
+        description="Conheça todos os módulos do Hausecare: agenda, prontuário digital, rotas, financeiro, gestão de equipe e relatórios. Software completo para clínicas de atendimento domiciliar."
+        path="/funcionalidades"
+      />
       {/* HERO DA PÁGINA (leve, premium) */}
       <section className="relative overflow-hidden">
         <div
@@ -551,29 +559,35 @@ export default function Funcionalidades() {
       </section>
 
       {/* MODAL / LIGHTBOX */}
-      {isModalOpen && (
+      {/* MODAL / LIGHTBOX */}
+      {isModalOpen && createPortal(
         <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm animate-fade-in"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 p-4 backdrop-blur-sm animate-fade-in"
           onClick={closeModal}
         >
-          <div className="relative max-w-6xl w-full max-h-[90vh] flex items-center justify-center">
-            <button
-              onClick={closeModal}
-              className="absolute -top-12 right-0 text-white/70 hover:text-white transition-colors"
-              aria-label="Fechar"
-            >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+          {/* Botão fechar (Estilo unificado com AppSection) */}
+          <button
+            className="absolute top-4 right-4 md:top-8 md:right-8 p-1 md:p-3 rounded-full text-white/80 hover:text-white md:bg-white/10 md:hover:bg-white/20 transition z-50 md:backdrop-blur-sm"
+            onClick={(e) => {
+              e.stopPropagation();
+              closeModal();
+            }}
+          >
+            <X className="w-6 h-6 md:w-8 md:h-8 shadow-sm" />
+          </button>
+
+          <div
+            className="relative max-w-6xl w-full max-h-[90vh] flex items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
             <img
               src={modalImage}
               alt="Ampliado"
               className="max-w-full max-h-[85vh] rounded-lg shadow-2xl object-contain"
-              onClick={(e) => e.stopPropagation()}
             />
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       <section aria-label="Chamada final">

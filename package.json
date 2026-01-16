@@ -8,11 +8,33 @@
     "build": "vite build",
     "preview": "vite preview"
   },
+  "reactSnap": {
+    "source": "dist",
+    "destination": "dist",
+    "include": [
+      "/",
+      "/planos",
+      "/contato",
+      "/funcionalidades",
+      "/seguranca"
+    ],
+    "crawl": false,
+    "inlineCss": false,
+    "fixInsertRule": true,
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-gpu"
+    ],
+    "skipThirdPartyRequests": true,
+    "csp": null
+  },
   "dependencies": {
     "gsap": "^3.14.2",
     "lucide-react": "^0.460.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-helmet-async": "^2.0.5",
     "react-router-dom": "^7.11.0"
   },
   "devDependencies": {
@@ -20,7 +42,9 @@
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
+    "react-snap": "^1.23.0",
     "tailwindcss": "^3.4.3",
-    "vite": "^5.4.10"
+    "vite": "^5.4.10",
+    "vite-plugin-prerender": "^1.0.8"
   }
 }

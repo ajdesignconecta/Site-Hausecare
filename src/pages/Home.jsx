@@ -1,4 +1,5 @@
 import React, { lazy, Suspense } from "react";
+import SEO from "../components/SEO";
 import Hero from "../components/sections/Hero";
 import StickyCta from "../components/sections/StickyCta";
 import ProblemSection from "../components/sections/ProblemSection";
@@ -43,6 +44,11 @@ const ManagementSection = lazySection(
   "ManagementSection"
 );
 
+const ProfessionalAppSection = lazySection(
+  () => import("../components/sections/ProfessionalAppSection"),
+  "ProfessionalAppSection"
+);
+
 
 
 const LannaSection = lazySection(
@@ -73,6 +79,12 @@ const BenefitsHausecareSection = lazySection(
 export default function Home() {
   return (
     <main aria-label="Página inicial da Hausecare">
+      <SEO
+        title="Sistema para Home Care | Software de Gestão para Clínicas de Atendimento Domiciliar"
+        description="Hausecare: o sistema completo para gestão de Home Care. Agenda, prontuário digital, rotas, financeiro e controle de equipe. Software para clínicas de atendimento domiciliar."
+        path="/"
+      />
+
       {/* CTA sticky — aparece ao rolar */}
       <StickyCta />
 
@@ -101,6 +113,10 @@ export default function Home() {
 
         <section id="como-funciona" aria-label="Como funciona na prática">
           <FlowSection />
+        </section>
+
+        <section id="app-profissional" aria-label="App do Profissional">
+          <ProfessionalAppSection />
         </section>
 
         <section id="gestao" aria-label="Gestão completa em um único lugar">

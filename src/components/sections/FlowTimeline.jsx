@@ -1,6 +1,8 @@
 import { useRef, useEffect, useState, useMemo } from "react";
+import { createPortal } from "react-dom";
 import { MODAL_CONTENT } from "./FlowModalContent";
 import { DEMO_CAROUSEL } from "../../assets/imagens/screens/demo-carousel";
+import { X } from "lucide-react";
 import gsap from "gsap";
 
 // Carrossel de demonstração customizado
@@ -519,22 +521,30 @@ function DemoCarousel() {
           <p className="text-slate-600 text-base md:text-lg leading-relaxed mt-2">{active.description}</p>
         )}
       </div>
-      {lightbox && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4" onClick={() => setLightbox(false)}>
+      {lightbox && createPortal(
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 p-4 backdrop-blur-sm animate-fade-in"
+          onClick={() => setLightbox(false)}
+        >
+          {/* Botão fechar (Estilo unificado) */}
+          <button
+            className="absolute top-4 right-4 md:top-8 md:right-8 p-1 md:p-3 rounded-full text-white/80 hover:text-white md:bg-white/10 md:hover:bg-white/20 transition z-50 md:backdrop-blur-sm"
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightbox(false);
+            }}
+          >
+            <X className="w-6 h-6 md:w-8 md:h-8 shadow-sm" />
+          </button>
+
           <img
             src={active.src}
             alt={active.title}
-            className="max-w-[96vw] max-h-[92vh] w-auto h-auto rounded-3xl shadow-2xl border-4 border-white md:max-w-[1200px] md:max-h-[90vh]"
-            style={{ background: '#fff' }}
-            onClick={e => e.stopPropagation()}
+            className="max-w-[96vw] max-h-[85vh] w-auto h-auto rounded-xl shadow-2xl border-0 md:max-w-[1200px] md:max-h-[90vh] object-contain"
+            onClick={(e) => e.stopPropagation()}
           />
-          <button
-            className="absolute top-4 right-4 text-white text-4xl font-bold p-0 m-0 bg-transparent shadow-none hover:bg-transparent focus:bg-transparent border-none outline-none"
-            style={{ lineHeight: 1, background: 'none' }}
-            onClick={() => setLightbox(false)}
-            aria-label="Fechar visualização"
-          >×</button>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

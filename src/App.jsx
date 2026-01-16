@@ -9,6 +9,8 @@ import Home from "./pages/Home";
 import Planos from "./pages/Planos";
 import Plataforma from "./pages/Plataforma";
 import Seguranca from "./pages/seguranca";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 
 import ParaQuem from "./pages/ParaQuem";
 import Contato from "./pages/Contato";
@@ -33,6 +35,8 @@ export default function App() {
           <Route path="/planos" element={<Planos />} />
           <Route path="/seguranca" element={<Seguranca />} />
           <Route path="/contato" element={<Contato />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/legal/privacidade" element={<PrivacidadePage />} />
           <Route path="/legal/termos" element={<TermosPage />} />
         </Routes>
@@ -43,3 +47,4 @@ export default function App() {
     </BrowserRouter>
   );
 }
+
