@@ -45,6 +45,11 @@ const ManagementSection = lazySection(
 
 
 
+const LannaSection = lazySection(
+  () => import("../components/sections/LannaSection"),
+  "LannaSection"
+);
+
 const PlansSection = lazySection(
   () => import("../components/sections/PlansSection"),
   "PlansSection"
@@ -60,6 +65,11 @@ const FinalCTA = lazySection(
   "FinalCTA"
 );
 
+const BenefitsHausecareSection = lazySection(
+  () => import("../components/sections/BenefitsHausecareSection"),
+  "BenefitsInternationalSection"
+);
+
 export default function Home() {
   return (
     <main aria-label="Página inicial da Hausecare">
@@ -73,6 +83,10 @@ export default function Home() {
 
       {/* Conteúdo abaixo da dobra — carregamento sob demanda */}
       <Suspense fallback={null}>
+        <section aria-label="Benefícios da plataforma">
+          <BenefitsHausecareSection />
+        </section>
+
         <section id="problemas" aria-label="Problemas que a Hausecare resolve">
           <ProblemSection />
         </section>
@@ -94,6 +108,10 @@ export default function Home() {
         </section>
 
 
+
+        <section id="lanna" aria-label="Lanna IA">
+          <LannaSection />
+        </section>
 
         <section id="planos" aria-label="Planos e comparação">
           <PlansSection />

@@ -267,7 +267,7 @@ export default function AudienceSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-6 md:py-24"
+      className="relative isolate overflow-hidden py-6 md:py-24 bg-slate-50"
       aria-labelledby="audience-title"
     >
       {/* glow premium */}
@@ -404,7 +404,9 @@ export default function AudienceSection() {
                 Quer ver isso rodando no seu cenário?
               </span>{" "}
               <a
-                href="#contato"
+                href="https://wa.me/5561991519369"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="font-semibold underline underline-offset-4 decoration-slate-300 hover:decoration-slate-900"
               >
                 Solicitar demonstração

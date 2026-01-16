@@ -209,50 +209,32 @@ export default function IntegrationsSection() {
       ref={rootRef}
       id="integracoes"
       aria-labelledby="switchboard-title"
-      className="relative overflow-hidden"
-      style={{
-        background:
-          "radial-gradient(1200px 600px at 20% 25%, rgba(99,102,241,0.18), transparent 60%), radial-gradient(1000px 560px at 80% 70%, rgba(16,185,129,0.14), transparent 58%), linear-gradient(180deg, #0b1220 0%, #070b14 100%)",
-      }}
+      className="relative overflow-hidden isolate bg-slate-50"
     >
-      {/* overlay grid + noise */}
-      <div className="pointer-events-none absolute inset-0 opacity-[0.18]" aria-hidden="true"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
-          backgroundSize: "46px 46px",
-          maskImage: "radial-gradient(circle at 30% 20%, black 0%, transparent 65%)",
-        }}
-      />
-      <div className="pointer-events-none absolute inset-0 opacity-[0.06]" aria-hidden="true"
-        style={{
-          backgroundImage:
-            "url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22400%22 height=%22400%22 filter=%22url(%23n)%22 opacity=%220.35%22/%3E%3C/svg%3E')",
-        }}
-      />
+      {/* Background simplificado (igual ProblemSection) */}
 
       <div className="relative mx-auto max-w-6xl px-6 py-20 md:py-24">
         <header className="text-center mb-12 md:mb-14">
-          <div className="sw-in inline-flex items-center gap-2 rounded-full bg-white/8 px-4 py-2 text-xs font-semibold text-white/80 border border-white/10">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+          <div className="sw-in inline-flex items-center gap-2 rounded-full bg-emerald-100 px-4 py-2 text-xs font-semibold text-emerald-800 border border-emerald-200">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
             Segmentação inteligente • Control Room
           </div>
 
           <h2
             id="switchboard-title"
-            className="sw-in mt-5 text-3xl md:text-4xl font-extrabold text-white tracking-tight"
+            className="sw-in mt-5 text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight"
             style={{ letterSpacing: "-0.02em" }}
           >
             Feito para cada área da sua operação
           </h2>
 
-          <p className="sw-in mt-3 text-white/70 max-w-3xl mx-auto text-base md:text-lg leading-relaxed">
+          <p className="sw-in mt-3 text-slate-600 max-w-3xl mx-auto text-base md:text-lg leading-relaxed">
             Selecione um perfil e veja onde o Hausecare elimina gargalos — com controle, rastreabilidade
             e previsibilidade.
           </p>
 
-          <div className="sw-in mt-7 flex items-center justify-center gap-2 text-xs text-white/55">
-            <span className="h-1.5 w-1.5 rounded-full bg-indigo-400" />
+          <div className="sw-in mt-7 flex items-center justify-center gap-2 text-xs text-slate-500">
+            <span className="h-1.5 w-1.5 rounded-full bg-indigo-500" />
             Tempo real • Prontuário digital • Agenda & Rotas • Financeiro
           </div>
         </header>
@@ -260,10 +242,10 @@ export default function IntegrationsSection() {
         <div className="grid lg:grid-cols-12 gap-10 items-stretch">
           {/* LEFT: Dial + Persona Switch */}
           <div className="lg:col-span-5">
-            <div className="sw-panel relative rounded-[28px] border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_30px_80px_rgba(0,0,0,0.35)] overflow-hidden">
-              <div className="p-6 border-b border-white/10">
-                <p className="text-sm font-bold text-white">Switchboard</p>
-                <p className="mt-1 text-xs text-white/60">
+            <div className="sw-panel relative rounded-[28px] border border-slate-200 bg-white shadow-[0_30px_80px_rgba(15,23,42,0.15)] overflow-hidden">
+              <div className="p-6 border-b border-slate-100">
+                <p className="text-sm font-bold text-slate-900">Switchboard</p>
+                <p className="mt-1 text-xs text-slate-500">
                   Clique em um perfil. O painel ao lado muda como uma central de operação.
                 </p>
               </div>
@@ -276,12 +258,12 @@ export default function IntegrationsSection() {
                     className="absolute inset-0 rounded-full"
                     style={{
                       background:
-                        "conic-gradient(from 180deg, rgba(16,185,129,0.35), rgba(56,189,248,0.35), rgba(99,102,241,0.35), rgba(244,63,94,0.25), rgba(16,185,129,0.35))",
+                        "conic-gradient(from 180deg, rgba(16,185,129,0.5), rgba(56,189,248,0.5), rgba(99,102,241,0.5), rgba(244,63,94,0.5), rgba(16,185,129,0.5))",
                       filter: "blur(0px)",
                     }}
                   />
-                  <div className="absolute inset-[10px] rounded-full bg-[#0a1020]/70 border border-white/10" />
-                  <div className="absolute inset-[22px] rounded-full bg-[#0b1220] border border-white/10" />
+                  <div className="absolute inset-[10px] rounded-full bg-slate-50 border border-slate-200" />
+                  <div className="absolute inset-[22px] rounded-full bg-white border border-slate-200 shadow-inner" />
 
                   {/* ponteiro */}
                   <div
@@ -292,18 +274,18 @@ export default function IntegrationsSection() {
                     <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[4px] h-[110px] rounded-full"
                       style={{
                         background:
-                          "linear-gradient(180deg, rgba(255,255,255,0.95), rgba(99,102,241,0.35))",
-                        boxShadow: "0 0 22px rgba(99,102,241,0.20)",
+                          "linear-gradient(180deg, rgba(99,102,241,0.1), rgba(99,102,241,0.8))",
+                        boxShadow: "0 0 12px rgba(99,102,241,0.30)",
                       }}
                     />
-                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-white"
-                      style={{ boxShadow: "0 0 26px rgba(255,255,255,0.22)" }}
+                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-indigo-600"
+                      style={{ boxShadow: "0 0 15px rgba(99,102,241,0.4)" }}
                     />
                   </div>
 
                   {/* centro */}
-                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-white/10 border border-white/10 backdrop-blur flex items-center justify-center">
-                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_0_10px_rgba(52,211,153,0.08)]" />
+                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-white border border-slate-100 shadow-lg flex items-center justify-center">
+                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_0_6px_rgba(52,211,153,0.15)]" />
                   </div>
 
                   {/* labels em volta (sem cards) */}
@@ -326,10 +308,10 @@ export default function IntegrationsSection() {
                           className={[
                             "absolute -translate-x-1/2 -translate-y-1/2",
                             "rounded-full px-3 py-2 text-xs font-semibold",
-                            "transition border backdrop-blur",
+                            "transition border",
                             isActive
-                              ? "bg-white/14 text-white border-white/20 shadow-[0_10px_30px_rgba(0,0,0,0.30)]"
-                              : "bg-white/6 text-white/70 border-white/10 hover:bg-white/10 hover:text-white",
+                              ? "bg-slate-900 text-white border-slate-900 shadow-lg"
+                              : "bg-white text-slate-500 border-slate-200 hover:border-slate-300 hover:text-slate-800",
                           ].join(" ")}
                           style={pos}
                           aria-pressed={isActive}
@@ -343,9 +325,9 @@ export default function IntegrationsSection() {
 
                 {/* mini-rail */}
                 <div className="mt-7 text-center">
-                  <p className="text-xs text-white/55">
+                  <p className="text-xs text-slate-500">
                     Perfil atual:{" "}
-                    <span className="text-white font-semibold">{active.badge}</span>
+                    <span className="text-slate-900 font-semibold">{active.badge}</span>
                   </p>
                 </div>
 
@@ -355,13 +337,13 @@ export default function IntegrationsSection() {
                     href="https://wa.me/5561991519369"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center rounded-full bg-emerald-500 px-4 py-3 text-sm font-semibold text-[#081018] hover:bg-emerald-400 transition"
+                    className="w-full inline-flex items-center justify-center rounded-xl bg-emerald-600 px-4 py-3 text-sm font-semibold text-white hover:bg-emerald-700 transition"
                   >
                     Solicitar demonstração
                   </a>
                   <a
                     href="#inicio"
-                    className="w-full inline-flex items-center justify-center rounded-full bg-white/6 px-4 py-3 text-sm font-semibold text-white border border-white/10 hover:bg-white/10 transition"
+                    className="w-full inline-flex items-center justify-center rounded-xl bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700 border border-slate-200 hover:bg-slate-100 transition"
                   >
                     Voltar ao topo
                   </a>
@@ -372,21 +354,21 @@ export default function IntegrationsSection() {
 
           {/* RIGHT: Live Panel + Wire/Pipeline */}
           <div className="lg:col-span-7">
-            <div className="sw-panel relative rounded-[28px] border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_30px_80px_rgba(0,0,0,0.35)] overflow-hidden">
+            <div className="sw-panel relative rounded-[28px] border border-slate-200 bg-white shadow-[0_30px_80px_rgba(15,23,42,0.15)] overflow-hidden">
               {/* header */}
-              <div className="p-6 md:p-7 border-b border-white/10 flex items-start justify-between gap-6">
+              <div className="p-6 md:p-7 border-b border-slate-100 flex items-start justify-between gap-6">
                 <div>
-                  <p className="text-xs font-semibold text-white/60">Console</p>
-                  <h3 className="mt-1 text-xl md:text-2xl font-extrabold text-white tracking-tight">
+                  <p className="text-xs font-semibold text-slate-500">Console</p>
+                  <h3 className="mt-1 text-xl md:text-2xl font-extrabold text-slate-900 tracking-tight">
                     {active.badge}
                   </h3>
-                  <p className="mt-1 text-sm text-white/70 max-w-xl">
+                  <p className="mt-1 text-sm text-slate-500 max-w-xl">
                     {active.headline}
                   </p>
                 </div>
 
-                <div className="hidden md:flex items-center gap-2 text-xs text-white/55">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                <div className="hidden md:flex items-center gap-2 text-xs text-slate-400">
+                  <span className="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_0_4px_rgba(16,185,129,0.15)]" />
                   online
                 </div>
               </div>
@@ -395,32 +377,32 @@ export default function IntegrationsSection() {
               <div ref={contentRef} className="p-6 md:p-7">
                 {/* Dor/Ganho em “painéis” (não cards clássicos) */}
                 <div className="grid md:grid-cols-2 gap-4">
-                  <div className="rounded-2xl border border-white/10 bg-[#070b14]/30 p-5">
-                    <p className="text-xs font-semibold text-white/60">Dor que trava</p>
-                    <p className="mt-2 text-sm text-white/80 leading-relaxed">{active.pain}</p>
+                  <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                    <p className="text-xs font-semibold text-slate-500">Dor que trava</p>
+                    <p className="mt-2 text-sm text-slate-700 leading-relaxed">{active.pain}</p>
                   </div>
 
                   <div
-                    className="rounded-2xl border border-emerald-400/15 bg-emerald-400/5 p-5"
+                    className="rounded-2xl border border-emerald-200/60 bg-emerald-50/50 p-5"
                     style={{
-                      boxShadow: "inset 0 0 0 1px rgba(52,211,153,0.08)",
+                      boxShadow: "inset 0 0 0 1px rgba(16,185,129,0.1)",
                     }}
                   >
-                    <p className="text-xs font-semibold text-emerald-200/90">Ganho com o Hausecare</p>
-                    <p className="mt-2 text-sm text-white/85 leading-relaxed">{active.gain}</p>
+                    <p className="text-xs font-semibold text-emerald-700">Ganho com o Hausecare</p>
+                    <p className="mt-2 text-sm text-slate-700 leading-relaxed">{active.gain}</p>
                   </div>
                 </div>
 
                 {/* bullets */}
                 <div className="mt-6">
-                  <p className="text-sm font-bold text-white">O que essa área vê na prática:</p>
+                  <p className="text-sm font-bold text-slate-900">O que essa área vê na prática:</p>
                   <div className="mt-3 grid sm:grid-cols-2 gap-2">
                     {active.bullets.map((b) => (
                       <div
                         key={b}
-                        className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/80 flex items-start gap-2"
+                        className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600 flex items-start gap-2 shadow-sm"
                       >
-                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-emerald-500" />
                         <span className="leading-relaxed">{b}</span>
                       </div>
                     ))}
@@ -428,11 +410,11 @@ export default function IntegrationsSection() {
                 </div>
 
                 {/* pipeline wire + integrations */}
-                <div className="mt-8 rounded-2xl border border-white/10 bg-white/4 p-5 md:p-6">
+                <div className="mt-8 rounded-2xl border border-slate-200 bg-slate-50/50 p-5 md:p-6">
                   <div className="flex items-center justify-between gap-4">
                     <div>
-                      <p className="text-sm font-extrabold text-white">Integrações & ecossistema</p>
-                      <p className="mt-1 text-xs text-white/60">
+                      <p className="text-sm font-extrabold text-slate-900">Integrações & ecossistema</p>
+                      <p className="mt-1 text-xs text-slate-500">
                         Roadmap honesto: o que já existe + o que está em evolução.
                       </p>
                     </div>
@@ -441,7 +423,7 @@ export default function IntegrationsSection() {
                       href="https://wa.me/5561991519369"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white border border-white/10 hover:bg-white/14 transition"
+                      className="inline-flex items-center justify-center rounded-xl bg-white px-4 py-2 text-sm font-semibold text-slate-700 border border-slate-200 hover:bg-slate-50 transition shadow-sm"
                     >
                       Agendar demonstração
                     </a>
@@ -459,7 +441,7 @@ export default function IntegrationsSection() {
                         ref={wireRef}
                         className="sw-wire"
                         d="M20 60 C 120 10, 220 110, 320 60 S 520 10, 620 60 S 720 110, 780 60"
-                        stroke="rgba(255,255,255,0.22)"
+                        stroke="#cbd5e1"
                         strokeWidth="2"
                         strokeLinecap="round"
                       />
@@ -470,8 +452,8 @@ export default function IntegrationsSection() {
                           ref={(el) => (nodesRef.current[i] = el)}
                           className="sw-node"
                         >
-                          <circle cx={x} cy={60} r={7} fill="rgba(99,102,241,0.85)" />
-                          <circle cx={x} cy={60} r={16} fill="rgba(99,102,241,0.10)" />
+                          <circle cx={x} cy={60} r={7} fill="#6366f1" />
+                          <circle cx={x} cy={60} r={16} fill="rgba(99,102,241,0.15)" />
                         </g>
                       ))}
                     </svg>
@@ -482,41 +464,39 @@ export default function IntegrationsSection() {
                     {ECOSYSTEM.map((it) => (
                       <div
                         key={it.name}
-                        className="flex items-start justify-between gap-4 rounded-xl border border-white/10 bg-[#070b14]/25 px-4 py-3"
+                        className="flex items-start justify-between gap-4 rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm"
                       >
                         <div>
-                          <p className="text-sm font-bold text-white">{it.name}</p>
-                          <p className="mt-0.5 text-xs text-white/60">{it.note}</p>
+                          <p className="text-sm font-bold text-slate-800">{it.name}</p>
+                          <p className="mt-0.5 text-xs text-slate-500">{it.note}</p>
                         </div>
                         <div className="flex items-center gap-2">
                           <StatusDot status={it.status} />
-                          <span className="text-xs font-semibold text-white/70">{it.status}</span>
+                          <span className="text-xs font-semibold text-slate-600">{it.status}</span>
                         </div>
                       </div>
                     ))}
                   </div>
 
-                  <p className="mt-3 text-[11px] text-white/45">
+                  <p className="mt-3 text-[11px] text-slate-400">
                     *Integrações em Roadmap são planejadas e priorizadas conforme demanda do mercado.
                   </p>
                 </div>
               </div>
 
               {/* footer */}
-              <div className="px-6 md:px-7 py-4 border-t border-white/10 bg-white/3 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
-                <p className="text-sm text-white/70">
+              <div className="px-6 md:px-7 py-4 border-t border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
+                <p className="text-sm text-slate-500">
                   Demonstração guiada em minutos, com foco no seu perfil.
                 </p>
                 <a
                   href="#demonstracao"
-                  className="inline-flex items-center justify-center rounded-full bg-indigo-500/15 px-4 py-2 text-sm font-semibold text-indigo-100 border border-indigo-400/20 hover:bg-indigo-500/20 transition"
+                  className="inline-flex items-center justify-center rounded-xl bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-700 border border-indigo-200 hover:bg-indigo-100 transition"
                 >
                   Ver na prática
                 </a>
               </div>
             </div>
-
-
           </div>
         </div>
       </div>

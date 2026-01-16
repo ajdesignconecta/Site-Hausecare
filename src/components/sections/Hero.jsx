@@ -434,7 +434,7 @@ export default function Hero() {
                   </a>
                   <a
                     href="/funcionalidades"
-                    className="inline-flex items-center justify-center rounded-full px-5 md:px-6 py-2.5 md:py-3 text-sm md:text-base font-semibold text-white border border-white/20 hover:bg-white/10 transition-colors transform hover:scale-105 transition-transform duration-300 relative z-10 hover:z-20"
+                    className="inline-flex items-center justify-center rounded-xl px-5 md:px-6 py-2.5 md:py-3 text-sm md:text-base font-semibold text-white border border-white/20 hover:bg-white/10 transition-colors transform hover:scale-105 transition-transform duration-300 relative z-10 hover:z-20"
                     style={{ outline: "none" }}
                   >
                     Ver funcionalidades

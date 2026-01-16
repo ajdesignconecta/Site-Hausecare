@@ -254,7 +254,7 @@ export default function FlowTimeline() {
           {STEPS.map((step, idx) => (
             <div
               key={step.title}
-              className={`timeline-step bg-white rounded-2xl border border-slate-200 flex flex-col items-center justify-center gap-2 transition will-change-transform ${active === idx ? "shadow-xl scale-105" : "shadow-sm"
+              className={`timeline-step bg-white rounded-xl border border-slate-200 flex flex-col items-center justify-center gap-2 transition will-change-transform ${active === idx ? "shadow-xl scale-105" : "shadow-sm"
                 } hover:shadow-lg hover:scale-105 w-full max-w-[320px] md:w-auto md:min-w-[180px] md:max-w-[220px] p-8 md:p-[32px_18px]`}
               tabIndex={0}
               role="button"
