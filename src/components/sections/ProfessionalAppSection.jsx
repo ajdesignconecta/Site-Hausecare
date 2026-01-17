@@ -106,6 +106,8 @@ export default function ProfessionalAppSection({
 
     // Animações leves (sem peso, sem jitter)
     useEffect(() => {
+        // Animações removidas - conteúdo aparece imediatamente
+        /*
         const el = rootRef.current;
         if (!el) return;
 
@@ -149,6 +151,7 @@ export default function ProfessionalAppSection({
         }, el);
 
         return () => ctx.revert();
+        */
     }, []);
 
     // Carrossel: scroll suave via translateX (leve)
@@ -358,9 +361,11 @@ export default function ProfessionalAppSection({
                                             className="w-full shrink-0"
                                             aria-hidden={idx !== active}
                                         >
-                                            <div
-                                                className="relative group cursor-zoom-in"
+                                            <button
+                                                type="button"
+                                                className="relative group cursor-zoom-in w-full bg-transparent border-0 p-0"
                                                 onClick={() => setIsZoomed(true)}
+                                                aria-label="Ampliar imagem do app profissional"
                                             >
                                                 <img
                                                     src={img.src}
@@ -370,12 +375,12 @@ export default function ProfessionalAppSection({
                                                     decoding="async"
                                                 />
                                                 {/* Hover hint */}
-                                                <div className="absolute inset-0 flex items-center justify-center bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <div className="absolute inset-0 flex items-center justify-center bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                                                     <div className="bg-white/90 rounded-full p-2 shadow-sm backdrop-blur">
                                                         <ZoomIn className="w-5 h-5 text-sky-700" />
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </button>
                                         </div>
                                     ))}
                                 </div>

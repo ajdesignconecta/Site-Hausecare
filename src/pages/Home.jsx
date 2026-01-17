@@ -1,9 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import SEO from "../components/SEO";
 import Hero from "../components/sections/Hero";
-import StickyCta from "../components/sections/StickyCta";
-import ProblemSection from "../components/sections/ProblemSection";
-import AudienceSection from "../components/sections/LGPD/AudienceSection";
 
 // Helper: garante que React.lazy sempre receba { default: Component }
 function lazySection(importer, preferredNamedExport) {
@@ -12,7 +9,7 @@ function lazySection(importer, preferredNamedExport) {
       // 1) default export
       if (mod?.default) return { default: mod.default };
 
-      // 2) named export preferido (ex: AudienceSection)
+      // 2) named export preferido
       if (preferredNamedExport && mod?.[preferredNamedExport]) {
         return { default: mod[preferredNamedExport] };
       }
@@ -21,13 +18,18 @@ function lazySection(importer, preferredNamedExport) {
       const firstFn = Object.values(mod).find((v) => typeof v === "function");
       if (firstFn) return { default: firstFn };
 
-      // 4) erro claro (melhor que erro críptico)
       throw new Error(
-        `lazySection: O módulo não exporta um componente React (default/named). Verifique exports do arquivo.`
+        `lazySection: O módulo não exporta um componente React (default/named).`
       );
     })
   );
 }
+
+// Lazy Load de TODAS as seções "below the fold"
+const StickyCta = lazySection(() => import("../components/sections/StickyCta"));
+const ProblemSection = lazySection(() => import("../components/sections/ProblemSection"));
+const AudienceSection = lazySection(() => import("../components/sections/LGPD/AudienceSection"));
+
 
 const IntegrationsSection = lazySection(
   () => import("../components/sections/IntegrationsSection"),

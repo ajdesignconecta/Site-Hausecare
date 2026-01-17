@@ -404,10 +404,13 @@ export default function AudienceSection() {
                 Quer ver isso rodando no seu cenário?
               </span>{" "}
               <a
-                href="https://wa.me/5561991519369"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold underline underline-offset-4 decoration-slate-300 hover:decoration-slate-900"
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  window.open('https://wa.me/5561991519369', '_blank', 'noopener,noreferrer');
+                }}
+                className="font-semibold underline underline-offset-4 decoration-slate-300 hover:decoration-slate-900 bg-transparent border-0 cursor-pointer text-slate-600"
               >
                 Solicitar demonstração
               </a>
@@ -513,13 +516,18 @@ export default function AudienceSection() {
                   </div>
 
                   <div className="psw-anim mt-8 flex flex-col sm:flex-row gap-3">
-                    <a
-                      href="#contato"
-                      className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-black/10 transition hover:brightness-110"
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        window.open('https://wa.me/5561991519369', '_blank', 'noopener,noreferrer');
+                      }}
+                      className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-black/10 transition hover:brightness-110 cursor-pointer"
                       style={{ background: activePersona.accent }}
                     >
                       Solicitar demonstração
-                    </a>
+                    </button>
                     <a
                       href="#planos"
                       className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-slate-900 border border-slate-200 bg-white hover:bg-slate-50 transition"

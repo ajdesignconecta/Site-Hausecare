@@ -49,6 +49,8 @@ export default function ManagementSection() {
   const sectionRef = useRef(null);
   const blocks = useMemo(() => BLOCKS, []);
 
+  // Animação desabilitada para performance
+  /*
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -85,6 +87,8 @@ export default function ManagementSection() {
 
     return () => ctx.revert();
   }, []);
+  */
+
 
   return (
     <section

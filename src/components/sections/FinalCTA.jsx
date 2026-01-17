@@ -1,9 +1,12 @@
 import { useRef, useLayoutEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import gsap from "gsap";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function FinalCTA() {
   const sectionRef = useRef(null);
+
+  // Animação desabilitada para performance
+  /*
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const el = sectionRef.current;
@@ -32,6 +35,8 @@ export default function FinalCTA() {
     }, el);
     return () => ctx.revert();
   }, []);
+  */
+
 
   return (
     <section

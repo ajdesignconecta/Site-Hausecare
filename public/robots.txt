@@ -1,0 +1,20 @@
+# robots.txt para Hausecare
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://hausecare.com.br/sitemap.xml
+
+# Permitir tudo para buscadores principais
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Bloquear apenas diretórios administrativos (se houver)
+Disallow: /admin/
+Disallow: /api/
+
+# Crawl-delay para não sobrecarregar servidor
+Crawl-delay: 1

@@ -5,14 +5,34 @@ import SEO from "../components/SEO";
 import { BLOG_POSTS, BLOG_CATEGORIES } from "../data/blogPosts";
 
 function BlogCard({ post }) {
+    // Mapa de categorias para imagens
+    const categoryImages = {
+        "Gestão": "/blog/gestao.png",
+        "Tecnologia": "/blog/tecnologia.png",
+        "Operação": "/blog/operacao.png",
+        "Financeiro": "/blog/financeiro.png",
+        "Clínico": "/blog/clinico.png",
+        "Segurança": "/blog/seguranca.png"
+    };
+
+    const imageUrl = categoryImages[post.category] || "/blog/gestao.png";
+
     return (
         <Link
             to={`/blog/${post.slug}`}
             className="group block rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm hover:shadow-xl hover:border-slate-300 transition-all duration-300"
         >
-            {/* Imagem placeholder */}
-            <div className="relative h-48 bg-gradient-to-br from-slate-100 to-slate-200 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-indigo-500/10" />
+            {/* Imagem do post */}
+            <div className="relative h-48 overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200">
+                <img
+                    src={imageUrl}
+                    alt={post.title}
+                    width="800"
+                    height="600"
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
                 <div className="absolute bottom-4 left-4">
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-white/90 backdrop-blur px-3 py-1 text-xs font-semibold text-slate-700">
                         <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
@@ -124,8 +144,8 @@ export default function Blog() {
                         <button
                             onClick={() => setSelectedCategory("all")}
                             className={`px-4 py-2 rounded-full text-sm font-semibold transition ${selectedCategory === "all"
-                                    ? "bg-slate-900 text-white"
-                                    : "bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
+                                ? "bg-slate-900 text-white"
+                                : "bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
                                 }`}
                         >
                             Todos
@@ -135,8 +155,8 @@ export default function Blog() {
                                 key={category}
                                 onClick={() => setSelectedCategory(category)}
                                 className={`px-4 py-2 rounded-full text-sm font-semibold transition ${selectedCategory === category
-                                        ? "bg-slate-900 text-white"
-                                        : "bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
+                                    ? "bg-slate-900 text-white"
+                                    : "bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
                                     }`}
                             >
                                 {category}

@@ -144,6 +144,20 @@ export default function Hero() {
       const gsap = gsapModule.gsap || gsapModule.default;
       gsap.registerPlugin(ScrollTrigger);
 
+      // Configurar ScrollTrigger para lidar com eventos de toque no mobile
+      ScrollTrigger.config({
+        // Normaliza o scroll para funcionar melhor com touch events
+        autoRefreshEvents: "visibilitychange,DOMContentLoaded,load,resize",
+      });
+
+      // Habilita normalização de scroll para dispositivos touch
+      ScrollTrigger.normalizeScroll({
+        allowNestedScroll: true,
+        lockAxis: false,
+        momentum: self => Math.min(3, self.velocityY / 1000),
+        type: "touch,wheel,pointer"
+      });
+
       const wrapper = wrapperRef.current;
       const intro = introRef.current;
 
@@ -187,16 +201,20 @@ export default function Hero() {
 
           const isMobile = window.innerWidth < 1024;
           const scrollDistance = isMobile ? "+=120%" : "+=180%";
+          // Ajusta scrub para mobile - valor menor = mais responsivo ao toque
+          const scrubValue = isMobile ? 0.8 : 1.5;
 
           const tl = gsap.timeline({
             scrollTrigger: {
               trigger: wrapper,
               start: "top top",
               end: scrollDistance,
-              scrub: 1.5,
+              scrub: scrubValue,
               pin: !isMobile, // Desabilita pin no mobile para evitar conflitos com header fixo
               pinSpacing: !isMobile,
               anticipatePin: 1,
+              // Força atualização mais frequente no mobile
+              refreshPriority: isMobile ? 1 : 0,
               onUpdate: (self) => {
                 if (progressBarRef.current) {
                   gsap.to(progressBarRef.current, {
@@ -479,7 +497,7 @@ export default function Hero() {
                     transform: "translateY(40px) scale(0.95)",
                   }}
                 >
-                  <div className="relative rounded-[32px] md:rounded-[42px] bg-black/45 p-[8px] md:p-[10px] shadow-2xl shadow-black/40 ring-1 ring-white/10">
+                  <div className="hero-tablet relative rounded-[32px] md:rounded-[42px] bg-black/45 p-[8px] md:p-[10px] shadow-2xl shadow-black/40 ring-1 ring-white/10">
                     <div className="relative rounded-[26px] md:rounded-[34px] bg-[#0b1220] p-[8px] md:p-[10px] ring-1 ring-white/10">
                       <div className="relative rounded-[20px] md:rounded-[26px] overflow-hidden bg-black">
                         <div className="hero-tablet-screen relative w-full h-full select-none">
@@ -487,6 +505,8 @@ export default function Hero() {
                             src={monitorImage}
                             alt="Prévia do sistema Hausecare - Mobile"
                             className="block w-full h-auto md:hidden"
+                            width="1920"
+                            height="1080"
                             loading="eager"
                             decoding="async"
                             fetchpriority="high"
@@ -603,6 +623,8 @@ export default function Hero() {
                       src={heroTabletImage}
                       alt="Sistema Hausecare - Dashboard Mobile"
                       className="w-full h-full object-contain md:hidden"
+                      width="1920"
+                      height="1080"
                       loading="eager"
                       fetchpriority="high"
                     />
@@ -610,6 +632,8 @@ export default function Hero() {
                       src={monitorImage}
                       alt="Sistema Hausecare - Dashboard"
                       className="hidden md:block w-full h-full object-contain"
+                      width="1920"
+                      height="1080"
                       loading="eager"
                       fetchpriority="high"
                     />

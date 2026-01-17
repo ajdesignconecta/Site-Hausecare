@@ -23,6 +23,9 @@
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <link rel="canonical" href="https://hausecare.com.br/" />
 
+  <!-- SEO: Sitemap -->
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+
   <!-- Open Graph (será sobrescrito pelo Helmet por página) -->
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:type" content="website" />
@@ -46,6 +49,15 @@
   <!-- Ícone -->
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/favicon.png" />
+
+  <!-- Performance: Preconnect para domínios externos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+
+  <!-- Performance: Preload da imagem hero crítica -->
+  <link rel="preload" as="image" href="/dasboard-hero.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="/dasboard-hausecare.webp" fetchpriority="high" />
+
 
   <!-- JSON-LD: Organization -->
   <script type="application/ld+json">
@@ -115,8 +127,82 @@
       }
     }
     </script>
-  <script type="module" crossorigin src="/assets/index-Ba55sUCn.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-C_64DnaF.css">
+
+  <!-- JSON-LD: FAQPage (perguntas frequentes reais do site) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Em quanto tempo consigo implantar o Hausecare na clínica?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Na prática, dá para começar em minutos com o básico (cadastros e agenda). Para implantação completa (rotas, financeiro e relatórios), o tempo depende do volume de profissionais/pacientes — mas o fluxo é guiado e dá para evoluir por etapas sem travar a operação."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Consigo acompanhar atendimentos em tempo real?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. Você acompanha atendimentos do dia, status (agendado/em andamento/concluído/cancelado), e consegue ver o que está acontecendo sem depender de WhatsApp e planilhas paralelas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O sistema tem agenda e rotas para deslocamentos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. A agenda organiza atendimentos e, junto das rotas, você ganha previsibilidade operacional (quem vai aonde, quando e com qual carga). Isso reduz atrasos, choque de horários e apagões de operação."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como funciona o prontuário digital e a evolução do paciente?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O prontuário organiza registros e evoluções por paciente, com rastreabilidade. Você deixa de ter texto solto e passa a ter histórico consistente para auditoria interna e tomada de decisão."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O financeiro é integrado ou vou precisar planilhar por fora?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O objetivo é justamente parar de planilhar. Você acompanha receitas, despesas, relatórios (ex.: DRE / extratos) e tem visão de caixa/resultado para decisão rápida."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Tem LGPD e controle de acesso por permissões?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. O sistema é pensado para operação em saúde: acesso por perfis/permissões, separação por papéis e redução de exposição de dados. A lógica é simples: cada área enxerga o que precisa — e só."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Posso convidar e gerenciar profissionais da minha organização?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. Você convida profissionais, acompanha status e mantém dados padronizados. Isso evita cadastros duplicados e bagunça de cada um trabalhando do seu jeito."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como funciona a folha de pagamento dos profissionais?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Você tem relatórios que consolidam valores por profissional (receita, custos, impostos/retenções e total líquido). Isso reduz erro de repasse e dá previsibilidade do quanto pagar, para quem, e quando."
+          }
+        }
+      ]
+    }
+    </script>
+  <script type="module" crossorigin src="/assets/index-DlzenJ5s.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-ChQYszE_.css">
 </head>
 
 <body>

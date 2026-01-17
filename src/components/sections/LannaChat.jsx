@@ -350,8 +350,6 @@ const KEYWORD_MAP = {
     pagar: "valores_sistema",
     plano: "valores_sistema",
     planos: "valores_sistema",
-    plano: "valores_sistema",
-    planos: "valores_sistema",
     quanto: "valores_sistema",
     custa: "valores_sistema",
     mensalidade: "valores_sistema",

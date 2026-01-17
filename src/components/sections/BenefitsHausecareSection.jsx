@@ -1,6 +1,5 @@
 // src/components/sections/BenefitsInternationalSection.jsx
 import { useEffect, useMemo, useRef } from "react";
-import gsap from "gsap";
 import {
     HeartPulse,
     ShieldCheck,
@@ -62,6 +61,8 @@ export default function BenefitsInternationalSection({
     );
 
     useEffect(() => {
+        // Animações removidas - conteúdo aparece imediatamente
+        /*
         const el = rootRef.current;
         if (!el) return;
 
@@ -98,6 +99,7 @@ export default function BenefitsInternationalSection({
         }, el);
 
         return () => ctx.revert();
+        */
     }, []);
 
     return (
