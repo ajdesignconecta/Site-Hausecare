@@ -25,55 +25,20 @@ export default defineConfig({
   ],
 
   build: {
-    // Minificação agressiva com terser
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true, // Remove console.logs em produção
-        drop_debugger: true,
-        pure_funcs: ['console.log', 'console.info', 'console.debug'],
-        passes: 2, // Duas passadas de compressão
-        unsafe: true, // Otimizações mais agressivas
-        unsafe_comps: true,
-        unsafe_math: true,
-        unsafe_methods: true,
-      },
-      mangle: {
-        safari10: true,
-      },
-    },
-
-    // Code splitting otimizado
+    // Code splitting simples e seguro
     rollupOptions: {
       output: {
-        // Deixando o Vite decidir o chunking automaticamente
-        // manualChunks removido para evitar erros de chunks vazios
-        // Nomear chunks de forma consistente
         chunkFileNames: 'assets/[name]-[hash].js',
         entryFileNames: 'assets/[name]-[hash].js',
         assetFileNames: 'assets/[name]-[hash].[ext]',
       },
-      // Tree shaking agressivo
-      treeshake: {
-        moduleSideEffects: false,
-        propertyReadSideEffects: false,
-        tryCatchDeoptimization: false,
-      },
     },
 
-    // Otimizações de chunk
-    chunkSizeWarningLimit: 400, // Mais agressivo
-
-    // Sourcemaps apenas para depuração (desabilitar em produção)
+    // Otimizações regulares
+    chunkSizeWarningLimit: 800,
     sourcemap: false,
-
-    // Target modern browsers para código menor
-    target: 'es2020', // Mais moderno = menos polyfills
-
-    // CSS code splitting
+    target: 'es2020',
     cssCodeSplit: true,
-
-    // Reportar tamanhos comprimidos
     reportCompressedSize: true,
   },
 

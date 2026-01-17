@@ -1,82 +1,20 @@
 import React, { lazy, Suspense } from "react";
 import SEO from "../components/SEO";
 import Hero from "../components/sections/Hero";
+import StickyCta from "../components/sections/StickyCta";
+import ProblemSection from "../components/sections/ProblemSection";
+import AudienceSection from "../components/sections/LGPD/AudienceSection";
 
-// Helper: garante que React.lazy sempre receba { default: Component }
-function lazySection(importer, preferredNamedExport) {
-  return lazy(() =>
-    importer().then((mod) => {
-      // 1) default export
-      if (mod?.default) return { default: mod.default };
-
-      // 2) named export preferido
-      if (preferredNamedExport && mod?.[preferredNamedExport]) {
-        return { default: mod[preferredNamedExport] };
-      }
-
-      // 3) primeira função exportada (fallback)
-      const firstFn = Object.values(mod).find((v) => typeof v === "function");
-      if (firstFn) return { default: firstFn };
-
-      throw new Error(
-        `lazySection: O módulo não exporta um componente React (default/named).`
-      );
-    })
-  );
-}
-
-// Lazy Load de TODAS as seções "below the fold"
-const StickyCta = lazySection(() => import("../components/sections/StickyCta"));
-const ProblemSection = lazySection(() => import("../components/sections/ProblemSection"));
-const AudienceSection = lazySection(() => import("../components/sections/LGPD/AudienceSection"));
-
-
-const IntegrationsSection = lazySection(
-  () => import("../components/sections/IntegrationsSection"),
-  "IntegrationsSection"
-);
-
-const FlowSection = lazySection(
-  () => import("../components/sections/HowItWorks"),
-  "HowItWorks"
-);
-
-const ManagementSection = lazySection(
-  () => import("../components/sections/ManagementSection"),
-  "ManagementSection"
-);
-
-const ProfessionalAppSection = lazySection(
-  () => import("../components/sections/ProfessionalAppSection"),
-  "ProfessionalAppSection"
-);
-
-
-
-const LannaSection = lazySection(
-  () => import("../components/sections/LannaSection"),
-  "LannaSection"
-);
-
-const PlansSection = lazySection(
-  () => import("../components/sections/PlansSection"),
-  "PlansSection"
-);
-
-const FaqSection = lazySection(
-  () => import("../components/sections/FaqSection"),
-  "FaqSection"
-);
-
-const FinalCTA = lazySection(
-  () => import("../components/sections/FinalCTA"),
-  "FinalCTA"
-);
-
-const BenefitsHausecareSection = lazySection(
-  () => import("../components/sections/BenefitsHausecareSection"),
-  "BenefitsInternationalSection"
-);
+// Lazy Load das outras seções (mantendo otimização onde é seguro)
+const IntegrationsSection = lazy(() => import("../components/sections/IntegrationsSection"));
+const FlowSection = lazy(() => import("../components/sections/HowItWorks"));
+const ManagementSection = lazy(() => import("../components/sections/ManagementSection"));
+const ProfessionalAppSection = lazy(() => import("../components/sections/ProfessionalAppSection"));
+const LannaSection = lazy(() => import("../components/sections/LannaSection"));
+const PlansSection = lazy(() => import("../components/sections/PlansSection"));
+const FaqSection = lazy(() => import("../components/sections/FaqSection"));
+const FinalCTA = lazy(() => import("../components/sections/FinalCTA"));
+const BenefitsHausecareSection = lazy(() => import("../components/sections/BenefitsHausecareSection"));
 
 export default function Home() {
   return (

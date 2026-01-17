@@ -1,8 +1,8 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
-// Imagens
-import monitorImage from "../../assets/imagens/screens/dasboard-hausecare.webp";
-import heroTabletImage from "../../assets/imagens/screens/dasboard-hero.webp";
+// Imagens (Agora carregadas da public/ para otimização de preload)
+const monitorImage = "/dasboard-hausecare.webp";
+const heroTabletImage = "/dasboard-hero.webp";
 
 const HERO_HIGHLIGHTS = [
   { value: "+120", label: "empresas ativas" },
