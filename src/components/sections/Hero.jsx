@@ -458,10 +458,11 @@ export default function Hero() {
                   className="hero-metrics grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 pt-4 md:pt-6"
                   style={{ opacity: 0, transform: "translateY(20px)" }}
                 >
-                  {HERO_HIGHLIGHTS.map(({ value, label }) => (
+                  {HERO_HIGHLIGHTS.map(({ value, label }, index) => (
                     <li
                       key={label}
-                      className="hero-metric-card rounded-xl md:rounded-2xl border border-white/10 bg-white/5 px-4 md:px-5 py-3 md:py-4 shadow-lg shadow-black/20"
+                      className={`hero-metric-card rounded-xl md:rounded-2xl border border-white/10 bg-white/5 px-4 md:px-5 py-3 md:py-4 shadow-lg shadow-black/20 ${index === 2 ? "hidden md:block" : ""
+                        }`}
                     >
                       <p className="text-2xl md:text-3xl font-semibold text-white">
                         {value}
