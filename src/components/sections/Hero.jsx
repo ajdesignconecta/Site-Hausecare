@@ -1,8 +1,8 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
-// Imagens (Agora carregadas da public/ para otimização de preload)
-const monitorImage = "/dasboard-hausecare.webp";
-const heroTabletImage = "/dasboard-hero.webp";
+// Imagens
+import monitorImage from "../../assets/imagens/screens/dasboard-hausecare.webp";
+import heroTabletImage from "../../assets/imagens/screens/dasboard-hero.webp";
 
 const HERO_HIGHLIGHTS = [
   { value: "+120", label: "empresas ativas" },
@@ -150,13 +150,8 @@ export default function Hero() {
         autoRefreshEvents: "visibilitychange,DOMContentLoaded,load,resize",
       });
 
-      // Habilita normalização de scroll para dispositivos touch
-      ScrollTrigger.normalizeScroll({
-        allowNestedScroll: true,
-        lockAxis: false,
-        momentum: self => Math.min(3, self.velocityY / 1000),
-        type: "touch,wheel,pointer"
-      });
+      // normalizeScroll REMOVIDO pois estava causando comportamento indesejado no mobile
+      // Scroll padrão do navegador é mais confiável
 
       const wrapper = wrapperRef.current;
       const intro = introRef.current;
