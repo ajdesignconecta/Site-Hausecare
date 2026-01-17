@@ -205,8 +205,8 @@ export default function Hero() {
               start: "top top",
               end: scrollDistance,
               scrub: scrubValue,
-              pin: !isMobile, // Desabilita pin no mobile para evitar conflitos com header fixo
-              pinSpacing: !isMobile,
+              pin: true, // Reativando pin no mobile para garantir experiência consistente
+              pinSpacing: true,
               anticipatePin: 1,
               // Força atualização mais frequente no mobile
               refreshPriority: isMobile ? 1 : 0,
