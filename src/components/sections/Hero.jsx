@@ -389,7 +389,7 @@ export default function Hero() {
 
           {/* Conteúdo animável (isso entra no scroll) */}
           <div ref={heroAnimRef} className="w-full">
-            <div className="relative container-hc grid lg:grid-cols-2 gap-4 md:gap-8 lg:gap-12 items-center z-10 w-full px-6">
+            <div className="relative container-hc grid lg:grid-cols-2 gap-4 md:gap-8 lg:gap-12 items-center z-10 w-full px-6 pt-28 md:pt-0">
               {/* TEXTO ESQUERDA */}
               <div className="hero-text space-y-5 lg:space-y-7 max-w-3xl">
                 <div
