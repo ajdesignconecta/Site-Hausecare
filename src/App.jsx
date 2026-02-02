@@ -40,6 +40,7 @@ export default function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/legal/privacidade" element={<PrivacidadePage />} />
+            <Route path="/privacy" element={<PrivacidadePage />} />
             <Route path="/legal/termos" element={<TermosPage />} />
           </Routes>
         </Suspense>

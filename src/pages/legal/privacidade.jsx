@@ -5,9 +5,9 @@ export function PrivacidadePage() {
     const meta = useMemo(
         () => ({
             title: "Política de Privacidade — Hausecare",
-            updatedAt: "15/01/2026",
+            updatedAt: "02/02/2026",
             intro:
-                "A Hausecare valoriza a transparência. Esta Política descreve como coletamos, usamos e protegemos dados pessoais ao operar nossa plataforma.",
+                "A Hausecare valoriza a transparência. Esta Política descreve como coletamos, usamos e protegemos dados pessoais ao operar nossa plataforma e aplicativo móvel.",
             highlights: [
                 {
                     title: "Controle e transparência",
@@ -23,16 +23,17 @@ export function PrivacidadePage() {
                 },
             ],
             toc: [
-                { id: "escopo", label: "1. Escopo" },
+                { id: "escopo", label: "1. Escopo e Identificação" },
                 { id: "dados", label: "2. Dados coletados" },
-                { id: "finalidades", label: "3. Finalidades e bases legais" },
-                { id: "compartilhamento", label: "4. Compartilhamento" },
-                { id: "retencao", label: "5. Retenção" },
-                { id: "seguranca", label: "6. Segurança" },
-                { id: "direitos", label: "7. Direitos do titular" },
-                { id: "cookies", label: "8. Cookies e analytics" },
-                { id: "criancas", label: "9. Crianças e adolescentes" },
-                { id: "contato", label: "10. Contato" },
+                { id: "permissoes", label: "3. Permissões do App" },
+                { id: "finalidades", label: "4. Finalidades e bases legais" },
+                { id: "compartilhamento", label: "5. Compartilhamento" },
+                { id: "retencao", label: "6. Retenção" },
+                { id: "seguranca", label: "7. Segurança" },
+                { id: "direitos", label: "8. Direitos do titular" },
+                { id: "cookies", label: "9. Cookies e analytics" },
+                { id: "criancas", label: "10. Crianças e adolescentes" },
+                { id: "contato", label: "11. Contato" },
             ],
         }),
         []
@@ -40,11 +41,12 @@ export function PrivacidadePage() {
 
     return (
         <LegalLayout meta={meta} kind="privacy">
-            <Section id="escopo" title="1. Escopo">
+            <Section id="escopo" title="1. Escopo e Identificação">
                 <p className="text-slate-600 leading-relaxed">
                     Esta Política se aplica ao uso dos sites, aplicativos e serviços da{" "}
                     <span className="font-semibold text-slate-900">Hausecare</span>,
-                    incluindo páginas públicas e áreas autenticadas da plataforma.
+                    operada pela empresa <span className="font-semibold text-slate-900">Webize Tecnologia LTDA</span>,
+                    inscrita no CNPJ sob o nº <span className="font-semibold text-slate-900">54.476.220/0001-15</span>.
                 </p>
                 <Callout>
                     Se sua clínica/empresa é cliente da Hausecare, ela pode atuar como{" "}
@@ -84,7 +86,33 @@ export function PrivacidadePage() {
                 </Callout>
             </Section>
 
-            <Section id="finalidades" title="3. Finalidades e bases legais">
+            <Section id="permissoes" title="3. Permissões do App">
+                <p className="text-slate-600 leading-relaxed">
+                    Para o funcionamento pleno do aplicativo móvel, solicitamos as seguintes permissões:
+                </p>
+                <BulletGrid
+                    items={[
+                        {
+                            title: "Câmera e Galeria",
+                            desc: "Utilizada para capturar fotos de documentos, perfis ou anexar arquivos aos registros de pacientes.",
+                        },
+                        {
+                            title: "Localização",
+                            desc: "Necessária para o registro de check-in/check-out de atendimentos domiciliares, garantindo a rastreabilidade e segurança operacional.",
+                        },
+                        {
+                            title: "Notificações",
+                            desc: "Utilizada para enviar alertas de agenda, lembretes de medicamentos e atualizações importantes do sistema.",
+                        },
+                        {
+                            title: "Armazenamento",
+                            desc: "Utilizado para salvar documentos baixados e cache de mídia para carregar dados mais rapidamente.",
+                        },
+                    ]}
+                />
+            </Section>
+
+            <Section id="finalidades" title="4. Finalidades e bases legais">
                 <p className="text-slate-600 leading-relaxed">
                     Usamos os dados para operar a plataforma, garantir segurança,
                     atendimento, melhorias e cumprimento legal. As bases legais podem
@@ -113,7 +141,7 @@ export function PrivacidadePage() {
                 </List>
             </Section>
 
-            <Section id="compartilhamento" title="4. Compartilhamento">
+            <Section id="compartilhamento" title="5. Compartilhamento">
                 <p className="text-slate-600 leading-relaxed">
                     Não vendemos dados pessoais. Podemos compartilhar dados com:
                 </p>
@@ -134,7 +162,7 @@ export function PrivacidadePage() {
                 </List>
             </Section>
 
-            <Section id="retencao" title="5. Retenção">
+            <Section id="retencao" title="6. Retenção">
                 <p className="text-slate-600 leading-relaxed">
                     Mantemos dados apenas pelo tempo necessário para cumprir finalidades
                     descritas, obrigações legais e legítimos interesses (como segurança e
@@ -142,16 +170,16 @@ export function PrivacidadePage() {
                 </p>
             </Section>
 
-            <Section id="seguranca" title="6. Segurança">
+            <Section id="seguranca" title="7. Segurança">
                 <p className="text-slate-600 leading-relaxed">
                     Adotamos medidas técnicas e organizacionais para proteger dados,
                     incluindo controles de acesso, autenticação, logs, práticas de
-                    desenvolvimento seguro e monitoramento.
+                    desenvolvimento seguro e monitoramento. Os dados são armazenados em servidores seguros com criptografia de ponta.
                 </p>
                 <SecurityGrid />
             </Section>
 
-            <Section id="direitos" title="7. Direitos do titular">
+            <Section id="direitos" title="8. Direitos do titular">
                 <p className="text-slate-600 leading-relaxed">
                     Você pode solicitar confirmação de tratamento, acesso, correção,
                     anonimização, portabilidade, eliminação e revogação de consentimento,
@@ -169,7 +197,7 @@ export function PrivacidadePage() {
                 </Callout>
             </Section>
 
-            <Section id="cookies" title="8. Cookies e analytics">
+            <Section id="cookies" title="9. Cookies e analytics">
                 <p className="text-slate-600 leading-relaxed">
                     Podemos usar cookies e ferramentas de métricas para entender uso e
                     melhorar performance. Sempre que aplicável, você poderá administrar
@@ -177,7 +205,7 @@ export function PrivacidadePage() {
                 </p>
             </Section>
 
-            <Section id="criancas" title="9. Crianças e adolescentes">
+            <Section id="criancas" title="10. Crianças e adolescentes">
                 <p className="text-slate-600 leading-relaxed">
                     A plataforma é voltada a operações e profissionais. Não é destinada ao
                     uso direto por crianças. Se houver tratamento específico, ele deve
@@ -185,7 +213,7 @@ export function PrivacidadePage() {
                 </p>
             </Section>
 
-            <Section id="contato" title="10. Contato">
+            <Section id="contato" title="11. Contato">
                 <ContactCard />
             </Section>
         </LegalLayout>
