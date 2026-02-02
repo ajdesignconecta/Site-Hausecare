@@ -10,13 +10,13 @@ import WhatsAppButton from "./components/WhatsAppButton";
 const Home = lazy(() => import("./pages/Home"));
 const Planos = lazy(() => import("./pages/Planos"));
 const Plataforma = lazy(() => import("./pages/Plataforma"));
-const Seguranca = lazy(() => import("./pages/seguranca"));
+import Seguranca from "./pages/seguranca";
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
 const ParaQuem = lazy(() => import("./pages/ParaQuem"));
 const Contato = lazy(() => import("./pages/Contato"));
-const PrivacidadePage = lazy(() => import("./pages/legal/privacidade").then(m => ({ default: m.PrivacidadePage })));
-const TermosPage = lazy(() => import("./pages/legal/termos").then(m => ({ default: m.TermosPage })));
+import { PrivacidadePage } from "./pages/legal/privacidade";
+import { TermosPage } from "./pages/legal/termos";
 
 export default function App() {
   return (

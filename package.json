@@ -12,17 +12,18 @@
     "source": "dist",
     "destination": "dist",
     "include": [
+      "/seguranca",
+      "/legal/privacidade",
+      "/legal/termos",
+      "/privacy",
       "/",
       "/planos",
       "/contato",
-      "/funcionalidades",
-      "/seguranca",
-      "/legal/privacidade",
-      "/privacy"
+      "/funcionalidades"
     ],
     "crawl": false,
     "inlineCss": false,
-    "fixInsertRule": true,
+    "fixInsertRule": false,
     "puppeteerArgs": [
       "--no-sandbox",
       "--disable-setuid-sandbox",
