@@ -16,7 +16,9 @@
       "/planos",
       "/contato",
       "/funcionalidades",
-      "/seguranca"
+      "/seguranca",
+      "/legal/privacidade",
+      "/privacy"
     ],
     "crawl": false,
     "inlineCss": false,
