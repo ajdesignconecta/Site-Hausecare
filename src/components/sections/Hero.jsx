@@ -170,6 +170,9 @@ export default function Hero() {
             ".hero-text > *"
           );
           const heroTablet = heroSection.querySelector(".hero-tablet");
+          const scrollCue = heroSection.querySelector(".hero-scroll-cue");
+          const scrollCueDot = heroSection.querySelector(".hero-scroll-dot");
+          const scrollCueArrow = heroSection.querySelector(".hero-scroll-arrow");
 
           // ✅ NÃO zera opacity do heroSection (senão não revela nada)
           // Só anima o conteúdo
@@ -192,6 +195,10 @@ export default function Hero() {
               y: 40,
               scale: 0.95,
             });
+          }
+
+          if (scrollCue) {
+            gsap.set(scrollCue, { autoAlpha: 0, y: 10, scale: 0.98 });
           }
 
           const isMobile = window.innerWidth < 1024;
@@ -273,6 +280,14 @@ export default function Hero() {
             );
           }
 
+          if (scrollCue) {
+            tl.to(
+              scrollCue,
+              { autoAlpha: 0, y: 10, duration: 0.32, ease: "power2.out" },
+              0.38
+            );
+          }
+
           // loops
           if (heroTablet) {
             gsap.to(heroTablet, {
@@ -314,6 +329,41 @@ export default function Hero() {
                 repeatDelay: 1.4,
               }
             );
+          }
+
+          if (scrollCue) {
+            gsap.to(scrollCue, {
+              autoAlpha: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.9,
+              delay: 0.55,
+              ease: "power3.out",
+            });
+          }
+
+          if (scrollCueDot) {
+            gsap.fromTo(
+              scrollCueDot,
+              { y: 1, opacity: 0.95 },
+              {
+                y: 15,
+                opacity: 0.28,
+                duration: 1.15,
+                ease: "sine.inOut",
+                repeat: -1,
+              }
+            );
+          }
+
+          if (scrollCueArrow) {
+            gsap.to(scrollCueArrow, {
+              y: 5,
+              duration: 0.95,
+              ease: "sine.inOut",
+              repeat: -1,
+              yoyo: true,
+            });
           }
         });
       }, wrapper);
@@ -659,23 +709,30 @@ export default function Hero() {
 
           {/* Scroll hint */}
           <div
-            className="absolute bottom-64 md:bottom-28 left-0 right-0 mx-auto flex flex-col items-center gap-2 text-black animate-bounce z-20"
+            className="hero-scroll-cue pointer-events-none absolute bottom-14 md:bottom-14 left-0 right-0 z-30 mx-auto flex w-fit flex-col items-center gap-2"
             style={{ width: "fit-content" }}
           >
-            <p className="text-xs md:text-sm font-medium tracking-wide">
-              Role para continuar
-            </p>
-            <svg
-              width="20"
-              height="20"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M12 5v14M19 12l-7 7-7-7" />
-            </svg>
+            <div className="rounded-full border border-white/35 bg-slate-900/45 px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-white shadow-[0_10px_30px_rgba(2,8,23,0.35)] backdrop-blur-sm">
+              Continue descendo
+            </div>
+
+            <div className="relative h-9 w-5 rounded-full border border-white/60 bg-slate-900/35 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.14),0_8px_20px_rgba(2,8,23,0.25)]">
+              <span className="hero-scroll-dot absolute left-1/2 top-[4px] h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-white/95 shadow-[0_0_10px_rgba(255,255,255,0.85)]" />
+            </div>
+
+            <div className="hero-scroll-arrow text-white/70">
+              <svg
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m5 8 5 5 5-5" />
+              </svg>
+            </div>
           </div>
         </div>
       </div>

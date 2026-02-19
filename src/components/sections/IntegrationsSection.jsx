@@ -1,84 +1,84 @@
-import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+﻿import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 try {
   gsap.registerPlugin(ScrollTrigger);
-} catch (e) { }
+} catch (e) {}
 
 const PERSONAS = [
   {
     id: "clinica",
-    label: "Clínicas",
-    badge: "Clínicas de Home Care",
-    headline: "Padronize a operação — do cadastro ao faturamento",
+    label: "Clinicas",
+    badge: "Clinicas de Home Care",
+    headline: "Padronize a operacao - do cadastro ao faturamento",
     pain: "Equipe cresce, processos divergem e a visibilidade do que acontece no dia some.",
-    gain: "Operação centralizada em tempo real com prontuário, agenda, rotas e financeiro no mesmo fluxo.",
+    gain: "Operacao centralizada em tempo real com prontuario, agenda, rotas e financeiro no mesmo fluxo.",
     bullets: [
       "Atendimentos do dia + status em andamento",
-      "Prontuário digital e plano terapêutico por paciente",
-      "Agenda e rotas integradas à operação",
-      "Relatórios e visão financeira para decisão rápida",
+      "Prontuario digital e plano terapeutico por paciente",
+      "Agenda e rotas integradas a operacao",
+      "Relatorios e visao financeira para decisao rapida",
     ],
   },
   {
     id: "gestor",
-    label: "Operação",
+    label: "Operacao",
     badge: "Gestor Operacional",
     headline: "Controle e previsibilidade (sem microgerenciar)",
-    pain: "Fluxo espalhado em conversas, planilhas e confirmações manuais — vira retrabalho.",
-    gain: "Painel de execução com gargalos, SLA e rastreabilidade. Menos ruído, mais entrega.",
+    pain: "Fluxo espalhado em conversas, planilhas e confirmacoes manuais - vira retrabalho.",
+    gain: "Painel de execucao com gargalos, SLA e rastreabilidade. Menos ruido, mais entrega.",
     bullets: [
-      "Visão por profissional / período",
-      "SLA, status e tempo médio por atendimento",
+      "Visao por profissional / periodo",
+      "SLA, status e tempo medio por atendimento",
       "Rotas e deslocamentos organizados por dia",
-      "Padrão operacional em toda a equipe",
+      "Padrao operacional em toda a equipe",
     ],
   },
   {
     id: "coordenacao",
-    label: "Clínico",
-    badge: "Coordenação Clínica",
-    headline: "Qualidade clínica com rastreabilidade e padrão",
-    pain: "Evoluções inconsistentes e ausência de auditoria aumentam risco clínico/jurídico.",
-    gain: "Registro seguro e rastreável: prontuário, evolução e plano terapêutico com controle.",
+    label: "Clinico",
+    badge: "Coordenacao Clinica",
+    headline: "Qualidade clinica com rastreabilidade e padrao",
+    pain: "Evolucoes inconsistentes e ausencia de auditoria aumentam risco clinico/juridico.",
+    gain: "Registro seguro e rastreavel: prontuario, evolucao e plano terapeutico com controle.",
     bullets: [
-      "Histórico completo por paciente",
-      "Plano terapêutico com frequência e vínculo",
-      "Evolução protegida por senha do atendimento",
-      "Trilha auditável para governança",
+      "Historico completo por paciente",
+      "Plano terapeutico com frequencia e vinculo",
+      "Evolucao protegida por senha do atendimento",
+      "Trilha auditavel para governanca",
     ],
   },
   {
     id: "financeiro",
     label: "Financeiro",
     badge: "Financeiro / Administrativo",
-    headline: "Feche contas com clareza — e pague certo, na hora certa",
+    headline: "Feche contas com clareza - e pague certo, na hora certa",
     pain: "Receitas, despesas e pagamentos separados em planilhas e ferramentas desconectadas.",
-    gain: "Relatórios financeiros e folha por profissional com visão consolidada e exportável.",
+    gain: "Relatorios financeiros e folha por profissional com visao consolidada e exportavel.",
     bullets: [
       "Receitas, despesas, extrato e DRE gerencial",
-      "Folha de pagamento por profissional e período",
-      "Exportação CSV e relatórios para conciliação",
-      "Governança financeira com previsibilidade",
+      "Folha de pagamento por profissional e periodo",
+      "Exportacao CSV e relatorios para conciliacao",
+      "Governanca financeira com previsibilidade",
     ],
   },
 ];
 
 const ECOSYSTEM = [
-  { name: "WhatsApp", status: "Roadmap", note: "Notificações e fluxos de atendimento" },
-  { name: "Google Calendar", status: "Roadmap", note: "Sincronização de agenda" },
-  { name: "Maps / Rotas", status: "Disponível", note: "Rotas e deslocamentos na operação" },
-  { name: "Exportação CSV", status: "Disponível", note: "Relatórios e dados para análise" },
-  { name: "API", status: "Roadmap", note: "Integrações com sistemas internos" },
-  { name: "Asaas / Stripe", status: "Roadmap", note: "Cobrança e assinaturas" },
+  { name: "WhatsApp", status: "Roadmap", note: "Notificacoes e fluxos de atendimento" },
+  { name: "Google Calendar", status: "Roadmap", note: "Sincronizacao de agenda" },
+  { name: "Maps / Rotas", status: "Disponivel", note: "Rotas e deslocamentos na operacao" },
+  { name: "Exportacao CSV", status: "Disponivel", note: "Relatorios e dados para analise" },
+  { name: "API", status: "Roadmap", note: "Integracoes com sistemas internos" },
+  { name: "Asaas / Stripe", status: "Roadmap", note: "Cobranca e assinaturas" },
 ];
 
 function StatusDot({ status }) {
   const map = {
-    Disponível: "bg-emerald-400 shadow-[0_0_0_6px_rgba(52,211,153,0.12)]",
-    Roadmap: "bg-indigo-400 shadow-[0_0_0_6px_rgba(129,140,248,0.12)]",
-    Beta: "bg-amber-400 shadow-[0_0_0_6px_rgba(251,191,36,0.12)]",
+    Disponivel: "bg-emerald-400 shadow-[0_0_0_6px_rgba(74,222,128,0.14)]",
+    Roadmap: "bg-cyan-400 shadow-[0_0_0_6px_rgba(34,211,238,0.14)]",
+    Beta: "bg-amber-400 shadow-[0_0_0_6px_rgba(251,191,36,0.14)]",
   };
   return <span className={`h-2.5 w-2.5 rounded-full ${map[status] || "bg-slate-400"}`} />;
 }
@@ -88,111 +88,165 @@ export default function IntegrationsSection() {
   const dialRef = useRef(null);
   const handRef = useRef(null);
   const contentRef = useRef(null);
-  const wireRef = useRef(null);
   const nodesRef = useRef([]);
   const [activeId, setActiveId] = useState(PERSONAS[0].id);
 
-  const active = useMemo(
-    () => PERSONAS.find((p) => p.id === activeId) || PERSONAS[0],
-    [activeId]
-  );
+  const active = useMemo(() => PERSONAS.find((p) => p.id === activeId) || PERSONAS[0], [activeId]);
 
-  // Entrada: section + wire + nodes
   useLayoutEffect(() => {
     const el = rootRef.current;
     if (!el) return;
 
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReducedMotion) return;
+
     const ctx = gsap.context(() => {
-      gsap.set(".sw-in", { autoAlpha: 0, y: 18 });
-      gsap.set(".sw-panel", { autoAlpha: 0, y: 16, rotateX: 6, transformPerspective: 900 });
-      gsap.set(".sw-wire", { strokeDasharray: 1200, strokeDashoffset: 1200 });
+      gsap.set(".sw-kicker, .sw-title, .sw-subtitle", { autoAlpha: 0, y: 28, filter: "blur(8px)" });
+      gsap.set(".sw-glass", {
+        autoAlpha: 0,
+        y: 34,
+        scale: 0.985,
+        rotateX: 6,
+        transformPerspective: 1200,
+        transformOrigin: "50% 0%",
+      });
+      gsap.set(".sw-wire, .sw-wire-glow", { strokeDasharray: 1200, strokeDashoffset: 1200 });
       gsap.set(".sw-node", { scale: 0.6, autoAlpha: 0 });
+      gsap.set(".sw-glow-orb", { autoAlpha: 0, scale: 0.84 });
+      gsap.set(".sw-chip", { autoAlpha: 0, y: 18 });
 
-      gsap.to(".sw-in", {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.9,
-        ease: "power3.out",
-        stagger: 0.08,
-        scrollTrigger: { trigger: el, start: "top 75%" },
+      const revealTl = gsap.timeline({
+        defaults: { ease: "power3.out" },
+        scrollTrigger: { trigger: el, start: "top 76%", once: true },
       });
 
-      gsap.to(".sw-panel", {
-        autoAlpha: 1,
-        y: 0,
-        rotateX: 0,
-        duration: 0.9,
-        ease: "power3.out",
-        stagger: 0.08,
-        scrollTrigger: { trigger: el, start: "top 70%" },
-      });
+      revealTl
+        .to(".sw-glow-orb", { autoAlpha: 1, scale: 1, duration: 1.2, stagger: 0.15 })
+        .to(
+          ".sw-kicker, .sw-title, .sw-subtitle",
+          { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.95, stagger: 0.08 },
+          "-=1"
+        )
+        .to(".sw-glass", { autoAlpha: 1, y: 0, scale: 1, rotateX: 0, duration: 1.05, stagger: 0.1 }, "-=0.7")
+        .to(".sw-chip", { autoAlpha: 1, y: 0, duration: 0.6, stagger: 0.06 }, "-=0.75")
+        .to(".sw-wire", { strokeDashoffset: 0, duration: 1.2, ease: "power2.out" }, "-=0.5")
+        .to(".sw-wire-glow", { strokeDashoffset: 0, duration: 1.35, ease: "power2.out" }, "<")
+        .to(".sw-node", { autoAlpha: 1, scale: 1, duration: 0.55, ease: "back.out(1.8)", stagger: 0.06 }, "-=0.85");
 
-      gsap.to(".sw-wire", {
-        strokeDashoffset: 0,
-        duration: 1.2,
-        ease: "power2.out",
-        scrollTrigger: { trigger: el, start: "top 70%" },
-      });
-
-      gsap.to(".sw-node", {
-        autoAlpha: 1,
-        scale: 1,
-        duration: 0.55,
-        ease: "back.out(1.8)",
-        stagger: 0.08,
-        scrollTrigger: { trigger: el, start: "top 65%" },
-      });
-
-      // Dial loop bem sutil
       if (dialRef.current) {
         gsap.to(dialRef.current, {
           rotate: 360,
-          duration: 26,
+          duration: 24,
           ease: "none",
           repeat: -1,
         });
       }
+
+      gsap.to(".sw-hand-glow", {
+        opacity: 1,
+        duration: 1.2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      // Avoid wheel jitter with scrub + backdrop blur by keeping cards off scroll-scrub.
+      gsap.to(".sw-panel-left", {
+        y: -8,
+        duration: 6.2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(".sw-panel-right", {
+        y: 8,
+        duration: 7,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(".sw-bg-parallax", {
+        yPercent: -6,
+        scrollTrigger: {
+          trigger: el,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 0.6,
+          fastScrollEnd: true,
+        },
+      });
+
+      gsap.to(".sw-scan-line", {
+        xPercent: 220,
+        duration: 3.8,
+        ease: "none",
+        repeat: -1,
+      });
+
+      gsap.to(".sw-wire-glow", {
+        stroke: "rgba(56,189,248,0.95)",
+        duration: 1.4,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
     }, rootRef);
 
     return () => ctx.revert();
   }, []);
 
-  // Troca de persona: animação no conteúdo + “ponteiro” do dial
   useEffect(() => {
     const wrap = contentRef.current;
     if (!wrap) return;
 
     const idx = PERSONAS.findIndex((p) => p.id === activeId);
-    const angles = [0, 90, 180, 270]; // positions “humanas” no dial
+    const angles = [0, 90, 180, 270];
     const targetRot = angles[idx] ?? 0;
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReducedMotion) {
+      if (handRef.current) gsap.set(handRef.current, { rotate: targetRot });
+      return;
+    }
 
     const tl = gsap.timeline();
 
-    // conteúdo
-    tl.to(wrap, { autoAlpha: 0, y: 10, duration: 0.16, ease: "power2.out" })
-      .set(wrap, { y: -10 })
-      .to(wrap, { autoAlpha: 1, y: 0, duration: 0.34, ease: "power3.out" });
+    tl.to(wrap, { autoAlpha: 0, y: 14, duration: 0.17, ease: "power2.out" })
+      .set(wrap, { y: -12 })
+      .to(wrap, { autoAlpha: 1, y: 0, duration: 0.42, ease: "power3.out" });
 
-    // ponteiro
     if (handRef.current) {
       gsap.to(handRef.current, {
         rotate: targetRot,
-        duration: 0.75,
-        ease: "power3.out",
+        duration: 0.78,
+        ease: "power4.out",
       });
     }
 
-    // brilho nos nodes da “wire”
+    const btn = rootRef.current?.querySelector(`[data-persona='${activeId}']`);
+    if (btn) {
+      gsap.fromTo(btn, { scale: 0.96 }, { scale: 1, duration: 0.35, ease: "back.out(2)" });
+    }
+
     if (nodesRef.current?.length) {
       nodesRef.current.forEach((node, i) => {
         if (!node) return;
         gsap.fromTo(
           node,
-          { filter: "drop-shadow(0 0 0px rgba(99,102,241,0))" },
+          { filter: "drop-shadow(0 0 0px rgba(56,189,248,0))" },
           {
-            filter: "drop-shadow(0 0 18px rgba(99,102,241,0.25))",
-            duration: 0.25,
-            delay: i * 0.04,
+            filter: "drop-shadow(0 0 18px rgba(56,189,248,0.35))",
+            duration: 0.28,
+            delay: i * 0.03,
             yoyo: true,
             repeat: 1,
             ease: "power2.out",
@@ -209,86 +263,98 @@ export default function IntegrationsSection() {
       ref={rootRef}
       id="integracoes"
       aria-labelledby="switchboard-title"
-      className="relative overflow-hidden isolate bg-slate-50"
+      className="relative isolate overflow-hidden bg-[#040f1f]"
     >
-      {/* Background simplificado (igual ProblemSection) */}
+      <div className="sw-bg-parallax pointer-events-none absolute inset-0 opacity-90">
+        <div className="absolute -left-24 top-10 h-72 w-72 rounded-full bg-cyan-500/30 blur-[120px]" />
+        <div className="absolute right-0 top-24 h-80 w-80 rounded-full bg-blue-600/30 blur-[120px]" />
+        <div className="absolute left-1/3 bottom-0 h-72 w-72 rounded-full bg-emerald-500/20 blur-[120px]" />
+      </div>
 
-      <div className="relative mx-auto max-w-6xl px-6 py-20 md:py-24">
-        <header className="text-center mb-12 md:mb-14">
-          <div className="sw-in inline-flex items-center gap-2 rounded-full bg-emerald-100 px-4 py-2 text-xs font-semibold text-emerald-800 border border-emerald-200">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-            Segmentação inteligente • Control Room
+      <div className="sw-glow-orb pointer-events-none absolute -top-20 left-1/4 h-[28rem] w-[28rem] rounded-full bg-cyan-400/20 blur-[140px]" />
+      <div className="sw-glow-orb pointer-events-none absolute -right-20 top-1/3 h-[30rem] w-[30rem] rounded-full bg-indigo-500/20 blur-[140px]" />
+
+      <div className="relative mx-auto max-w-7xl px-6 py-24 md:py-28">
+        <header className="text-center">
+          <div className="sw-kicker inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-xs font-semibold tracking-[0.14em] text-cyan-100 uppercase">
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-300" />
+            Intelligent Switchboard
           </div>
 
           <h2
             id="switchboard-title"
-            className="sw-in mt-5 text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight"
-            style={{ letterSpacing: "-0.02em" }}
+            className="sw-title mt-6 text-3xl font-black tracking-[-0.03em] text-white md:text-5xl"
           >
-            Feito para cada área da sua operação
+            Uma experiencia SaaS com
+            <span className="block bg-gradient-to-r from-cyan-300 via-sky-300 to-emerald-300 bg-clip-text text-transparent">
+              foco total em operacao
+            </span>
           </h2>
 
-          <p className="sw-in mt-3 text-slate-600 max-w-3xl mx-auto text-base md:text-lg leading-relaxed">
-            Selecione um perfil e veja onde o Hausecare elimina gargalos — com controle, rastreabilidade
-            e previsibilidade.
+          <p className="sw-subtitle mx-auto mt-5 max-w-3xl text-base leading-relaxed text-slate-300 md:text-lg">
+            Escolha um perfil e veja o painel mudar em tempo real com profundidade, luz, feedback e clareza
+            de decisao.
           </p>
 
-          <div className="sw-in mt-7 flex items-center justify-center gap-2 text-xs text-slate-500">
-            <span className="h-1.5 w-1.5 rounded-full bg-indigo-500" />
-            Tempo real • Prontuário digital • Agenda & Rotas • Financeiro
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+            {["Real-time UX", "Clinical-grade", "Ops + Finance", "Enterprise visual"].map((chip) => (
+              <span
+                key={chip}
+                className="sw-chip rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold text-slate-200"
+              >
+                {chip}
+              </span>
+            ))}
           </div>
         </header>
 
-        <div className="grid lg:grid-cols-12 gap-10 items-stretch">
-          {/* LEFT: Dial + Persona Switch */}
-          <div className="lg:col-span-5">
-            <div className="sw-panel relative rounded-[28px] border border-slate-200 bg-white shadow-[0_30px_80px_rgba(15,23,42,0.15)] overflow-hidden">
-              <div className="p-6 border-b border-slate-100">
-                <p className="text-sm font-bold text-slate-900">Switchboard</p>
-                <p className="mt-1 text-xs text-slate-500">
-                  Clique em um perfil. O painel ao lado muda como uma central de operação.
-                </p>
+        <div className="mt-14 grid items-stretch gap-10 lg:grid-cols-12">
+          <div className="sw-panel-left lg:col-span-5">
+            <div className="sw-glass relative overflow-hidden rounded-[30px] border border-white/15 bg-white/[0.06] shadow-[0_30px_90px_rgba(2,8,23,0.65)] backdrop-blur-2xl">
+              <div className="sw-scan-line pointer-events-none absolute left-[-40%] top-0 h-full w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-cyan-300/20 to-transparent" />
+
+              <div className="border-b border-white/10 p-6">
+                <p className="text-sm font-bold text-cyan-100">Control Matrix</p>
+                <p className="mt-1 text-xs text-slate-300">Interaja com um perfil e observe o impacto no painel.</p>
               </div>
 
               <div className="p-6">
-                {/* Dial */}
-                <div className="relative mx-auto w-[260px] h-[260px]">
+                <div className="relative mx-auto h-[280px] w-[280px]">
                   <div
                     ref={dialRef}
-                    className="absolute inset-0 rounded-full"
+                    className="sw-dial-ring absolute inset-0 rounded-full"
                     style={{
                       background:
-                        "conic-gradient(from 180deg, rgba(16,185,129,0.5), rgba(56,189,248,0.5), rgba(99,102,241,0.5), rgba(244,63,94,0.5), rgba(16,185,129,0.5))",
-                      filter: "blur(0px)",
+                        "conic-gradient(from 0deg, rgba(34,211,238,0.75), rgba(56,189,248,0.28), rgba(99,102,241,0.7), rgba(16,185,129,0.55), rgba(34,211,238,0.75))",
+                      filter: "drop-shadow(0 0 26px rgba(56,189,248,0.32))",
                     }}
                   />
-                  <div className="absolute inset-[10px] rounded-full bg-slate-50 border border-slate-200" />
-                  <div className="absolute inset-[22px] rounded-full bg-white border border-slate-200 shadow-inner" />
+                  <div className="absolute inset-[11px] rounded-full border border-cyan-200/20 bg-[#061326]/85" />
+                  <div className="absolute inset-[24px] rounded-full border border-white/10 bg-[#07182f]/90 shadow-inner shadow-cyan-900/30" />
 
-                  {/* ponteiro */}
                   <div
                     ref={handRef}
                     className="absolute left-1/2 top-1/2 origin-bottom"
-                    style={{ width: 4, height: 104, transform: "translate(-50%, -100%) rotate(0deg)" }}
+                    style={{ width: 4, height: 114, transform: "translate(-50%, -100%) rotate(0deg)" }}
                   >
-                    <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[4px] h-[110px] rounded-full"
+                    <div
+                      className="sw-hand-glow absolute -bottom-6 left-1/2 h-[120px] w-[4px] -translate-x-1/2 rounded-full"
                       style={{
-                        background:
-                          "linear-gradient(180deg, rgba(99,102,241,0.1), rgba(99,102,241,0.8))",
-                        boxShadow: "0 0 12px rgba(99,102,241,0.30)",
+                        background: "linear-gradient(180deg, rgba(103,232,249,0.1), rgba(56,189,248,0.95))",
+                        boxShadow: "0 0 16px rgba(56,189,248,0.6)",
+                        opacity: 0.58,
                       }}
                     />
-                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-indigo-600"
-                      style={{ boxShadow: "0 0 15px rgba(99,102,241,0.4)" }}
+                    <div
+                      className="absolute -top-2 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full bg-cyan-300"
+                      style={{ boxShadow: "0 0 18px rgba(34,211,238,0.7)" }}
                     />
                   </div>
 
-                  {/* centro */}
-                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-white border border-slate-100 shadow-lg flex items-center justify-center">
-                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_0_6px_rgba(52,211,153,0.15)]" />
+                  <div className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-cyan-200/20 bg-[#031023]">
+                    <div className="h-3 w-3 rounded-full bg-emerald-300 shadow-[0_0_0_8px_rgba(16,185,129,0.18)]" />
                   </div>
 
-                  {/* labels em volta (sem cards) */}
                   <div className="absolute inset-0">
                     {PERSONAS.map((p, i) => {
                       const pos = [
@@ -305,13 +371,12 @@ export default function IntegrationsSection() {
                           key={p.id}
                           type="button"
                           onClick={() => setActiveId(p.id)}
+                          data-persona={p.id}
                           className={[
-                            "absolute -translate-x-1/2 -translate-y-1/2",
-                            "rounded-full px-3 py-2 text-xs font-semibold",
-                            "transition border",
+                            "absolute -translate-x-1/2 -translate-y-1/2 rounded-full px-3 py-2 text-xs font-semibold transition-all duration-300 border",
                             isActive
-                              ? "bg-slate-900 text-white border-slate-900 shadow-lg"
-                              : "bg-white text-slate-500 border-slate-200 hover:border-slate-300 hover:text-slate-800",
+                              ? "border-cyan-200/50 bg-cyan-300/20 text-cyan-50 shadow-[0_10px_30px_rgba(56,189,248,0.35)]"
+                              : "border-white/15 bg-white/5 text-slate-300 hover:border-cyan-200/30 hover:text-white",
                           ].join(" ")}
                           style={pos}
                           aria-pressed={isActive}
@@ -323,27 +388,23 @@ export default function IntegrationsSection() {
                   </div>
                 </div>
 
-                {/* mini-rail */}
-                <div className="mt-7 text-center">
-                  <p className="text-xs text-slate-500">
-                    Perfil atual:{" "}
-                    <span className="text-slate-900 font-semibold">{active.badge}</span>
-                  </p>
+                <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-center">
+                  <p className="text-[11px] uppercase tracking-[0.16em] text-slate-400">Perfil ativo</p>
+                  <p className="mt-1 text-sm font-semibold text-white">{active.badge}</p>
                 </div>
 
-                {/* CTA compact */}
-                <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
                   <a
                     href="https://wa.me/5561991519369"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center rounded-xl bg-emerald-600 px-4 py-3 text-sm font-semibold text-white hover:bg-emerald-700 transition"
+                    className="inline-flex w-full items-center justify-center rounded-xl border border-cyan-200/50 bg-gradient-to-r from-cyan-400 to-sky-400 px-4 py-3 text-sm font-bold text-slate-900 transition hover:brightness-110"
                   >
-                    Solicitar demonstração
+                    Solicitar demo
                   </a>
                   <a
                     href="#inicio"
-                    className="w-full inline-flex items-center justify-center rounded-xl bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700 border border-slate-200 hover:bg-slate-100 transition"
+                    className="inline-flex w-full items-center justify-center rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-200 transition hover:bg-white/10"
                   >
                     Voltar ao topo
                   </a>
@@ -352,154 +413,161 @@ export default function IntegrationsSection() {
             </div>
           </div>
 
-          {/* RIGHT: Live Panel + Wire/Pipeline */}
-          <div className="lg:col-span-7">
-            <div className="sw-panel relative rounded-[28px] border border-slate-200 bg-white shadow-[0_30px_80px_rgba(15,23,42,0.15)] overflow-hidden">
-              {/* header */}
-              <div className="p-6 md:p-7 border-b border-slate-100 flex items-start justify-between gap-6">
-                <div>
-                  <p className="text-xs font-semibold text-slate-500">Console</p>
-                  <h3 className="mt-1 text-xl md:text-2xl font-extrabold text-slate-900 tracking-tight">
-                    {active.badge}
-                  </h3>
-                  <p className="mt-1 text-sm text-slate-500 max-w-xl">
-                    {active.headline}
-                  </p>
-                </div>
-
-                <div className="hidden md:flex items-center gap-2 text-xs text-slate-400">
-                  <span className="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_0_4px_rgba(16,185,129,0.15)]" />
-                  online
+          <div className="sw-panel-right lg:col-span-7">
+            <div className="sw-glass relative overflow-hidden rounded-[30px] border border-white/15 bg-white/[0.07] shadow-[0_30px_90px_rgba(2,8,23,0.7)] backdrop-blur-2xl">
+              <div className="border-b border-white/10 p-6 md:p-7">
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-200">Live Console</p>
+                    <h3 className="mt-1 text-2xl font-black tracking-tight text-white md:text-3xl">{active.badge}</h3>
+                    <p className="mt-2 max-w-xl text-sm text-slate-300 md:text-[15px]">{active.headline}</p>
+                  </div>
+                  <div className="rounded-xl border border-emerald-300/30 bg-emerald-300/10 px-3 py-2 text-xs font-semibold text-emerald-100">
+                    System online
+                  </div>
                 </div>
               </div>
 
-              {/* content */}
               <div ref={contentRef} className="p-6 md:p-7">
-                {/* Dor/Ganho em “painéis” (não cards clássicos) */}
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-                    <p className="text-xs font-semibold text-slate-500">Dor que trava</p>
-                    <p className="mt-2 text-sm text-slate-700 leading-relaxed">{active.pain}</p>
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div className="rounded-2xl border border-rose-300/20 bg-rose-300/5 p-5">
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-200">Dor que trava</p>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-200">{active.pain}</p>
                   </div>
 
-                  <div
-                    className="rounded-2xl border border-emerald-200/60 bg-emerald-50/50 p-5"
-                    style={{
-                      boxShadow: "inset 0 0 0 1px rgba(16,185,129,0.1)",
-                    }}
-                  >
-                    <p className="text-xs font-semibold text-emerald-700">Ganho com o Hausecare</p>
-                    <p className="mt-2 text-sm text-slate-700 leading-relaxed">{active.gain}</p>
+                  <div className="rounded-2xl border border-emerald-300/30 bg-emerald-300/10 p-5">
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-emerald-100">Ganho com o Hausecare</p>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-100">{active.gain}</p>
                   </div>
                 </div>
 
-                {/* bullets */}
-                <div className="mt-6">
-                  <p className="text-sm font-bold text-slate-900">O que essa área vê na prática:</p>
-                  <div className="mt-3 grid sm:grid-cols-2 gap-2">
+                <div className="mt-7">
+                  <p className="text-sm font-bold text-white">O que essa area ve na pratica:</p>
+                  <div className="mt-3 grid gap-3 sm:grid-cols-2">
                     {active.bullets.map((b) => (
                       <div
                         key={b}
-                        className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600 flex items-start gap-2 shadow-sm"
+                        className="rounded-xl border border-white/15 bg-white/[0.05] px-4 py-3 text-sm text-slate-100 shadow-[0_10px_25px_rgba(2,8,23,0.25)]"
                       >
-                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                        <span className="leading-relaxed">{b}</span>
+                        <div className="flex items-start gap-2">
+                          <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-cyan-300" />
+                          <span className="leading-relaxed">{b}</span>
+                        </div>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* pipeline wire + integrations */}
-                <div className="mt-8 rounded-2xl border border-slate-200 bg-slate-50/50 p-5 md:p-6">
-                  <div className="flex items-center justify-between gap-4">
+                <div className="mt-8 rounded-2xl border border-white/15 bg-[#051427]/70 p-5 md:p-6">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
                     <div>
-                      <p className="text-sm font-extrabold text-slate-900">Integrações & ecossistema</p>
-                      <p className="mt-1 text-xs text-slate-500">
-                        Roadmap honesto: o que já existe + o que está em evolução.
-                      </p>
+                      <p className="text-sm font-extrabold text-white">Integracoes e ecossistema</p>
+                      <p className="mt-1 text-xs text-slate-300">Roadmap honesto: o que ja existe + o que esta em evolucao.</p>
                     </div>
-
                     <a
                       href="https://wa.me/5561991519369"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center rounded-xl bg-white px-4 py-2 text-sm font-semibold text-slate-700 border border-slate-200 hover:bg-slate-50 transition shadow-sm"
+                      className="inline-flex items-center justify-center rounded-xl border border-cyan-300/40 bg-cyan-300/10 px-4 py-2 text-sm font-semibold text-cyan-100 transition hover:bg-cyan-300/20"
                     >
-                      Agendar demonstração
+                      Agendar demo
                     </a>
                   </div>
 
-                  {/* wire */}
-                  <div className="mt-5 relative">
-                    <svg
-                      className="w-full h-[70px]"
-                      viewBox="0 0 800 120"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                  <div className="mt-5">
+                    <svg className="w-full h-[74px]" viewBox="0 0 800 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <defs>
+                        <linearGradient id="swWireGradient" x1="20" y1="60" x2="780" y2="60" gradientUnits="userSpaceOnUse">
+                          <stop offset="0%" stopColor="#22d3ee" />
+                          <stop offset="50%" stopColor="#38bdf8" />
+                          <stop offset="100%" stopColor="#10b981" />
+                        </linearGradient>
+                      </defs>
                       <path
-                        ref={wireRef}
                         className="sw-wire"
                         d="M20 60 C 120 10, 220 110, 320 60 S 520 10, 620 60 S 720 110, 780 60"
-                        stroke="#cbd5e1"
+                        stroke="rgba(148,163,184,0.4)"
                         strokeWidth="2"
                         strokeLinecap="round"
                       />
-                      {/* nodes */}
+                      <path
+                        className="sw-wire-glow"
+                        d="M20 60 C 120 10, 220 110, 320 60 S 520 10, 620 60 S 720 110, 780 60"
+                        stroke="url(#swWireGradient)"
+                        strokeWidth="2.8"
+                        strokeLinecap="round"
+                        style={{ filter: "drop-shadow(0 0 12px rgba(56,189,248,0.4))" }}
+                      />
                       {[60, 190, 320, 450, 580, 710].map((x, i) => (
-                        <g
-                          key={x}
-                          ref={(el) => (nodesRef.current[i] = el)}
-                          className="sw-node"
-                        >
-                          <circle cx={x} cy={60} r={7} fill="#6366f1" />
-                          <circle cx={x} cy={60} r={16} fill="rgba(99,102,241,0.15)" />
+                        <g key={x} ref={(el) => (nodesRef.current[i] = el)} className="sw-node">
+                          <circle cx={x} cy={60} r={7} fill="#38bdf8" />
+                          <circle cx={x} cy={60} r={16} fill="rgba(56,189,248,0.16)" />
                         </g>
                       ))}
                     </svg>
                   </div>
 
-                  {/* integrations list (não cardzão — estilo “rows”) */}
-                  <div className="mt-2 grid sm:grid-cols-2 gap-3">
+                  <div className="mt-3 grid gap-3 sm:grid-cols-2">
                     {ECOSYSTEM.map((it) => (
                       <div
                         key={it.name}
-                        className="flex items-start justify-between gap-4 rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm"
+                        className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 transition hover:border-cyan-200/30 hover:bg-white/[0.08]"
                       >
-                        <div>
-                          <p className="text-sm font-bold text-slate-800">{it.name}</p>
-                          <p className="mt-0.5 text-xs text-slate-500">{it.note}</p>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <StatusDot status={it.status} />
-                          <span className="text-xs font-semibold text-slate-600">{it.status}</span>
+                        <div className="flex items-start justify-between gap-3">
+                          <div>
+                            <p className="text-sm font-bold text-slate-100">{it.name}</p>
+                            <p className="mt-0.5 text-xs text-slate-300">{it.note}</p>
+                          </div>
+                          <div className="mt-0.5 flex items-center gap-2">
+                            <StatusDot status={it.status} />
+                            <span className="text-xs font-semibold text-slate-200">{it.status}</span>
+                          </div>
                         </div>
                       </div>
                     ))}
                   </div>
 
                   <p className="mt-3 text-[11px] text-slate-400">
-                    *Integrações em Roadmap são planejadas e priorizadas conforme demanda do mercado.
+                    *Integracoes em Roadmap sao planejadas e priorizadas conforme demanda do mercado.
                   </p>
                 </div>
               </div>
 
-              {/* footer */}
-              <div className="px-6 md:px-7 py-4 border-t border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
-                <p className="text-sm text-slate-500">
-                  Demonstração guiada em minutos, com foco no seu perfil.
-                </p>
-                <a
-                  href="#demonstracao"
-                  className="inline-flex items-center justify-center rounded-xl bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-700 border border-indigo-200 hover:bg-indigo-100 transition"
-                >
-                  Ver na prática
-                </a>
+              <div className="border-t border-white/10 bg-white/[0.03] px-6 py-4 md:px-7">
+                <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
+                  <p className="text-sm text-slate-300">Demonstracao guiada em minutos, com foco no seu perfil.</p>
+                  <a
+                    href="#demonstracao"
+                    className="inline-flex items-center justify-center rounded-xl border border-cyan-300/40 bg-cyan-300/10 px-4 py-2 text-sm font-semibold text-cyan-100 transition hover:bg-cyan-300/20"
+                  >
+                    Ver na pratica
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <style>{`
+        #integracoes {
+          background-image:
+            radial-gradient(1200px 420px at 50% -10%, rgba(56, 189, 248, 0.12), transparent 60%),
+            linear-gradient(180deg, #040f1f 0%, #031225 52%, #05162b 100%);
+        }
+
+        #integracoes::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          background-image: linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+          background-size: 42px 42px;
+          mask-image: radial-gradient(circle at 50% 35%, black, transparent 80%);
+          opacity: 0.22;
+        }
+      `}</style>
     </section>
   );
 }
