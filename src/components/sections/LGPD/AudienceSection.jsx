@@ -408,7 +408,7 @@ export default function AudienceSection() {
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
-                  window.open('https://wa.me/5561991519369', '_blank', 'noopener,noreferrer');
+                  window.open('https://wa.me/5561992064157', '_blank', 'noopener,noreferrer');
                 }}
                 className="font-semibold underline underline-offset-4 decoration-slate-300 hover:decoration-slate-900 bg-transparent border-0 cursor-pointer text-slate-600"
               >
@@ -521,7 +521,7 @@ export default function AudienceSection() {
                       onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
-                        window.open('https://wa.me/5561991519369', '_blank', 'noopener,noreferrer');
+                        window.open('https://wa.me/5561992064157', '_blank', 'noopener,noreferrer');
                       }}
                       className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-black/10 transition hover:brightness-110 cursor-pointer"
                       style={{ background: activePersona.accent }}

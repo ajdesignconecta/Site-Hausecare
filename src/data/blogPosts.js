@@ -49,7 +49,7 @@ O Hausecare foi desenvolvido especificamente para operações de Home Care, com 
 
 ## Próximo passo
 
-Quer ver como funciona na prática? [Agende uma demonstração gratuita](https://wa.me/5561991519369) e veja o sistema rodando com seu cenário.
+Quer ver como funciona na prática? [Agende uma demonstração gratuita](https://wa.me/5561992064157) e veja o sistema rodando com seu cenário.
     `
     },
     {
@@ -107,7 +107,7 @@ O setor de Home Care cresce a cada ano, e com ele a demanda por softwares especi
 
 Escolher o software certo pode ser a diferença entre uma operação que **escala com controle** e uma que **cresce no caos**. Priorize soluções especializadas e valide com uma demonstração real.
 
-[Agende uma demo do Hausecare](https://wa.me/5561991519369) e veja na prática.
+[Agende uma demo do Hausecare](https://wa.me/5561992064157) e veja na prática.
     `
     },
     {
@@ -172,7 +172,7 @@ Diferente de uma clínica tradicional, no Home Care você tem:
 3. **Comece pelo essencial** — Agenda, pacientes e equipe
 4. **Evolua por etapas** — Financeiro e relatórios depois
 
-[Conheça o Hausecare](https://wa.me/5561991519369) — Sistema de gestão feito para Home Care.
+[Conheça o Hausecare](https://wa.me/5561992064157) — Sistema de gestão feito para Home Care.
     `
     },
     // Cluster 2 — Dor do Gestor
@@ -230,7 +230,7 @@ O gestor precisa ver o que está acontecendo AGORA, não ontem.
 
 ## Próximo passo
 
-Quer ver uma agenda feita para Home Care? [Veja o Hausecare em ação](https://wa.me/5561991519369).
+Quer ver uma agenda feita para Home Care? [Veja o Hausecare em ação](https://wa.me/5561992064157).
     `
     },
     {
@@ -286,7 +286,7 @@ O gestor precisa ver tudo de uma vez: quem está onde, fazendo o quê.
 
 Controle de atendimentos não é burocracia — é **sobrevivência operacional**. Sem controle, você não consegue escalar.
 
-[Veja como o Hausecare controla atendimentos](https://wa.me/5561991519369).
+[Veja como o Hausecare controla atendimentos](https://wa.me/5561992064157).
     `
     },
     {
@@ -360,7 +360,7 @@ Um sistema de gestão integrado calcula automaticamente:
 
 ## Próximo passo
 
-Quer parar de planilhar o financeiro? [Conheça o Hausecare](https://wa.me/5561991519369).
+Quer parar de planilhar o financeiro? [Conheça o Hausecare](https://wa.me/5561992064157).
     `
     },
     {
@@ -423,7 +423,7 @@ O poder real vem quando tudo está integrado:
 
 Prontuário digital não é luxo — é **obrigação** para quem quer operar com segurança e escala.
 
-[Veja o prontuário do Hausecare](https://wa.me/5561991519369).
+[Veja o prontuário do Hausecare](https://wa.me/5561992064157).
     `
     },
     {
@@ -483,7 +483,7 @@ Quantos atendimentos cada profissional fez? Qual a taxa de conclusão?
 
 ## Próximo passo
 
-Quer organizar sua equipe? [Conheça o Hausecare](https://wa.me/5561991519369).
+Quer organizar sua equipe? [Conheça o Hausecare](https://wa.me/5561992064157).
     `
     },
     {
@@ -553,7 +553,7 @@ Criptografia, backup, controle de senhas.
 
 LGPD não é opcional. É **lei**. E em saúde, a responsabilidade é ainda maior.
 
-[Veja como o Hausecare trata segurança](https://wa.me/5561991519369).
+[Veja como o Hausecare trata segurança](https://wa.me/5561992064157).
     `
     },
     {
@@ -620,7 +620,7 @@ Um bom sistema de gestão permite:
 
 Faltas são evitáveis na maioria dos casos. Com **processo + tecnologia**, você reduz significativamente.
 
-[Veja como o Hausecare ajuda](https://wa.me/5561991519369).
+[Veja como o Hausecare ajuda](https://wa.me/5561992064157).
     `
     },
     {
@@ -689,7 +689,7 @@ Quando agenda, prontuário e financeiro estão conectados:
 
 Relatórios não são burocracia. São **ferramenta de gestão**. Quem mede, melhora.
 
-[Veja os relatórios do Hausecare](https://wa.me/5561991519369).
+[Veja os relatórios do Hausecare](https://wa.me/5561992064157).
     `
     },
     {
@@ -758,7 +758,7 @@ O que você acompanha? Produtividade? Cancelamentos? Margem?
 
 Escalar exige **preparação**. Quem cresce sem estrutura, cresce no caos.
 
-[Prepare sua operação com o Hausecare](https://wa.me/5561991519369).
+[Prepare sua operação com o Hausecare](https://wa.me/5561992064157).
     `
     }
 ];

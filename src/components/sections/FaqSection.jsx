@@ -424,7 +424,7 @@ export default function FAQSection() {
 
                 <div className="mt-6 grid gap-3">
                   <a
-                    href="https://wa.me/5561991519369"
+                    href="https://wa.me/5561992064157"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 text-white font-semibold py-3.5 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/30 hover:translate-y-[-2px] transition-all duration-200"
@@ -571,7 +571,7 @@ export default function FAQSection() {
                 </p>
                 <div className="flex gap-3">
                   <a
-                    href="https://wa.me/5561991519369"
+                    href="https://wa.me/5561992064157"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 text-white font-semibold px-5 py-3 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/30 hover:translate-y-[-2px] transition-all duration-200"

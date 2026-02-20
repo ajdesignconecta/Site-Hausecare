@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -395,7 +395,7 @@ export default function IntegrationsSection() {
 
                 <div className="mt-6 grid gap-3 sm:grid-cols-2">
                   <a
-                    href="https://wa.me/5561991519369"
+                    href="https://wa.me/5561992064157"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex w-full items-center justify-center rounded-xl border border-cyan-200/50 bg-gradient-to-r from-cyan-400 to-sky-400 px-4 py-3 text-sm font-bold text-slate-900 transition hover:brightness-110"
@@ -465,7 +465,7 @@ export default function IntegrationsSection() {
                       <p className="mt-1 text-xs text-slate-300">Roadmap honesto: o que ja existe + o que esta em evolucao.</p>
                     </div>
                     <a
-                      href="https://wa.me/5561991519369"
+                      href="https://wa.me/5561992064157"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center rounded-xl border border-cyan-300/40 bg-cyan-300/10 px-4 py-2 text-sm font-semibold text-cyan-100 transition hover:bg-cyan-300/20"

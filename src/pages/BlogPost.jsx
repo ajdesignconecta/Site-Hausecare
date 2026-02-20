@@ -301,7 +301,7 @@ export default function BlogPost() {
                                 Agende uma demonstração gratuita do Hausecare.
                             </p>
                             <a
-                                href="https://wa.me/5561991519369"
+                                href="https://wa.me/5561992064157"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="mt-4 inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-emerald-600 font-bold hover:bg-slate-50 transition"

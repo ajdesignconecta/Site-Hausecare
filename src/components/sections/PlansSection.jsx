@@ -25,7 +25,7 @@ const PLANS = [
 		price: "Sob consulta",
 		period: "",
 		highlight: false,
-		cta: { label: "Agendar Demonstração", href: "https://wa.me/5561991519369" },
+		cta: { label: "Agendar Demonstração", href: "https://wa.me/5561992064157" },
 		features: [
 			"Até 10 profissionais ativos",
 			"Pacientes, Financeiro, DRE, Folha de pagamento, Agenda, rotas e Estoque tudo ilimitado",
@@ -38,7 +38,7 @@ const PLANS = [
 		price: "Sob consulta",
 		period: "",
 		highlight: true,
-		cta: { label: "Agendar Demonstração", href: "https://wa.me/5561991519369" },
+		cta: { label: "Agendar Demonstração", href: "https://wa.me/5561992064157" },
 		features: [
 			"Até 35 profissionais ativos",
 			"Pacientes, Financeiro, DRE, Folha de pagamento, Agenda, rotas e Estoque tudo ilimitado",
@@ -51,7 +51,7 @@ const PLANS = [
 		price: "Sob consulta",
 		period: "",
 		highlight: false,
-		cta: { label: "Agendar Demonstração", href: "https://wa.me/5561991519369" },
+		cta: { label: "Agendar Demonstração", href: "https://wa.me/5561992064157" },
 		features: [
 			"Até 50 profissionais ativos",
 			"Pacientes, Financeiro, DRE, Folha de pagamento, Agenda, rotas e Estoque tudo ilimitado",
@@ -321,7 +321,7 @@ export default function PlansSection() {
 							</div>
 							<div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
 								<a
-									href="https://wa.me/5561991519369"
+									href="https://wa.me/5561992064157"
 									target="_blank"
 									rel="noopener noreferrer"
 									className="inline-flex items-center justify-center rounded-xl bg-emerald-600 text-white px-8 py-4 text-base font-bold hover:bg-emerald-700 transition-all shadow-lg hover:shadow-xl"

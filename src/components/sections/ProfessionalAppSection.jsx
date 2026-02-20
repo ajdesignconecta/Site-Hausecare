@@ -38,7 +38,7 @@ export default function ProfessionalAppSection({
     eyebrow = "App do Profissional",
     title = "Operação em campo, sem ruído e sem improviso.",
     subtitle = "Os profissionais acessam a rotina no celular: agenda do dia, pacientes, rota, comunicação e registro de atendimento — tudo com segurança e vínculo com a empresa.",
-    ctaPrimary = { label: "Solicitar demonstração", href: "https://wa.me/5561991519369" },
+    ctaPrimary = { label: "Solicitar demonstração", href: "https://wa.me/5561992064157" },
     ctaSecondary = { label: "Ver planos", href: "#planos" },
     // SEO (opcional): id do bloco para linkagem interna e facilitar rastreio.
     sectionId = "app-profissional",

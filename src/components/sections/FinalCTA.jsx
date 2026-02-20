@@ -75,7 +75,7 @@ export default function FinalCTA() {
 
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <a
-            href="https://wa.me/5561991519369"
+            href="https://wa.me/5561992064157"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-hc btn-hc-primary"

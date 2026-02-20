@@ -253,12 +253,12 @@ export function ContactCard() {
             </a>
 
             <a
-                href="tel:+556191519369"
+                href="tel:+5561992064157"
                 className="group rounded-2xl border border-slate-200 bg-white p-5 transition hover:bg-slate-50"
             >
                 <p className="text-xs font-semibold text-slate-500">Telefone</p>
                 <p className="mt-1 text-sm font-extrabold text-slate-900">
-                    61 9151-9369
+                    61 992064157
                 </p>
                 <p className="mt-2 text-xs text-slate-500 group-hover:text-slate-700 transition">
                     Ligar agora

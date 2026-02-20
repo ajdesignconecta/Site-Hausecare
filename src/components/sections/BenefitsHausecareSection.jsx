@@ -21,7 +21,7 @@ export default function BenefitsInternationalSection({
     eyebrow = "Benefícios para clínicas de Home Care",
     title = "Gestão que deixa a operação previsível — e você no controle.",
     subtitle = "O Hausecare reduz o caos do dia a dia e dá uma leitura clara do que está acontecendo: menos improviso, mais rastreabilidade e decisões rápidas.",
-    primaryCta = { label: "Solicitar demonstração", href: "https://wa.me/5561991519369" },
+    primaryCta = { label: "Solicitar demonstração", href: "https://wa.me/5561992064157" },
     secondaryCta = { label: "Ver planos", href: "#planos" },
 }) {
     const rootRef = useRef(null);

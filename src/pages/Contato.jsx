@@ -7,8 +7,8 @@ import SEO from "../components/SEO";
 
 const CONTACT = {
     email: "contato@hausecare.com.br",
-    phoneLabel: "61 9151-9369",
-    phoneTel: "+556191519369",
+    phoneLabel: "61 992064157",
+    phoneTel: "+5561992064157",
 };
 
 function isEmail(value) {
@@ -170,7 +170,7 @@ export default function Contato() {
                                 Enviar e-mail
                             </a>
                             <a
-                                href="https://wa.me/5561991519369"
+                                href="https://wa.me/5561992064157"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-50"

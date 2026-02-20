@@ -195,7 +195,7 @@ export default function Blog() {
                             Agende uma demonstração gratuita e veja como o Hausecare pode transformar sua operação de Home Care.
                         </p>
                         <a
-                            href="https://wa.me/5561991519369"
+                            href="https://wa.me/5561992064157"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="mt-6 inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-emerald-500 text-white font-bold hover:bg-emerald-400 transition shadow-lg"
