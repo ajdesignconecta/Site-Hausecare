@@ -27,13 +27,14 @@ export function PrivacidadePage() {
                 { id: "dados", label: "2. Dados coletados" },
                 { id: "permissoes", label: "3. Permissões do App" },
                 { id: "finalidades", label: "4. Finalidades e bases legais" },
-                { id: "compartilhamento", label: "5. Compartilhamento" },
-                { id: "retencao", label: "6. Retenção" },
-                { id: "seguranca", label: "7. Segurança" },
-                { id: "direitos", label: "8. Direitos do titular" },
-                { id: "cookies", label: "9. Cookies e analytics" },
-                { id: "criancas", label: "10. Crianças e adolescentes" },
-                { id: "contato", label: "11. Contato" },
+                { id: "ia", label: "5. Uso de IA no aplicativo" },
+                { id: "compartilhamento", label: "6. Compartilhamento" },
+                { id: "retencao", label: "7. Retenção" },
+                { id: "seguranca", label: "8. Segurança" },
+                { id: "direitos", label: "9. Direitos do titular" },
+                { id: "cookies", label: "10. Cookies e analytics" },
+                { id: "criancas", label: "11. Crianças e adolescentes" },
+                { id: "contato", label: "12. Contato" },
             ],
         }),
         []
@@ -141,7 +142,34 @@ export function PrivacidadePage() {
                 </List>
             </Section>
 
-            <Section id="compartilhamento" title="5. Compartilhamento">
+            <Section id="ia" title="5. Uso de IA no aplicativo">
+                <p className="text-slate-600 leading-relaxed">
+                    O recurso de IA da Hausecare existe somente para tirar dúvidas sobre o uso do sistema e orientar fluxos operacionais.
+                </p>
+                <Callout tone="success">
+                    <span className="font-semibold">A IA não coleta dados pessoais do usuário.</span> A IA não armazena dados do usuário, não cria banco de dados próprio e não utiliza informações do usuário para treinamento.
+                </Callout>
+                <List>
+                    <li>
+                        <span className="font-semibold text-slate-900">Finalidade da IA:</span>{" "}
+                        responder perguntas sobre funcionalidades da plataforma.
+                    </li>
+                    <li>
+                        <span className="font-semibold text-slate-900">Dados pessoais:</span>{" "}
+                        não são coletados pela IA para identificação do usuário.
+                    </li>
+                    <li>
+                        <span className="font-semibold text-slate-900">Retenção pela IA:</span>{" "}
+                        não há retenção de dados pessoais de usuários pela IA.
+                    </li>
+                    <li>
+                        <span className="font-semibold text-slate-900">Compartilhamento com IA de terceiros:</span>{" "}
+                        não compartilhamos dados pessoais de usuários para esse recurso de IA.
+                    </li>
+                </List>
+            </Section>
+
+            <Section id="compartilhamento" title="6. Compartilhamento">
                 <p className="text-slate-600 leading-relaxed">
                     Não vendemos dados pessoais. Podemos compartilhar dados com:
                 </p>
@@ -159,10 +187,14 @@ export function PrivacidadePage() {
                         <span className="font-semibold text-slate-900">Cliente (empresa):</span>{" "}
                         quando a empresa é controladora e administra usuários e dados inseridos na plataforma.
                     </li>
+                    <li>
+                        <span className="font-semibold text-slate-900">IA no app:</span>{" "}
+                        a funcionalidade de IA não recebe dados pessoais de usuários e não realiza armazenamento desses dados.
+                    </li>
                 </List>
             </Section>
 
-            <Section id="retencao" title="6. Retenção">
+            <Section id="retencao" title="7. Retenção">
                 <p className="text-slate-600 leading-relaxed">
                     Mantemos dados apenas pelo tempo necessário para cumprir finalidades
                     descritas, obrigações legais e legítimos interesses (como segurança e
@@ -170,7 +202,7 @@ export function PrivacidadePage() {
                 </p>
             </Section>
 
-            <Section id="seguranca" title="7. Segurança">
+            <Section id="seguranca" title="8. Segurança">
                 <p className="text-slate-600 leading-relaxed">
                     Adotamos medidas técnicas e organizacionais para proteger dados,
                     incluindo controles de acesso, autenticação, logs, práticas de
@@ -179,7 +211,7 @@ export function PrivacidadePage() {
                 <SecurityGrid />
             </Section>
 
-            <Section id="direitos" title="8. Direitos do titular">
+            <Section id="direitos" title="9. Direitos do titular">
                 <p className="text-slate-600 leading-relaxed">
                     Você pode solicitar confirmação de tratamento, acesso, correção,
                     anonimização, portabilidade, eliminação e revogação de consentimento,
@@ -197,7 +229,7 @@ export function PrivacidadePage() {
                 </Callout>
             </Section>
 
-            <Section id="cookies" title="9. Cookies e analytics">
+            <Section id="cookies" title="10. Cookies e analytics">
                 <p className="text-slate-600 leading-relaxed">
                     Podemos usar cookies e ferramentas de métricas para entender uso e
                     melhorar performance. Sempre que aplicável, você poderá administrar
@@ -205,7 +237,7 @@ export function PrivacidadePage() {
                 </p>
             </Section>
 
-            <Section id="criancas" title="10. Crianças e adolescentes">
+            <Section id="criancas" title="11. Crianças e adolescentes">
                 <p className="text-slate-600 leading-relaxed">
                     A plataforma é voltada a operações e profissionais. Não é destinada ao
                     uso direto por crianças. Se houver tratamento específico, ele deve
@@ -213,7 +245,7 @@ export function PrivacidadePage() {
                 </p>
             </Section>
 
-            <Section id="contato" title="11. Contato">
+            <Section id="contato" title="12. Contato">
                 <ContactCard />
             </Section>
         </LegalLayout>
