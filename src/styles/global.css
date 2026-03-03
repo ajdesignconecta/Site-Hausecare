@@ -158,34 +158,63 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-display: swap;
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://442271.fs1.hubspotusercontent-na1.net/hubfs/442271/lp-kit-files/lp-kit-fonts/figtree/Figtree-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 500;
+  src: url("https://442271.fs1.hubspotusercontent-na1.net/hubfs/442271/lp-kit-files/lp-kit-fonts/figtree/Figtree-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 600;
+  src: url("https://442271.fs1.hubspotusercontent-na1.net/hubfs/442271/lp-kit-files/lp-kit-fonts/figtree/Figtree-SemiBold.woff2") format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 700;
+  src: url("https://442271.fs1.hubspotusercontent-na1.net/hubfs/442271/lp-kit-files/lp-kit-fonts/figtree/Figtree-Bold.woff2") format("woff2");
+}
+
 /* =========================
-   Hausecare — Global + Design System (premium)
+   Hausecare â€” Global + Design System (premium)
    ========================= */
 
 :root {
   /* Tipografia */
-  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+  --font-sans: "Figtree", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans",
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 
   /* Cores-base */
   --bg: #ffffff;
-  --fg: #0f172a;
-  /* slate-900 */
-  --muted: #475569;
-  /* slate-600 */
-  --muted-2: #64748b;
-  /* slate-500 */
-  --border: rgba(15, 23, 42, 0.12);
+  --fg: #242727;
+  --muted: #565f5f;
+  --muted-2: #667070;
+  --border: rgba(36, 39, 39, 0.16);
 
   /* Brand (Hausecare) */
-  --brand: #174c77;
-  --brand-2: #2b908a;
-  --brand-soft: rgba(23, 76, 119, 0.14);
+  --brand: #00c3a5;
+  --brand-2: #0b4b3f;
+  --brand-soft: rgba(0, 195, 165, 0.18);
 
   /* Sombras (premium) */
-  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
-  --shadow-md: 0 10px 25px rgba(15, 23, 42, 0.10);
+  --shadow-sm: 0 1px 2px rgba(36, 39, 39, 0.05);
+  --shadow-md: 0 18px 38px rgba(36, 39, 39, 0.12);
 
   /* Radius */
   --r-md: 12px;
@@ -196,7 +225,7 @@
   --focus: rgba(23, 76, 119, 0.35);
 }
 
-/* Scroll suave, mas respeita usuários com redução de movimento */
+/* Scroll suave, mas respeita usuÃ¡rios com reduÃ§Ã£o de movimento */
 html {
   scroll-behavior: smooth;
   text-rendering: geometricPrecision;
@@ -223,7 +252,7 @@ body {
   color: var(--fg);
   line-height: 1.5;
 
-  /* renderização premium */
+  /* renderizaÃ§Ã£o premium */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-synthesis: none;
@@ -235,6 +264,17 @@ body {
   width: 100%;
 }
 
+.hc-updated-gradient {
+  background: radial-gradient(95% 120% at 10% 0%, #def9f2 0%, #f7f2ed 55%, #ffffff 100%);
+}
+
+.hc-soft-card {
+  border: 1px solid rgba(36, 39, 39, 0.12);
+  border-radius: 22px;
+  box-shadow: 0 16px 34px rgba(36, 39, 39, 0.1);
+  background: #fff;
+}
+
 
 
 /* Links */
@@ -243,13 +283,13 @@ a {
   text-decoration: none;
 }
 
-/* Seleção de texto */
+/* SeleÃ§Ã£o de texto */
 ::selection {
   background: var(--brand-soft);
   color: var(--fg);
 }
 
-/* Mídia */
+/* MÃ­dia */
 img,
 video,
 canvas,
@@ -267,7 +307,7 @@ select {
   color: inherit;
 }
 
-/* Foco acessível */
+/* Foco acessÃ­vel */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -278,12 +318,12 @@ select:focus-visible {
   border-radius: 10px;
 }
 
-/* Scroll para âncoras com header fixo (se existir) */
+/* Scroll para Ã¢ncoras com header fixo (se existir) */
 section[id] {
   scroll-margin-top: 88px;
 }
 
-/* Reduced motion: corta animações/transições */
+/* Reduced motion: corta animaÃ§Ãµes/transiÃ§Ãµes */
 @media (prefers-reduced-motion: reduce) {
 
   *,
@@ -322,7 +362,7 @@ section[id] {
    MINI DESIGN SYSTEM (classes)
    ========================= */
 
-/* Container padrão (equivalente ao max-w-7xl + px) */
+/* Container padrÃ£o (equivalente ao max-w-7xl + px) */
 .container-hc {
   width: 100%;
   max-width: 80rem;
@@ -332,7 +372,7 @@ section[id] {
   /* ~px-6 */
 }
 
-/* Títulos de seção */
+/* TÃ­tulos de seÃ§Ã£o */
 .section-title {
   font-size: clamp(1.7rem, 2.3vw, 2rem);
   font-weight: 800;
@@ -365,7 +405,7 @@ section[id] {
   border-color: rgba(23, 76, 119, 0.28);
 }
 
-/* Badge (ex.: “Trilha de auditoria…”) */
+/* Badge (ex.: â€œTrilha de auditoriaâ€¦â€) */
 .badge-hc {
   display: inline-flex;
   align-items: center;
@@ -383,7 +423,7 @@ section[id] {
   background: var(--brand);
 }
 
-/* Botões */
+/* BotÃµes */
 .btn-hc {
   display: inline-flex;
   align-items: center;
@@ -445,7 +485,7 @@ section[id] {
   animation: hero-gradient-flow 28s ease-in-out infinite alternate;
 }
 
-/* Animação sutil de luz no Hero */
+/* AnimaÃ§Ã£o sutil de luz no Hero */
 .hero-light-layer {
   animation: hero-light-shift 18s ease-in-out infinite alternate;
   will-change: transform;
@@ -901,7 +941,7 @@ section[id] {
   }
 }
 
-/* Utilitário de foco se quiser aplicar manualmente */
+/* UtilitÃ¡rio de foco se quiser aplicar manualmente */
 .ring-focus:focus-visible {
   outline: 2px solid transparent;
   box-shadow: 0 0 0 4px var(--focus);
@@ -909,7 +949,7 @@ section[id] {
 }
 
 /* =========================
-   Hero — carrossel animado
+   Hero â€” carrossel animado
    ========================= */
 .hero-marquee-track {
   width: max-content;
@@ -948,5 +988,224 @@ section[id] {
 
   100% {
     transform: translateX(-50%);
+  }
+}
+
+.hc-top-link {
+  font-family: "Nunito Sans", var(--font-sans);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: 0;
+  background: transparent;
+  border-radius: 0.5rem;
+  color: #0f2233;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.7rem 0.7rem 0.65rem;
+  transition: color 180ms ease, background 180ms ease;
+}
+
+.hc-top-link::after {
+  content: "";
+  position: absolute;
+  left: 0.65rem;
+  right: 0.65rem;
+  bottom: -0.82rem;
+  height: 3px;
+  border-radius: 2px;
+  background: #089981;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 180ms ease;
+}
+
+.hc-top-link:hover,
+
+
+.hc-top-link:hover,
+.hc-top-link:focus-visible {
+  color: #047e6d;
+  background: transparent;
+  z-index: 2;
+}
+
+.hc-top-link-active {
+  color: #047e6d;
+}
+
+.hc-top-link:hover::after,
+.hc-top-link:focus-visible::after,
+.hc-top-link-active::after {
+  transform: scaleX(1);
+}
+
+.hc-top-link-static:hover,
+.hc-top-link-static:focus-visible,
+.hc-top-link-static.hc-top-link-active {
+  color: #0f172a;
+}
+
+.hc-top-link-static:hover::after,
+.hc-top-link-static:focus-visible::after,
+.hc-top-link-static.hc-top-link-active::after {
+  transform: scaleX(0);
+}
+
+.hc-chevron {
+  display: inline-block;
+  transform: translateY(1px);
+  transition: transform 180ms ease;
+}
+
+.hc-chevron-open {
+  transform: rotate(180deg);
+}
+
+.hc-mega-shell {
+  width: min(960px, calc(100vw - 2rem));
+  border-radius: 0 0 1.6rem 1.6rem;
+  overflow: hidden;
+  border: 1px solid #d9dee5;
+  border-top: 0;
+  box-shadow: 0 18px 34px rgba(15, 23, 42, 0.12);
+  background: #f5f6f7;
+}
+
+.hc-mega-shell-white {
+  background: #fff !important;
+  animation: hc-mega-drop 180ms ease-out;
+}
+
+.hc-mega-shell-large {
+  min-height: 620px;
+}
+
+.hc-mega-shell-medium {
+  min-height: 420px;
+}
+
+.hc-group-item {
+  font-family: "Nunito Sans", var(--font-sans);
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: #263240;
+  font-size: 0.98rem;
+  font-weight: 400;
+  text-align: left;
+  border-radius: 0.75rem;
+  padding: 0.58rem 0.62rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.hc-group-item:hover,
+.hc-group-item:focus-visible {
+  background: #ffffffb3;
+  color: #0f172a;
+  transform: translateX(1px);
+}
+
+.hc-feature-item {
+  font-family: "Nunito Sans", var(--font-sans);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.65rem;
+  align-items: flex-start;
+  border-radius: 0.75rem;
+  padding: 0.48rem;
+  transition: background-color 180ms ease;
+}
+
+.hc-item-title {
+  display: block;
+  font-size: 1.03rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #1f2c3a;
+}
+
+.hc-item-desc {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.88rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #5f6b78;
+}
+
+.hc-feature-item-link:hover,
+.hc-feature-item-link:focus-visible {
+  background: #ffffff;
+}
+
+.hc-feature-icon {
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 0.35rem;
+  background: #d7f1ea;
+  color: #078474;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.06rem;
+  flex-shrink: 0;
+}
+
+.hc-mobile-link {
+  display: block;
+  width: 100%;
+  padding: 0.95rem 0.25rem;
+  border-bottom: 1px solid #f1f5f9;
+  color: #1e293b;
+  font-size: 1.04rem;
+  font-weight: 500;
+}
+
+.hc-mobile-link:hover,
+.hc-mobile-link:focus-visible {
+  color: #055f57;
+}
+
+@keyframes hc-mega-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hc-mobile-menu {
+  animation: hc-mobile-slide-down 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes hc-mobile-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hc-top-link,
+  .hc-top-link::after,
+  .hc-group-item,
+  .hc-feature-item,
+  .hc-mobile-menu {
+    transition: none !important;
+    animation: none !important;
   }
 }

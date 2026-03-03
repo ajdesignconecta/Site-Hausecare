@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+﻿import React, { lazy, Suspense } from "react";
 import SEO from "../components/SEO";
 import Hero from "../components/sections/Hero";
 import StickyCta from "../components/sections/StickyCta";
@@ -10,6 +10,7 @@ const IntegrationsSection = lazy(() => import("../components/sections/Integratio
 const FlowSection = lazy(() => import("../components/sections/HowItWorks"));
 const ManagementSection = lazy(() => import("../components/sections/ManagementSection"));
 const ProfessionalAppSection = lazy(() => import("../components/sections/ProfessionalAppSection"));
+const UpdatedExperienceSection = lazy(() => import("../components/sections/UpdatedExperienceSection"));
 const LannaSection = lazy(() => import("../components/sections/LannaSection"));
 const PlansSection = lazy(() => import("../components/sections/PlansSection"));
 const FaqSection = lazy(() => import("../components/sections/FaqSection"));
@@ -25,16 +26,20 @@ export default function Home() {
         path="/"
       />
 
-      {/* CTA sticky — aparece ao rolar */}
+      {/* CTA sticky â€” aparece ao rolar */}
       <StickyCta />
 
-      {/* HERO — Above the fold */}
+      {/* HERO â€” Above the fold */}
       <section id="inicio" aria-label="Início">
         <Hero />
       </section>
 
-      {/* Conteúdo abaixo da dobra — carregamento sob demanda */}
+      {/* Conteúdo abaixo da dobra - carregamento sob demanda */}
       <Suspense fallback={null}>
+        <section aria-label="Nova experiência da plataforma">
+          <UpdatedExperienceSection />
+        </section>
+
         <section aria-label="Benefícios da plataforma">
           <BenefitsHausecareSection />
         </section>
@@ -86,3 +91,4 @@ export default function Home() {
     </main>
   );
 }
+
