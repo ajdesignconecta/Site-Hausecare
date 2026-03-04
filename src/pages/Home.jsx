@@ -115,8 +115,8 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="rounded-[28px] bg-[#00c3a5] p-4 md:p-6 shadow-[0_24px_48px_rgba(36,39,39,0.18)]">
-              <div className="overflow-hidden rounded-2xl bg-white">
+            <div className="rounded-[28px] shadow-[0_24px_48px_rgba(36,39,39,0.18)]">
+              <div className="overflow-hidden rounded-[28px]">
                 <img src="/imagens/atualizado/imagem-dashboard-2026.png" alt="Dashboard estratégico da Hausecare" className="h-full w-full object-cover" />
               </div>
             </div>

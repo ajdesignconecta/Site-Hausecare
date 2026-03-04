@@ -275,6 +275,62 @@ body {
   background: #fff;
 }
 
+.hc-section-shell {
+  width: 100%;
+  max-width: 1320px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 768px) {
+  .hc-section-shell {
+    padding-inline: 1.5rem;
+  }
+}
+
+.hc-card {
+  border: 1px solid rgba(36, 39, 39, 0.12);
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: 0 10px 22px rgba(36, 39, 39, 0.08);
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.hc-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 195, 165, 0.36);
+  box-shadow: 0 16px 36px rgba(36, 39, 39, 0.14);
+}
+
+.hc-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, color 180ms ease;
+}
+
+.hc-cta:hover {
+  transform: translateY(-1px);
+}
+
+.hc-cta-primary {
+  background: #00c3a5;
+  color: #fff;
+  box-shadow: 0 12px 26px rgba(0, 195, 165, 0.32);
+}
+
+.hc-cta-primary:hover {
+  background: #00ad92;
+}
+
+.hc-cta-secondary {
+  background: #fff;
+  color: #242727;
+  border: 1px solid rgba(36, 39, 39, 0.22);
+}
+
 
 
 /* Links */

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+﻿import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import {
   BookOpen,
@@ -10,7 +10,6 @@ import {
   MessageCircleQuestion,
   NotebookTabs,
   ShieldCheck,
-  Sparkles,
   Smartphone,
   Wallet,
 } from "lucide-react";
@@ -19,9 +18,7 @@ import DashboardEstrategico1080 from "../../assets/imagens/screens/dashboard est
 import OperacaoClinica1080 from "../../assets/imagens/screens/operação-clinica-1080x1080.png";
 import FinanceiroSiteWeb from "../../assets/imagens/screens/feinanceiro-site-web.png";
 
-const secondaryLinks = [
-  { label: "Preços e Planos", to: "/planos" },
-];
+const secondaryLinks = [{ label: "Preços e Planos", to: "/planos" }];
 
 const solutionSections = [
   {
@@ -30,7 +27,7 @@ const solutionSections = [
     items: [
       { title: "Visão em tempo real", description: "Acompanhe os atendimentos do dia com status atualizado em tempo real", icon: LayoutDashboard },
       { title: "Alertas automáticos", description: "Receba alertas de atrasos e aja rapidamente na operação", icon: Calendar },
-      { title: "Produtividade da equipe", description: "Monitore produtividade por profissional para decisões gerenciais", icon: Sparkles },
+      { title: "Produtividade da equipe", description: "Monitore produtividade por profissional para decisões gerenciais", icon: FileText },
     ],
     spotlight: {
       image: DashboardEstrategico1080,
@@ -82,14 +79,14 @@ const contentSections = [
     label: "Recursos gratuitos",
     items: [
       { title: "Blog", description: "Conteúdo prático para gestores de Home Care", icon: BookOpen, to: "/blog" },
-      { title: "Ebooks e Guias", description: "Materiais para melhorar operação e financeiro", icon: FileText, to: "/blog" },
+      { title: "Ebooks e guias", description: "Materiais para melhorar operação e financeiro", icon: FileText, to: "/blog" },
       { title: "FAQ", description: "Respostas rápidas para dúvidas frequentes", icon: MessageCircleQuestion, to: "/#faq" },
     ],
     spotlight: {
       image: "/blog/tecnologia.png",
-      title: "Casos e conteúdos para gestão",
-      description: "Aprenda com artigos práticos para melhorar processos, equipe e resultado financeiro.",
-      cta: "Ver destaque",
+      title: "Conteúdo para gestão profissional",
+      description: "Aprenda a reduzir falhas e crescer com controle operacional.",
+      cta: "Acessar blog",
       to: "/blog",
     },
   },
@@ -102,23 +99,18 @@ const contentSections = [
       { title: "Base de conteúdo", description: "Materiais para treinar equipe e padronizar processos", icon: FileText, to: "/blog" },
     ],
     spotlight: {
-      image: "/imagens/screens/dashboard-organização.webp",
+      image: DashboardEstrategico1080,
       title: "Suporte para evolução contínua",
       description: "Tenha ajuda prática para acelerar adoção, padronizar rotinas e aumentar desempenho da equipe.",
       cta: "Ir para ajuda",
-      to: "/#faq",
+      to: "/contato",
     },
   },
 ];
 
-function TopLink({ active, children, onMouseEnter, onClick }) {
+function TopLink({ active, children, onMouseEnter }) {
   return (
-    <button
-      type="button"
-      className={`hc-top-link ${active ? "hc-top-link-active" : ""}`}
-      onMouseEnter={onMouseEnter}
-      onClick={onClick}
-    >
+    <button type="button" className={`hc-top-link ${active ? "hc-top-link-active" : ""}`} onMouseEnter={onMouseEnter}>
       {children}
     </button>
   );
@@ -127,6 +119,7 @@ function TopLink({ active, children, onMouseEnter, onClick }) {
 export default function Header() {
   const [openMobile, setOpenMobile] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
+  const [hoveringHeader, setHoveringHeader] = useState(false);
   const closeTimer = useRef(null);
   const headerRef = useRef(null);
   const megaMenuRef = useRef(null);
@@ -134,10 +127,12 @@ export default function Header() {
 
   const [activeSolutionSectionId, setActiveSolutionSectionId] = useState(solutionSections[0].id);
   const [activeContentSectionId, setActiveContentSectionId] = useState(contentSections[0].id);
+
   const activeSolutionSection = useMemo(
     () => solutionSections.find((section) => section.id === activeSolutionSectionId) || solutionSections[0],
     [activeSolutionSectionId]
   );
+
   const activeContentSection = useMemo(
     () => contentSections.find((section) => section.id === activeContentSectionId) || contentSections[0],
     [activeContentSectionId]
@@ -150,20 +145,35 @@ export default function Header() {
   }, [location.pathname]);
 
   useEffect(() => {
-    if (openMobile) {
-      document.body.style.overflow = "hidden";
-      document.documentElement.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
-    }
-
+    document.body.style.overflow = openMobile ? "hidden" : "";
+    document.documentElement.style.overflow = openMobile ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
       if (closeTimer.current) clearTimeout(closeTimer.current);
     };
   }, [openMobile]);
+
+  useEffect(() => {
+    const closeByTabSwitch = () => {
+      setActiveMenu(null);
+      if (closeTimer.current) {
+        clearTimeout(closeTimer.current);
+        closeTimer.current = null;
+      }
+    };
+
+    const onVisibility = () => {
+      if (document.hidden) closeByTabSwitch();
+    };
+
+    window.addEventListener("blur", closeByTabSwitch);
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => {
+      window.removeEventListener("blur", closeByTabSwitch);
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
+  }, []);
 
   const holdMenu = () => {
     if (closeTimer.current) {
@@ -174,36 +184,27 @@ export default function Header() {
 
   const scheduleClose = () => {
     holdMenu();
-    // Delay closing to allow moving the cursor from the top link into the submenu
     closeTimer.current = setTimeout(() => {
       setActiveMenu(null);
       closeTimer.current = null;
-    }, 220);
+    }, 0);
   };
 
   const closeNow = () => {
-    if (closeTimer.current) {
-      clearTimeout(closeTimer.current);
-      closeTimer.current = null;
-    }
+    holdMenu();
     setActiveMenu(null);
   };
 
-  const [hoveringHeader, setHoveringHeader] = useState(false);
+  const isInMenuArea = (target) => !!target && (headerRef.current?.contains(target) || megaMenuRef.current?.contains(target));
 
-  const isInMenuArea = (target) => (
-    !!target
-    && (headerRef.current?.contains(target) || megaMenuRef.current?.contains(target))
-  );
-
-  const handleHeaderLeave = (e) => {
+  const handleHeaderLeave = (event) => {
     setHoveringHeader(false);
-    if (isInMenuArea(e.relatedTarget)) return;
+    if (isInMenuArea(event.relatedTarget)) return;
     scheduleClose();
   };
 
-  const handleMegaLeave = (e) => {
-    if (isInMenuArea(e.relatedTarget)) return;
+  const handleMegaLeave = (event) => {
+    if (isInMenuArea(event.relatedTarget)) return;
     scheduleClose();
   };
 
@@ -212,7 +213,10 @@ export default function Header() {
       <header
         ref={headerRef}
         className="fixed top-0 left-0 w-full z-[120] border-b border-slate-200/90 bg-white transition-colors duration-200"
-        onMouseEnter={() => { setHoveringHeader(true); holdMenu(); }}
+        onMouseEnter={() => {
+          setHoveringHeader(true);
+          holdMenu();
+        }}
         onMouseLeave={handleHeaderLeave}
       >
         <div className="mx-auto px-4 md:px-6 max-w-[1320px]">
@@ -228,7 +232,7 @@ export default function Header() {
                   <ChevronDown size={13} className={`hc-chevron ${activeMenu === "solutions" ? "hc-chevron-open" : ""}`} strokeWidth={1.8} />
                 </TopLink>
 
-                {secondaryLinks.slice(0, 1).map((item) => (
+                {secondaryLinks.map((item) => (
                   <NavLink key={item.to} to={item.to} className={({ isActive }) => `hc-top-link hc-top-link-static ${isActive ? "hc-top-link-active" : ""}`}>
                     {item.label}
                   </NavLink>
@@ -242,7 +246,7 @@ export default function Header() {
             </div>
 
             <div className="hidden lg:flex items-center gap-3">
-              <a href="https://app.hausecare.com.br/auth/register" className="inline-flex items-center justify-center rounded-full bg-[#047e6d] px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#046d5f]">
+              <a href="https://app.hausecare.com.br/auth/register/company" className="inline-flex items-center justify-center rounded-full bg-[#047e6d] px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#046d5f]">
                 Teste Grátis
               </a>
               <a href="https://app.hausecare.com.br/" className="inline-flex items-center justify-center rounded-full border border-slate-700/70 bg-white px-6 py-2.5 text-sm font-medium text-slate-900 transition-colors hover:bg-slate-50">
@@ -272,89 +276,70 @@ export default function Header() {
               >
                 <div className="absolute -top-3 left-0 right-0 h-3" onMouseEnter={holdMenu} />
                 <div className={`hc-mega-shell ${activeMenu === "solutions" ? "hc-mega-shell-large" : "hc-mega-shell-medium"} ${hoveringHeader ? "hc-mega-shell-white" : ""}`}>
-                <div className="grid h-full grid-cols-[30%_38%_32%]">
-                  <div className="bg-[#f5f6f7] px-9 py-8">
-                    <ul className="space-y-2">
-                      {(activeMenu === "solutions" ? solutionSections : contentSections).map((group) => (
-                        <li key={group.id}>
-                          <button
-                            type="button"
-                            className={`hc-group-item ${
-                              activeMenu === "solutions" && activeSolutionSectionId === group.id
-                                ? "bg-white text-slate-900"
-                                : activeMenu === "content" && activeContentSectionId === group.id
-                                  ? "bg-white text-slate-900"
-                                  : ""
-                            }`}
-                            onMouseEnter={() => {
-                              if (activeMenu === "solutions") setActiveSolutionSectionId(group.id);
-                              if (activeMenu === "content") setActiveContentSectionId(group.id);
-                            }}
-                            onClick={() => {
-                              if (activeMenu === "solutions") setActiveSolutionSectionId(group.id);
-                              if (activeMenu === "content") setActiveContentSectionId(group.id);
-                            }}
-                          >
-                            <span>{group.label}</span>
-                            <ChevronRight size={17} />
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="bg-[#f5f6f7] px-9 py-8 border-l border-slate-200/80">
-                    <div className="space-y-5">
-                      {(activeMenu === "solutions" ? activeSolutionSection.items : activeContentSection.items).map((item) => {
-                        const Icon = item.icon;
-                        const Wrapper = item.to ? Link : "div";
-
-                        return (
-                          <Wrapper
-                            key={item.title}
-                            {...(item.to ? { to: item.to } : {})}
-                            className={`hc-feature-item ${item.to ? "hc-feature-item-link" : ""}`}
-                          >
-                            <span className="hc-feature-icon"><Icon size={15} /></span>
-                            <span>
-                              <span className="hc-item-title">{item.title}</span>
-                              <span className="hc-item-desc">{item.description}</span>
-                            </span>
-                          </Wrapper>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  <aside className="bg-[#d6ebe6] px-6 py-7 border-l border-slate-200/80">
-                    <p className="text-[0.95rem] font-medium uppercase tracking-wide text-slate-600">Em destaque</p>
-                    <div className="mt-4 overflow-hidden rounded-2xl bg-white aspect-square w-full flex items-center justify-center p-2">
-                      <img
-                        src={activeMenu === "solutions" ? activeSolutionSection.spotlight.image : activeContentSection.spotlight.image}
-                        alt="Destaque Hausecare"
-                        className="h-full w-full object-contain"
-                      />
+                  <div className="grid h-full grid-cols-[30%_38%_32%]">
+                    <div className="bg-[#f5f6f7] px-9 py-8">
+                      <ul className="space-y-2">
+                        {(activeMenu === "solutions" ? solutionSections : contentSections).map((group) => (
+                          <li key={group.id}>
+                            <button
+                              type="button"
+                              className={`hc-group-item ${(activeMenu === "solutions" && activeSolutionSectionId === group.id) || (activeMenu === "content" && activeContentSectionId === group.id) ? "bg-white text-slate-900" : ""}`}
+                              onMouseEnter={() => {
+                                if (activeMenu === "solutions") setActiveSolutionSectionId(group.id);
+                                if (activeMenu === "content") setActiveContentSectionId(group.id);
+                              }}
+                            >
+                              <span>{group.label}</span>
+                              <ChevronRight size={17} />
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
 
-                    {activeMenu === "solutions" ? (
-                      <>
-                        <h3 className="mt-5 text-[1.2rem] font-normal text-slate-900 leading-tight">{activeSolutionSection.spotlight.title}</h3>
-                        <p className="mt-2 text-[0.95rem] font-normal text-slate-700 leading-relaxed">{activeSolutionSection.spotlight.description}</p>
-                        <Link to={activeSolutionSection.spotlight.to} className="mt-5 inline-flex items-center gap-2 text-[#0f766e] text-base font-medium hover:underline">
-                          {activeSolutionSection.spotlight.cta} <span aria-hidden="true">→</span>
-                        </Link>
-                      </>
-                    ) : (
-                      <>
-                        <h3 className="mt-5 text-[1.2rem] font-normal text-slate-900 leading-tight">{activeContentSection.spotlight.title}</h3>
-                        <p className="mt-2 text-[0.95rem] font-normal text-slate-700 leading-relaxed">{activeContentSection.spotlight.description}</p>
-                        <Link to={activeContentSection.spotlight.to} className="mt-5 inline-flex items-center gap-2 text-[#0f766e] text-base font-medium hover:underline">
-                          {activeContentSection.spotlight.cta} <span aria-hidden="true">→</span>
-                        </Link>
-                      </>
-                    )}
-                  </aside>
-                </div>
+                    <div className="bg-[#f5f6f7] px-9 py-8 border-l border-slate-200/80">
+                      <div className="space-y-5">
+                        {(activeMenu === "solutions" ? activeSolutionSection.items : activeContentSection.items).map((item) => {
+                          const Icon = item.icon;
+                          const Wrapper = item.to ? Link : "div";
+                          return (
+                            <Wrapper key={item.title} {...(item.to ? { to: item.to } : {})} className={`hc-feature-item ${item.to ? "hc-feature-item-link" : ""}`}>
+                              <span className="hc-feature-icon"><Icon size={15} /></span>
+                              <span>
+                                <span className="hc-item-title">{item.title}</span>
+                                <span className="hc-item-desc">{item.description}</span>
+                              </span>
+                            </Wrapper>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    <aside className="bg-[#d6ebe6] px-6 py-7 border-l border-slate-200/80">
+                      <p className="text-[0.95rem] font-medium uppercase tracking-wide text-slate-600">Em destaque</p>
+                      <div className="mt-4 overflow-hidden rounded-2xl bg-white aspect-square w-full flex items-center justify-center p-2">
+                        <img src={activeMenu === "solutions" ? activeSolutionSection.spotlight.image : activeContentSection.spotlight.image} alt="Destaque Hausecare" className="h-full w-full object-contain" />
+                      </div>
+
+                      {activeMenu === "solutions" ? (
+                        <>
+                          <h3 className="mt-5 text-[1.2rem] font-normal text-slate-900 leading-tight">{activeSolutionSection.spotlight.title}</h3>
+                          <p className="mt-2 text-[0.95rem] font-normal text-slate-700 leading-relaxed">{activeSolutionSection.spotlight.description}</p>
+                          <Link to={activeSolutionSection.spotlight.to} className="mt-5 inline-flex items-center gap-2 text-[#0f766e] text-base font-medium hover:underline">
+                            {activeSolutionSection.spotlight.cta} <span aria-hidden="true">→</span>
+                          </Link>
+                        </>
+                      ) : (
+                        <>
+                          <h3 className="mt-5 text-[1.2rem] font-normal text-slate-900 leading-tight">{activeContentSection.spotlight.title}</h3>
+                          <p className="mt-2 text-[0.95rem] font-normal text-slate-700 leading-relaxed">{activeContentSection.spotlight.description}</p>
+                          <Link to={activeContentSection.spotlight.to} className="mt-5 inline-flex items-center gap-2 text-[#0f766e] text-base font-medium hover:underline">
+                            {activeContentSection.spotlight.cta} <span aria-hidden="true">→</span>
+                          </Link>
+                        </>
+                      )}
+                    </aside>
+                  </div>
                 </div>
               </div>
             </div>
@@ -373,7 +358,7 @@ export default function Header() {
             </div>
 
             <div className="p-6 bg-slate-50 border-t border-slate-100 flex flex-col gap-3">
-              <a href="https://app.hausecare.com.br/auth/register" className="w-full flex items-center justify-center rounded-full bg-[#047e6d] py-3 text-base font-semibold text-white">Teste Grátis</a>
+              <a href="https://app.hausecare.com.br/auth/register/company" className="w-full flex items-center justify-center rounded-full bg-[#047e6d] py-3 text-base font-semibold text-white">Teste Grátis</a>
               <a href="https://app.hausecare.com.br/" className="w-full flex items-center justify-center rounded-full border border-slate-700/70 bg-white py-3 text-base font-medium text-slate-900">Entrar na sua conta</a>
             </div>
           </div>
@@ -382,4 +367,3 @@ export default function Header() {
     </>
   );
 }
-

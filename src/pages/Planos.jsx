@@ -1,363 +1,256 @@
-import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Check, X } from "lucide-react";
+﻿import React from "react";
 import SEO from "../components/SEO";
-import FinalCTA from "../components/sections/FinalCTA";
 
-try {
-  gsap.registerPlugin(ScrollTrigger);
-} catch (e) { }
-
-const PLANS = [
+const plans = [
   {
     id: "free",
     name: "Free",
-    tagline: "Comece com controle básico",
-    price: "Grátis",
-    period: "para sempre",
-    highlight: false,
-    cta: { label: "Criar conta grátis", href: "https://app.hausecare.com.br/auth/register" },
-    features: [],
+    badge: "Comece agora",
+    professionals: "ate 3 profissionais ativos",
+    price: "R$ 0,00",
+    description:
+      "Para autonomos e testes iniciais. Organize atendimentos, rotas e pacientes com a tecnologia da Hausecare.",
+    items: [
+      "Profissionais independentes",
+      "Testes iniciais",
+      "Primeira experiencia com gestao digital",
+      "Gestao de pacientes",
+      "Rotas e atendimentos",
+    ],
+    buttonLabel: "Cadastre-se Gratuitamente",
+    buttonHref: "https://app.hausecare.com.br/auth/register/company",
+    note: "Pode afetar o acesso de profissionais existentes",
   },
   {
-    id: "essencial",
+    id: "essential",
     name: "Clinic Essential",
-    tagline: "Operação organizada e rastreável",
-    price: "Sob consulta",
-    period: "",
-    highlight: false,
-    cta: { label: "Agendar Demonstração", href: "https://wa.me/5561992064157" },
-    features: [
-      "Até 10 profissionais ativos",
-      "Pacientes, Financeiro, DRE, Folha de pagamento, Agenda, rotas e Estoque tudo ilimitado",
+    badge: "Para comecar com ordem",
+    professionals: "ate 10 profissionais ativos",
+    price: "R$ 249,90",
+    description:
+      "Para clinicas pequenas que querem organizar a operacao. Rotas claras, agenda previsivel e produtividade maior.",
+    items: [
+      "Clinicas pequenas",
+      "Operacao em crescimento",
+      "Organizacao de rotas e agendas",
+      "Relatorios essenciais",
+      "Suporte padrao",
     ],
+    buttonLabel: "Escolher Plano",
+    buttonHref: "/contato",
+    note: "Upgrade/downgrade quando quiser",
   },
   {
-    id: "pro",
+    id: "professional",
     name: "Clinic Professional",
-    tagline: "Performance + relatórios avançados",
-    price: "Sob consulta",
-    period: "",
-    highlight: true,
-    cta: { label: "Agendar Demonstração", href: "https://wa.me/5561992064157" },
-    features: [
-      "Até 35 profissionais ativos",
-      "Pacientes, Financeiro, DRE, Folha de pagamento, Agenda, rotas e Estoque tudo ilimitado",
+    badge: "Melhor custo-beneficio",
+    badgeSecondary: "Melhor plano",
+    professionals: "ate 35 profissionais ativos",
+    price: "R$ 449,90",
+    description:
+      "O mais vendido para quem precisa de escala. Menos erros, mais produtividade, controle financeiro e evolucao segura.",
+    items: [
+      "Clinicas estruturadas",
+      "Equipe crescendo",
+      "Eficiencia real",
+      "Relatorios avancados",
+      "Suporte prioritario",
     ],
+    buttonLabel: "Escolher Plano",
+    buttonHref: "/contato",
+    note: "Upgrade/downgrade quando quiser",
   },
   {
     id: "enterprise",
     name: "Clinic Enterprise",
-    tagline: "Governança, permissões e escala",
-    price: "Sob consulta",
-    period: "",
-    highlight: false,
-    cta: { label: "Agendar Demonstração", href: "https://wa.me/5561992064157" },
-    features: [
-      "Até 50 profissionais ativos",
-      "Pacientes, Financeiro, DRE, Folha de pagamento, Agenda, rotas e Estoque tudo ilimitado",
+    badge: "Alta demanda",
+    professionals: "ate 50 profissionais ativos",
+    price: "R$ 979,90",
+    description:
+      "Para grandes estruturas com alta demanda, multiplas rotas e necessidade total de controle.",
+    items: [
+      "Empresas grandes",
+      "Multiplas rotas",
+      "Alta confiabilidade",
+      "Relatorios completos",
+      "Acompanhamento",
     ],
+    buttonLabel: "Escolher Plano",
+    buttonHref: "/contato",
+    note: "Upgrade/downgrade quando quiser",
+  },
+  {
+    id: "corporate",
+    name: "Clinic Corporate",
+    badge: "Escala maxima",
+    professionals: "Profissionais ilimitados",
+    price: "R$ 1.490,00",
+    description:
+      "Operacoes em larga escala. Suporte premium, performance e controle para equipes grandes.",
+    items: [
+      "Operacoes corporativas",
+      "Multiplas regioes",
+      "Personalizacao e escala",
+      "Onboarding avancado",
+      "Suporte premium",
+    ],
+    buttonLabel: "Escolher Plano",
+    buttonHref: "/contato",
+    note: "Upgrade/downgrade quando quiser",
   },
 ];
 
-const FEATURES = [
-  {
-    category: "Operação",
-    items: [
-      { name: "Agenda, atendimentos e status em tempo real", free: true, essencial: true, pro: true, enterprise: true },
-      { name: "Rotas e deslocamentos (visão por dia e profissional)", free: true, essencial: true, pro: true, enterprise: true },
-    ]
-  },
-  {
-    category: "Clínico",
-    items: [
-      { name: "Prontuário digital e plano terapêutico por paciente", free: true, essencial: true, pro: true, enterprise: true },
-      { name: "Evolução protegida por senha do atendimento", free: true, essencial: true, pro: true, enterprise: true },
-    ]
-  },
-  {
-    category: "Financeiro",
-    items: [
-      { name: "Receitas, despesas, extrato e visão consolidada", free: false, essencial: true, pro: true, enterprise: true },
-      { name: "DRE gerencial e centros de custos", free: false, essencial: true, pro: true, enterprise: true },
-      { name: "Folha de pagamento por profissional / período", free: false, essencial: true, pro: true, enterprise: true },
-      { name: "Exportação CSV para conciliação e análise", free: true, essencial: true, pro: true, enterprise: true },
-    ]
-  },
-  {
-    category: "Gestão",
-    items: [
-      { name: "Gestão de equipe e convites de profissionais", free: true, essencial: true, pro: true, enterprise: true },
-      { name: "Relatórios avançados (produtividade, SLA, qualidade)", free: false, essencial: true, pro: true, enterprise: true },
-    ]
-  },
-  {
-    category: "Segurança & Governança",
-    items: [
-      { name: "Acesso a evolução do paciente assinada pelo profissional", free: true, essencial: true, pro: true, enterprise: true },
-    ]
-  },
-  {
-    category: "Suporte",
-    items: [
-      { name: "Onboarding e suporte para implantação", free: false, essencial: true, pro: true, enterprise: true },
-    ]
-  },
+const comparisonRows = [
+  { resource: "Profissionais ativos", free: "ate 3", essential: "ate 10", professional: "ate 35", enterprise: "ate 50", corporate: "ilimitados" },
+  { resource: "Gestao de pacientes", free: "✓", essential: "✓", professional: "✓", enterprise: "✓", corporate: "✓" },
+  { resource: "Rotas e atendimentos", free: "✓", essential: "✓", professional: "✓", enterprise: "✓", corporate: "✓" },
+  { resource: "Evolucao do paciente", free: "✓", essential: "✓", professional: "✓", enterprise: "✓", corporate: "✓" },
+  { resource: "Financeiro dos profissionais", free: "✓", essential: "✓", professional: "✓", enterprise: "✓", corporate: "✓" },
+  { resource: "Relatorios gerenciais", free: "Basico", essential: "Essenciais", professional: "Avancados", enterprise: "Completo", corporate: "Completo" },
+  { resource: "Suporte", free: "Base", essential: "Padrao", professional: "Prioridade", enterprise: "Prioridade alta", corporate: "Premium" },
+  { resource: "Onboarding", free: "Autoguiado", essential: "Guiado por material", professional: "Assistido (time Hausecare)", enterprise: "Assistido + acompanhamento", corporate: "Assistido + acompanhamento" },
 ];
 
-export default function PlansSection() {
-  const rootRef = useRef(null);
-  const [viewMode, setViewMode] = useState("cards"); // "cards" ou "table"
-
-  useLayoutEffect(() => {
-    const el = rootRef.current;
-    if (!el) return;
-
-    const ctx = gsap.context(() => {
-      gsap.set(".pl-in", { autoAlpha: 0, y: 20 });
-      gsap.set(".pl-card", { autoAlpha: 0, y: 30 });
-
-      gsap.to(".pl-in", {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.85,
-        ease: "power3.out",
-        stagger: 0.08,
-        scrollTrigger: { trigger: el, start: "top 75%" },
-      });
-
-      gsap.to(".pl-card", {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.7,
-        ease: "power3.out",
-        stagger: 0.12,
-        scrollTrigger: { trigger: el, start: "top 70%" },
-      });
-    }, rootRef);
-
-    return () => ctx.revert();
-  }, []);
+function PlanCard({ plan }) {
+  const isProfessional = plan.id === "professional";
 
   return (
-    <main>
-      <SEO
-        title="Planos e Preços | Sistema para Home Care"
-        description="Compare os planos do Hausecare: Free, Essential, Professional e Enterprise. Escolha o software de gestão ideal para sua clínica de Home Care."
-        path="/planos"
-      />
-      <section
-        ref={rootRef}
-        id="planos"
-        aria-labelledby="plans-title"
-        className="py-20 md:py-28 bg-slate-50"
+    <article
+      className={`h-full w-full max-w-[360px] overflow-hidden rounded-[22px] border shadow-[0_6px_18px_rgba(15,23,42,0.06)] flex flex-col ${
+        isProfessional ? "border-[#0b6e60] bg-[#d9eee9]" : "border-[#d9dee5] bg-white"
+      }`}
+    >
+      <div
+        className={`px-6 py-4 border-b ${
+          isProfessional ? "bg-[#0b6e60] border-[#0b6e60]" : "bg-white border-slate-200"
+        }`}
       >
-        <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
-          {/* Header */}
-          <header className="text-center mb-16 md:mb-20">
-            <div className="pl-in inline-flex items-center gap-2 rounded-full bg-emerald-100 px-4 py-2 text-xs font-semibold text-emerald-700 border border-emerald-200 mb-6">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-              Planos e Preços
-            </div>
-
-            <h2
-              id="plans-title"
-              className="pl-in text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight"
-              style={{ letterSpacing: '-0.02em' }}
+        <div className="flex items-start justify-between gap-2">
+          <h3 className={`text-[2rem] leading-tight font-semibold ${isProfessional ? "text-white" : "text-slate-900"}`}>
+            {plan.name}
+          </h3>
+          <div className="flex flex-wrap justify-end gap-2">
+            {plan.badgeSecondary ? (
+              <span className="rounded-full px-2.5 py-1 text-[11px] font-semibold bg-[#ffedd5] text-[#ea580c] whitespace-nowrap">
+                {plan.badgeSecondary}
+              </span>
+            ) : null}
+            <span
+              className={`rounded-full px-2.5 py-1 text-[11px] font-semibold whitespace-nowrap ${
+                isProfessional ? "bg-[#f97316] text-white" : "bg-slate-100 text-slate-700"
+              }`}
             >
-              Escolha o plano ideal para sua operação
-            </h2>
-
-            <p className="pl-in text-slate-600 max-w-2xl mx-auto">
-              Do profissional autônomo à grande clínica. Compare recursos e evolua conforme sua equipe cresce.
-            </p>
-          </header>
-
-          {/* Cards de Planos */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-16">
-            {PLANS.map((plan) => (
-              <div
-                key={plan.id}
-                className={`pl-card relative rounded-3xl p-6 md:p-8 transition-all duration-300 ${plan.highlight
-                  ? "bg-slate-900 border-2 border-slate-800 shadow-2xl scale-100 md:scale-105 lg:scale-110 z-10 mt-6 md:mt-0 max-w-[90%] mx-auto md:max-w-none"
-                  : "bg-white border-2 border-slate-200 hover:border-emerald-300 hover:shadow-xl"
-                  }`}
-              >
-                {plan.highlight && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-500 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wide shadow-lg">
-                    Recomendado
-                  </div>
-                )}
-
-                <div className="mb-6">
-                  <h3 className={`text-2xl font-bold mb-2 ${plan.highlight ? "text-white" : "text-slate-900"}`}>
-                    {plan.name}
-                  </h3>
-                  <p className={`text-sm ${plan.highlight ? "text-slate-400" : "text-slate-600"}`}>
-                    {plan.tagline}
-                  </p>
-                </div>
-
-                <div className="mb-8">
-                  <div className={`text-4xl font-bold mb-1 ${plan.highlight ? "text-white" : "text-slate-900"}`}>
-                    {plan.price}
-                  </div>
-                  {plan.period && (
-                    <div className={`text-sm ${plan.highlight ? "text-slate-400" : "text-slate-500"}`}>
-                      {plan.period}
-                    </div>
-                  )}
-                </div>
-
-                {/* Features list */}
-                {plan.features && plan.features.length > 0 && (
-                  <ul className="mb-8 space-y-2">
-                    {plan.features.map((feature, idx) => (
-                      <li key={idx} className={`flex items-start gap-2 text-sm ${plan.highlight ? "text-slate-300" : "text-slate-600"}`}>
-                        <span className="text-emerald-500 mt-0.5">✓</span>
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-
-                <a
-                  href={plan.cta.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`block w-full py-4 rounded-xl text-center font-bold transition-all ${plan.highlight
-                    ? "bg-emerald-500 text-white hover:bg-emerald-400 shadow-lg"
-                    : "bg-slate-100 text-slate-900 hover:bg-slate-200"
-                    }`}
-                >
-                  {plan.cta.label}
-                </a>
-              </div>
-            ))}
-          </div>
-
-          {/* Comparação Detalhada - Hidden on mobile, visible on tablet+ */}
-          <div className="pl-in max-md:hidden bg-white rounded-3xl border-2 border-slate-200 shadow-xl overflow-hidden">
-            <div className="px-6 md:px-10 py-8 border-b-2 border-slate-200 bg-slate-50">
-              <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">
-                Comparação detalhada de recursos
-              </h3>
-              <p className="text-slate-600">
-                Veja exatamente o que cada plano oferece para sua operação
-              </p>
-            </div>
-
-            <div className="overflow-x-auto">
-              <div className="min-w-[800px]">
-                {/* Desktop: Header da tabela */}
-                <div className="hidden md:grid md:grid-cols-5 gap-4 px-6 md:px-10 py-6 bg-slate-50 border-b-2 border-slate-200">
-                  <div className="font-bold text-slate-900 text-lg">Recursos</div>
-                  {PLANS.map((plan) => (
-                    <div key={plan.id} className="text-center">
-                      <div className="font-bold text-slate-900 text-lg">{plan.name}</div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Features por categoria */}
-                {FEATURES.map((category, catIdx) => (
-                  <div key={category.category}>
-                    {/* Categoria Header */}
-                    <div className="px-6 md:px-10 py-4 bg-slate-100 border-b border-slate-200">
-                      <h4 className="font-bold text-slate-900 text-base md:text-lg">{category.category}</h4>
-                    </div>
-
-                    {/* Items da categoria */}
-                    {category.items.map((item, itemIdx) => (
-                      <div
-                        key={itemIdx}
-                        className="grid grid-cols-1 md:grid-cols-5 gap-4 px-6 md:px-10 py-5 border-b border-slate-200 hover:bg-slate-50 transition-colors"
-                      >
-                        {/* Nome do recurso */}
-                        <div className="md:col-span-1">
-                          <p className="text-slate-900 font-medium text-sm md:text-base leading-relaxed">
-                            {item.name}
-                          </p>
-                        </div>
-
-                        {/* Checks / X para cada plano - Desktop */}
-                        <div className="hidden md:contents">
-                          {PLANS.map((plan) => (
-                            <div key={plan.id} className="flex items-center justify-center">
-                              {item[plan.id] ? (
-                                <Check className="w-6 h-6 text-emerald-500" strokeWidth={3} />
-                              ) : (
-                                <X className="w-6 h-6 text-slate-300" strokeWidth={2} />
-                              )}
-                            </div>
-                          ))}
-                        </div>
-
-                        {/* Mobile: Lista de planos */}
-                        <div className="md:hidden grid grid-cols-4 gap-2 mt-3">
-                          {PLANS.map((plan) => (
-                            <div key={plan.id} className="text-center">
-                              <div className="text-xs font-semibold text-slate-600 mb-1">{plan.name}</div>
-                              {item[plan.id] ? (
-                                <Check className="w-5 h-5 text-emerald-500 mx-auto" strokeWidth={3} />
-                              ) : (
-                                <X className="w-5 h-5 text-slate-300 mx-auto" strokeWidth={2} />
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Footer CTA - Always visible */}
-          <div className="pl-in bg-white rounded-3xl border-2 border-slate-200 shadow-xl overflow-hidden mt-8">
-            <div className="px-6 md:px-10 py-8 bg-slate-50">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                <div className="text-center md:text-left">
-                  <p className="text-slate-600 text-sm md:text-base">
-                    Tem dúvidas sobre qual plano escolher?
-                  </p>
-                  <p className="text-slate-900 font-bold text-base md:text-lg mt-1">
-                    Nossa equipe pode ajudar você a decidir
-                  </p>
-                </div>
-                <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-                  <a
-                    href="https://wa.me/5561992064157"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-xl bg-emerald-600 text-white px-8 py-4 text-base font-bold hover:bg-emerald-700 transition-all shadow-lg hover:shadow-xl"
-                  >
-                    Falar com Consultor
-                  </a>
-                  <button
-                    type="button"
-                    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                    className="inline-flex items-center justify-center rounded-xl bg-white text-slate-900 border-2 border-slate-200 px-8 py-4 text-base font-bold hover:bg-slate-50 transition-all"
-                  >
-                    Voltar ao Topo
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Trust line */}
-          <div className="pl-in mt-8 text-center text-sm text-slate-500">
-            <p>Tempo real • Prontuário digital • Agenda & Rotas • Financeiro integrado</p>
+              {plan.badge}
+            </span>
           </div>
         </div>
-      </section>
-
-      <div className="mt-0">
-        <FinalCTA />
       </div>
+
+      <div className="px-6 pt-5 pb-6 flex h-full flex-col">
+        <p className={`text-[1.05rem] font-medium ${isProfessional ? "text-slate-700" : "text-slate-600"}`}>
+          {plan.professionals}
+        </p>
+
+        <p className="mt-3 text-[2.6rem] leading-none font-semibold text-slate-900">
+          {plan.price} <span className="text-[1.05rem] font-medium text-slate-500">/mes</span>
+        </p>
+
+        <p className="mt-3 text-[0.98rem] leading-relaxed text-slate-600">{plan.description}</p>
+
+        <a
+          href={plan.buttonHref}
+          className={`mt-6 inline-flex w-full items-center justify-center rounded-full px-5 py-3.5 text-[1.05rem] font-semibold transition-colors ${
+            isProfessional
+              ? "bg-[#0b8a73] text-white hover:bg-[#0a755f]"
+              : "bg-white text-slate-900 border border-slate-700 hover:bg-slate-50"
+          }`}
+        >
+          {plan.buttonLabel}
+        </a>
+
+        <p className="mt-6 text-[1.35rem] font-semibold tracking-tight text-slate-900">Este plano inclui:</p>
+        <ul className="mt-3 space-y-2.5">
+          {plan.items.map((item) => (
+            <li key={item} className="flex items-start gap-2 text-[1rem] text-slate-700">
+              <span className="mt-2 inline-flex h-4 w-4 items-center justify-center rounded-full bg-[#1fb79a] text-white text-[10px]">
+                ✓
+              </span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+
+        <p className="mt-auto pt-4 text-center text-sm text-slate-500">{plan.note}</p>
+      </div>
+    </article>
+  );
+}
+
+export default function Planos() {
+  return (
+    <main className="bg-[#f6f8fb] pt-28 pb-16 text-[#242727]">
+      <SEO
+        title="Planos e Precos | Hausecare"
+        description="Escolha o plano ideal da Hausecare para sua clinica: Free, Clinic Essential, Clinic Professional, Clinic Enterprise e Clinic Corporate."
+        path="/planos"
+      />
+
+      <section className="mx-auto w-full max-w-[1320px] px-4 md:px-6">
+        <header className="mb-8">
+          <h1 className="text-4xl md:text-5xl font-semibold tracking-[-0.02em] text-slate-900">Precos e Planos</h1>
+          <p className="mt-2 text-base md:text-lg text-slate-600">Transparencia para escolher o melhor plano para sua operacao.</p>
+        </header>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 auto-rows-fr justify-items-start">
+          {plans.slice(0, 3).map((plan) => (
+            <PlanCard key={plan.id} plan={plan} />
+          ))}
+        </div>
+
+        <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 auto-rows-fr justify-items-start">
+          {plans.slice(3).map((plan) => (
+            <PlanCard key={plan.id} plan={plan} />
+          ))}
+        </div>
+
+        <section className="mt-8 overflow-hidden rounded-[20px] border border-slate-200 bg-white">
+          <div className="border-b border-slate-200 px-6 py-6">
+            <h2 className="text-3xl font-semibold tracking-[-0.01em] text-slate-900">Comparativo de recursos</h2>
+            <p className="mt-1 text-base text-slate-600">Sem letra miuda. Transparencia converte.</p>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="min-w-[980px] w-full text-left">
+              <thead className="bg-slate-50">
+                <tr className="text-slate-700">
+                  <th className="px-6 py-4 text-base font-semibold">Recurso</th>
+                  <th className="px-6 py-4 text-base font-semibold">Free</th>
+                  <th className="px-6 py-4 text-base font-semibold">Essential</th>
+                  <th className="px-6 py-4 text-base font-semibold">Professional</th>
+                  <th className="px-6 py-4 text-base font-semibold">Enterprise</th>
+                  <th className="px-6 py-4 text-base font-semibold">Corporate</th>
+                </tr>
+              </thead>
+              <tbody>
+                {comparisonRows.map((row) => (
+                  <tr key={row.resource} className="border-t border-slate-200 text-slate-800">
+                    <td className="px-6 py-4 text-[1rem] font-semibold">{row.resource}</td>
+                    <td className="px-6 py-4 text-[0.98rem]">{row.free}</td>
+                    <td className="px-6 py-4 text-[0.98rem]">{row.essential}</td>
+                    <td className="px-6 py-4 text-[0.98rem] font-semibold text-[#ea580c]">{row.professional}</td>
+                    <td className="px-6 py-4 text-[0.98rem]">{row.enterprise}</td>
+                    <td className="px-6 py-4 text-[0.98rem]">{row.corporate}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <p className="border-t border-slate-200 px-6 py-4 text-[1rem] text-slate-700">
+            O plano <strong>Professional</strong> e seu motor de conversao.
+          </p>
+        </section>
+      </section>
     </main>
   );
 }
